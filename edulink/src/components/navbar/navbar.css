@@ -2,5 +2,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 4rem;
+    padding: 2rem 6rem;
+}
+
+.edulink_navbar-links{
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.edulink_navbar-links_logo{
+    margin-right: 2rem;
+}
+
+.edulink_navbar-links_logo img{
+    width: 190px;
+    height: 60px;
 }

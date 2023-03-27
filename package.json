@@ -1,5 +1,9 @@
 {
   "dependencies": {
     "react-icons": "^4.8.0"
+  },
+  "devDependencies": {
+    "file-loader": "^6.2.0",
+    "react-native-svg-transformer": "^1.0.0"
   }
 }

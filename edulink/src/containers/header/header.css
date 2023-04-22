@@ -1,0 +1,104 @@
+.edulink__header {
+    font-family: var(--font-family);
+    padding: 2rem 6rem;
+}
+
+.edulink__header-svg
+{
+  position: absolute;
+  right: 0px;
+  top:0px;
+  z-index: 0;
+}
+
+.edulink__header-content{
+  z-index: 1;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.edulink__header-content h1
+{
+    font-style: normal;
+    font-weight: 800;
+    font-size: 50px;
+    line-height: 75px;
+    letter-spacing: -0.04em;
+    background: linear-gradient(89.97deg, #41BDD8 1.84%, #8C67F4 105.37%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.searchbar{
+
+    margin-top: 20px;
+    margin-left: 120px;
+  
+  
+  
+  }
+  .mysearch{
+    background: url("../../assets/search-logo.svg") no-repeat;
+    background-position: 20px ;
+    background-color: #fff;
+    font-family: 'Manrope';
+font-style: normal;
+font-weight: 400;
+font-size: 22px;
+line-height: 75px;
+/* identical to box height, or 341% */
+
+letter-spacing: -0.04em;
+
+color: #808080;
+
+    height: 64px;
+    padding: 20px;
+    padding-left: 70px;
+    padding-right: 200px;
+    width: 740px;
+    border-radius: 20px;
+  }
+
+  .search{
+    position: relative;
+  
+    background: #27A6F4;
+    border-radius: 20px;
+    padding: 5px 22px;
+    height: 64px;
+    left: -124px;
+    color: white;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+
+    color: #FFFFFF;
+  }
+
+  .explore{
+
+
+    margin-top: 40px;
+      font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 30px;
+    /* identical to box height */
+    
+    text-align: center;
+    
+    color: #C8C8C8;
+
+    }
+
+    .temp{
+        margin-top: 20px;
+        width: 60%;
+    }

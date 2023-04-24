@@ -1,0 +1,151 @@
+.edulink__navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 2rem 6rem;
+}
+
+.edulink__navbar-links {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.edulink__background-svg
+{
+  position: absolute;
+  right: 0px;
+  top:0px;
+  z-index: 0;
+}
+
+.edulink__navbar-links_logo {
+    margin-right: 2rem;
+}
+
+.edulink__navbar-links_logo img {
+    width: 200px;
+    height: 70px;
+}
+
+.edulink__navbar-links_container {
+    display: flex;
+    flex-direction: row;
+}
+
+.edulink__navbar-sign {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.edulink__navbar-links_container p,
+.edulink__navbar-sign p,
+.edulink__navbar-menu_container p {
+    color: #fff;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    margin: 0 1rem;
+    cursor: pointer;
+    z-index: 1;
+}
+.edulink__navbar-links_container a[href="#institute"] {
+    color: #0085FF;
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+.edulink__navbar-sign button,
+.edulink__navbar-menu_container button {
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background: #27A6F4;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 152px;
+    height: 58px;
+    z-index: 1;
+}
+
+.edulink__navbar-menu {
+    margin-left: 1rem;
+
+    display: none;
+    position: relative;
+}
+
+.edulink__navbar-menu svg {
+    cursor: pointer;
+}
+
+.edulink__navbar-menu_container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    
+    text-align: end;
+    background: var(--color-footer);
+    padding: 2rem;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    margin-top: 1rem;
+    min-width: 210px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0,0, 0,0.2);
+}
+
+.edulink__navbar-menu_container p {
+    margin: 1rem 0;
+}
+
+.edulink__navbar-menu_container-links-sign {
+    display: none;
+}
+
+@media screen and (max-width: 1050px) {
+    .edulink__navbar-links_container {
+        display: none;
+    }
+
+    .edulink__navbar-menu {
+        display: flex;
+        z-index: 2;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .edulink__navbar {
+        padding: 2rem 4rem;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .edulink__navbar {
+        padding: 2rem;
+    }
+
+    .edulink__navbar-sign {
+        display: none;
+    }
+
+    .edulink__navbar-menu_container {
+        top: 20px;
+        z-index: 2;
+    }
+
+    .edulink__navbar-menu_container-links-sign {
+        display: block;
+    }
+}

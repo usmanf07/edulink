@@ -39,10 +39,10 @@ export default class SimpleSlider extends Component {
 
         </Slider>
             <button onClick={() => this.myRef?.current?.slickPrev()} className="leftarrow" >
-              <img src="../../assets/arrow-left.svg"/>
+              <img src="arrow-left.svg"/>
             </button>
             <button onClick={() => this.myRef?.current?.slickNext()} className="rightarrow">
-              <img src="../../assets/arrow-right.svg"/>
+              <img src="arrow-right.svg"/>
             </button>
       </div>
     );

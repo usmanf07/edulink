@@ -13,6 +13,14 @@
     align-items: center;
 }
 
+.edulink__background-svg
+{
+  position: absolute;
+  right: 0px;
+  top:0px;
+  z-index: 0;
+}
+
 .edulink__navbar-links_logo {
     margin-right: 2rem;
 }
@@ -43,8 +51,13 @@
     line-height: 25px;
     margin: 0 1rem;
     cursor: pointer;
-    
+    z-index: 1;
 }
+.edulink__navbar-links_container a[href="#institute"] {
+    color: #0085FF;
+    font-weight: 700;
+    font-size: 24px;
+  }
 
 .edulink__navbar-sign button,
 .edulink__navbar-menu_container button {
@@ -61,6 +74,7 @@
     border-radius: 5px;
     width: 152px;
     height: 58px;
+    z-index: 1;
 }
 
 .edulink__navbar-menu {
@@ -107,6 +121,7 @@
 
     .edulink__navbar-menu {
         display: flex;
+        z-index: 2;
     }
 }
 
@@ -127,6 +142,7 @@
 
     .edulink__navbar-menu_container {
         top: 20px;
+        z-index: 2;
     }
 
     .edulink__navbar-menu_container-links-sign {

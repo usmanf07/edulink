@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import {RiMenu3Line, RiCloseLine} from 'react-icons/ri';
 import './navbar.css'
 import logo from '../../assets/logo.svg'
-
+import image from '../../assets/header-svg-pattern.png';
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
 
   return (
     <div className="edulink__navbar">
+      <div className='edulink__header-svg'>
+        <img src={image} alt="Header Image" />
+      </div>
       <div className="edulink__navbar-links">
         <div className="edulink__navbar-links_logo">
           <img src={logo} />
@@ -16,7 +19,7 @@ const Navbar = () => {
           <p><a href="#wedulink">What is edulink?</a></p>
           <p><a href="#possibility">Find Institutes</a></p>
           <p><a href="#features">Contact</a></p>
-          <p><a href="#blog">eduInstitute</a></p>
+          <p><a href="#institute">eduInstitute</a></p>
         </div>
       </div>
       <div className="edulink__navbar-sign">

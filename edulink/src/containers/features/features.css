@@ -1,0 +1,59 @@
+.edulink__features {
+    font-family: var(--font-family);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.edulink__features-container{
+    padding: 1rem;
+    width: 90%;
+    height: 500px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.edulink__features-container-header{
+  display: flex;
+    justify-content: space-around;
+}
+.edulink__features-container-cards{
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5rem;
+    width: 30%;
+    height: 100%;
+}
+
+.edulink__features-container-institutes
+{
+  margin: 2rem 5rem;
+  display: inline-block;
+}
+
+.edulink__features-container-institute-card{
+  background: #FFFFFF;
+  box-shadow: 0px 3px 10px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.edulink__features-container-institute-card h5,
+.edulink__features-container-institute-card p{
+  font-family: 'Abel';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 24px;
+/* or 160% */
+
+display: flex;
+align-items: center;
+
+/* Black */
+
+color: #222222;
+}

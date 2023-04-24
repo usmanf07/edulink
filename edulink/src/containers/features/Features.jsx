@@ -6,31 +6,36 @@ const institutesData = [
     id: 1,
     name: 'Example University',
     location: 'New York, NY',
-    logo: 'myimages/uni1.png'
+    logo: 'myimages/uni1.png',
+    category: 'Universities'
   },
   {
     id: 2,
     name: 'Example College',
     location: 'Los Angeles, CA',
-    logo: 'myimages/uni1.png'
+    logo: 'myimages/uni1.png',
+    category: 'Colleges'
   },
   {
     id: 3,
     name: 'Example School',
     location: 'Chicago, IL',
-    logo: 'myimages/uni1.png'
+    logo: 'myimages/uni1.png',
+    category: 'Schools'
   },
   {
     id: 4,
     name: 'Example School',
     location: 'Chicago, IL',
-    logo: 'myimages/uni1.png'
+    logo: 'myimages/uni1.png',
+    category: 'Schools'
   },
   {
     id: 5,
     name: 'Example School',
     location: 'Chicago, IL',
-    logo: 'myimages/uni1.png'
+    logo: 'myimages/uni1.png',
+    category: 'Schools'
   },
   // Add more institutes as needed
 ];
@@ -41,8 +46,22 @@ const Features = () => {
   const sliderWidth = 200; // adjust as needed
 
   const handleCategoryClick = (category) => {
-    setActiveCategory(category);
+      setActiveCategory(category);
+      setSliderPosition(0); // reset the slider position when category is changed
   };
+
+{institutesData
+  .filter((institute) => institute.category === activeCategory)
+  .map((institute) => (
+    <div className="institute" key={institute.id}>
+      <img src={institute.logo} alt={institute.name} />
+      <div className="institute-details">
+        <h3 className="institute-name">{institute.name}</h3>
+        <p className="institute-location">{institute.location}</p>
+      </div>
+    </div>
+  ))}
+
 
   const handleSliderClick = (direction) => {
     if (direction === 'left') {
@@ -91,7 +110,8 @@ const Features = () => {
               className="slider"
               style={{ transform: `translateX(-${sliderPosition}px)` }}
             >
-              {institutesData.map((institute) => (
+              {institutesData.filter((institute) => institute.category === activeCategory)
+              .map((institute) => (
                 <div className="institute" key={institute.id}>
                   <img src={institute.logo} alt={institute.name} />
                   <div className="institute-details">
@@ -105,7 +125,7 @@ const Features = () => {
           <button
             className="slider-button right"
             onClick={() => handleSliderClick('right')}
-            disabled={sliderPosition === (institutesData.length - 3) * sliderWidth}
+            disabled={sliderPosition === (institutesData.filter((institute) => institute.category === activeCategory).length - 1) * sliderWidth}
           >
             &#x2192;
           </button>

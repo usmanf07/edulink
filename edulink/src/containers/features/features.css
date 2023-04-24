@@ -60,10 +60,12 @@ color: #222222;
 .feature-box {
   width: 100%;
   max-width: 800px;
-  margin: 0 auto;
+  height: 200px;
+  margin: 2rem;
   background-color: #fff;
   border: 1px solid #000;
   padding: 20px;
+
 }
 
 .feature-box-header {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './features.css';
 
 const institutesData = [
@@ -51,6 +51,18 @@ const Features = () => {
   const [activeCategory, setActiveCategory] = useState('Universities');
   const [sliderPosition, setSliderPosition] = useState(0);
   const sliderWidth = 200; // adjust as needed
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const filteredInstitutes = institutesData.filter((institute) => institute.category === activeCategory);
+      if (sliderPosition >= (filteredInstitutes.length - 1) * sliderWidth) {
+        setSliderPosition(0);
+      } else {
+        setSliderPosition(sliderPosition + sliderWidth);
+      }
+    }, 2000);
+    return () => clearInterval(intervalId);
+  }, [activeCategory, sliderPosition, sliderWidth]);
 
   const handleCategoryClick = (category) => {
       setActiveCategory(category);

@@ -37,6 +37,13 @@ const institutesData = [
     logo: 'myimages/uni1.png',
     category: 'Schools'
   },
+  {
+    id: 6,
+    name: 'Fast University',
+    location: 'Lahore, PK',
+    logo: 'myimages/uni2.png',
+    category: 'Universities'
+  },
   // Add more institutes as needed
 ];
 
@@ -74,7 +81,7 @@ const Features = () => {
   return (
     <div className="feature-box">
       <div className="feature-box-header">
-        <h2>Quick Apply to Institute of Your Choice</h2>
+        <h2>Quick Apply to Our Premium Institute</h2>
         <div className="categories">
           <button
             className={activeCategory === 'Universities' ? 'active' : ''}

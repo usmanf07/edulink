@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 
+
+
 export default class SimpleSlider extends Component {
 
   constructor(props) {
@@ -28,7 +30,7 @@ export default class SimpleSlider extends Component {
 
             <div className="myimage">
               <img
-                src={`${imageName}.png`} // Constructing image source using template literal
+                src={'myimages/'+`${imageName}.png`} // Constructing image source using template literal
                 alt={`Slide ${index + 1}`}
                 width="100%"
                 height="auto"
@@ -39,10 +41,10 @@ export default class SimpleSlider extends Component {
 
         </Slider>
             <button onClick={() => this.myRef?.current?.slickPrev()} className="leftarrow" >
-              <img src="arrow-left.svg"/>
+            <img src="myimages/arrow-right.svg" />
             </button>
             <button onClick={() => this.myRef?.current?.slickNext()} className="rightarrow">
-              <img src="arrow-right.svg"/>
+            <img src="myimages/arrow-left.svg" />
             </button>
       </div>
     );

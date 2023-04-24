@@ -152,8 +152,15 @@ color: #808080;
       position:relative;
       left:-40px;
       top: -80px;
-
+      cursor: pointer;
     }
+    .leftarrow:hover{
+      background-color: darkgray;
+    }
+    .rightarrow:hover{
+      background-color: darkgray;
+    }
+
     .rightarrow{
       background-color: transparent;
       border: none;
@@ -162,7 +169,7 @@ color: #808080;
       position: relative;
       right:-40px;
       top:-80px;
-
+      cursor: pointer;
 
 
     }

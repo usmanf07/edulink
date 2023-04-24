@@ -10,12 +10,14 @@ const App = () => {
         <Navbar />
         <Header />
         <Features />
+        <Edulink />
+        <Possiblity />
+        <CTA />
       </div>
-      
+{/*       
       <Brand />
-      <Edulink />
-      <Possiblity />
-      <CTA />
+       */}
+      
       <Blog />
       <Footer />
     </div>

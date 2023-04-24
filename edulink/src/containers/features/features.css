@@ -1,4 +1,4 @@
-.edulink__features {
+/* .edulink__features {
     font-family: var(--font-family);
     padding: 2rem 4rem;
     display: flex;
@@ -50,10 +50,111 @@ font-size: 15px;
 line-height: 24px;
 /* or 160% */
 
-display: flex;
+/* display: flex;
 align-items: center;
 
-/* Black */
 
 color: #222222;
+} */ 
+
+.feature-box {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid #000;
+  padding: 20px;
+}
+
+.feature-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.feature-box-header h2 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.categories {
+  display: flex;
+}
+
+.categories button {
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.categories button.active {
+  border-bottom: 2px solid #000;
+}
+
+.feature-box-content {
+  margin-top: 20px;
+}
+
+.institutes-slider {
+  position: relative;
+}
+
+.slider-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.slider-button.left {
+  left: 0;
+}
+
+.slider-button.right {
+  right: 0;
+}
+
+.slider-frame {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.institute {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.institute:last-of-type {
+  margin-right: 0;
+}
+
+.institute img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.institute-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.institute-name {
+  font-size: 18px;
+  margin: 0;
+}
+
+.institute-location {
+  font-size: 14px;
+  margin: 0;
 }

@@ -1,30 +1,118 @@
-import React from 'react'
-import './features.css'
+import React, { useState } from 'react';
+import './features.css';
+
+const institutesData = [
+  {
+    id: 1,
+    name: 'Example University',
+    location: 'New York, NY',
+    logo: 'myimages/uni1.png'
+  },
+  {
+    id: 2,
+    name: 'Example College',
+    location: 'Los Angeles, CA',
+    logo: 'myimages/uni1.png'
+  },
+  {
+    id: 3,
+    name: 'Example School',
+    location: 'Chicago, IL',
+    logo: 'myimages/uni1.png'
+  },
+  {
+    id: 4,
+    name: 'Example School',
+    location: 'Chicago, IL',
+    logo: 'myimages/uni1.png'
+  },
+  {
+    id: 5,
+    name: 'Example School',
+    location: 'Chicago, IL',
+    logo: 'myimages/uni1.png'
+  },
+  // Add more institutes as needed
+];
 
 const Features = () => {
+  const [activeCategory, setActiveCategory] = useState('Universities');
+  const [sliderPosition, setSliderPosition] = useState(0);
+  const sliderWidth = 200; // adjust as needed
+
+  const handleCategoryClick = (category) => {
+    setActiveCategory(category);
+  };
+
+  const handleSliderClick = (direction) => {
+    if (direction === 'left') {
+      setSliderPosition(sliderPosition - sliderWidth);
+    } else if (direction === 'right') {
+      setSliderPosition(sliderPosition + sliderWidth);
+    }
+  };
+
   return (
-    <div>
-      <div className="edulink__features">
-        <div className="edulink__features-container">
-          <div className='edulink__features-container-header'>
-            <h2>Quick Apply to Our Premium Institutes</h2>
-            <div className="edulink__features-container-cards">
-              <p><a>Universities</a></p>
-              <p><a>Colleges</a></p>
-              <p><a>Schools</a></p>
+    <div className="feature-box">
+      <div className="feature-box-header">
+        <h2>Quick Apply to Institute of Your Choice</h2>
+        <div className="categories">
+          <button
+            className={activeCategory === 'Universities' ? 'active' : ''}
+            onClick={() => handleCategoryClick('Universities')}
+          >
+            Universities
+          </button>
+          <button
+            className={activeCategory === 'Colleges' ? 'active' : ''}
+            onClick={() => handleCategoryClick('Colleges')}
+          >
+            Colleges
+          </button>
+          <button
+            className={activeCategory === 'Schools' ? 'active' : ''}
+            onClick={() => handleCategoryClick('Schools')}
+          >
+            Schools
+          </button>
+        </div>
+      </div>
+      <div className="feature-box-content">
+        <div className="institutes-slider">
+          <button
+            className="slider-button left"
+            onClick={() => handleSliderClick('left')}
+            disabled={sliderPosition === 0}
+          >
+            &#x2190;
+          </button>
+          <div className="slider-frame">
+            <div
+              className="slider"
+              style={{ transform: `translateX(-${sliderPosition}px)` }}
+            >
+              {institutesData.map((institute) => (
+                <div className="institute" key={institute.id}>
+                  <img src={institute.logo} alt={institute.name} />
+                  <div className="institute-details">
+                    <h3 className="institute-name">{institute.name}</h3>
+                    <p className="institute-location">{institute.location}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-          <div className="edulink__features-container-institutes">
-            <div className="edulink__features-container-institute-card">
-              <img src='logo192.png' alt='logo' />
-              <h5>Colombia University</h5>
-              <p>location</p>
-            </div>
-          </div>
+          <button
+            className="slider-button right"
+            onClick={() => handleSliderClick('right')}
+            disabled={sliderPosition === (institutesData.length - 3) * sliderWidth}
+          >
+            &#x2192;
+          </button>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Features
+export default Features;

@@ -1,0 +1,76 @@
+.edulink__possibility-container{
+    margin: 2rem -1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.edulink__possibility {
+    
+    display: flex;
+    justify-content: center;
+   align-items: center;
+   max-width: 1000px;
+}
+
+.edulink__possibility-heading {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+
+    text-align: left;
+    margin-right: 5rem;
+}
+
+.edulink__possibility-heading h1 {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 45px;
+/* or 132% */
+
+
+background: linear-gradient(103.22deg, #41BDD8 -13.86%, #8C67F4 102.58%), #FFFFFF;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+    max-width: 510px;
+}
+
+.edulink__possibility-heading p {
+    color: var(--color-subtext);
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 500;
+    font-family: var(--font-family);
+
+    margin-top: 2rem;
+}
+
+.edulink__possibility-container {
+    flex: 1.5;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 990px) {
+    .edulink__possibility {
+        flex-direction: column;
+    }
+
+    .edulink__possibility-heading {
+        margin: 0 0 2rem 0;
+    }
+}
+
+
+@media screen and (max-width: 550px) {
+    .edulink__possibility-heading h1 {
+        font-size: 28px;
+        line-height: 38px;
+    }
+}

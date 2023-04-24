@@ -91,6 +91,7 @@ const Features = () => {
   };
 
   return (
+    <div className="edulink__features">
     <div className="feature-box">
       <div className="feature-box-header">
         <h2>Quick Apply to Our Premium Institute</h2>
@@ -150,6 +151,7 @@ const Features = () => {
           </button>
         </div>
       </div>
+    </div>
     </div>
   );
 };

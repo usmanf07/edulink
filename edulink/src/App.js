@@ -17,9 +17,9 @@ const App = () => {
 {/*       
       <Brand />
        */}
-      
+{/*       
       <Blog />
-      <Footer />
+      <Footer /> */}
     </div>
   )
 }

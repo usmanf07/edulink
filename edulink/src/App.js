@@ -19,14 +19,11 @@ const App = () => {
 {/*       
       <Brand />
        */}
-      
+{/*       
       <Blog />
       <Footer />
 
       {/* <All_UniversitiesPage /> */}
-
-
-      
     </div>
   )
 }

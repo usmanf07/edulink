@@ -1,6 +1,8 @@
 import React from 'react'
 import {Footer, Blog, Possiblity, Features, Header, Edulink} from './containers'
 import {CTA, Navbar, Brand} from './components'
+import All_UniversitiesPage from './All_UniversitiesPage/MainPage';
+
 import './App.css'
 
 const App = () => {
@@ -20,6 +22,11 @@ const App = () => {
       
       <Blog />
       <Footer />
+
+      {/* <All_UniversitiesPage /> */}
+
+
+      
     </div>
   )
 }

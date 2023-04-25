@@ -2,9 +2,9 @@ import React, { useRef } from 'react';
 import "./MainPage.css";
 import image from './Vector.png';
 import picture from './PictureBox.jpg';
-import Nav from "../Compnents/Nav";
-import SearchGroup from '../Compnents/SearchGroup';
-import Body from '../Compnents/Body';
+import Nav from '../containers/All_UniversitiesPage_Components/Nav';
+import SearchGroup from '../containers/All_UniversitiesPage_Components/SearchGroup';
+import Body from '../containers/All_UniversitiesPage_Components/Body';
 
 
 

@@ -9,17 +9,25 @@ class SearchGroup extends React.Component{
       <div className="searchGroup" id="SearchBar" SearchBar>
   
         
-        <h1 className="explore" id="Explore_text_search">
+        <h1 className="explore_Inst" id="Explore_text_search">
           Explore Institutes
         </h1>
 
         <div className="Searchbar">
-          <input className="searchInstitutes" id="Search_bar_text" placeholder=" Search Institutes"> 
+          <input className="searchInstitutes" id="Search_bar_text" placeholder="Search institutes..."> 
             </input>
-            <button className="search" > Search </button>
+            <button className="search_Btn" > Search </button>
+        </div>
+
+        {/* <h1 className="gradient_text">
+          Explore Institutes
+        </h1>
+        <div className='searchbar'>
+          <input className='mysearch' placeholder='Search from over 2000+ institutes worldwide'/>
+          <button className='search'>Search</button>
         </div>
          
-        
+         */}
   
       </div>
     );

@@ -1,0 +1,196 @@
+.Body_Part2_AllUniPage {
+height: auto;
+width: 100%;
+}
+
+
+.sliderbar_AllUniPage{
+margin: 4%;
+margin-top: 0%;
+/* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); */
+color: white;
+display: flex;
+flex-direction: column;
+
+}
+
+.crossBtn{
+order: 1;
+}
+.SidebarFilterArea{
+display: flex;
+flex-direction: column;
+/* padding-top: 0%; */
+padding:4%;
+color: white;
+gap: 30px;
+font-size: 14px;
+font-family: var(--font-family);
+}
+.location {
+order:1;
+
+}
+.category{
+order: 2;
+}
+.exploreParent{
+order:3;
+}
+
+.category,.location,.exploreParent{
+font-weight: 200;
+}
+
+
+.enterCityOr{
+
+margin-top: 4%;
+background-position: 10px ;
+background-color: #fff;
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 200;
+font-size: 15px;
+
+letter-spacing: -0.04em;
+
+color: #808080;
+
+height: 2.7rem;
+padding-left: 10px;
+padding-right: 0px;
+width:90%;
+border-radius: 12px;
+}
+
+.exploreByLocation ,
+.exploreByCategory,
+.HowToApply{
+
+font-weight: 900;
+}
+li{
+margin-left: 8%;
+}
+
+
+
+
+
+
+@media only screen and (max-width: 992px) {
+
+.svgh2_slidebar{
+order: 1;
+color: #040c18;
+
+}
+.svgBtn_slidebar{
+order: 2;
+border: 0px;
+background-color: transparent;
+}
+
+.points1 ul{
+display: flex;
+justify-content:left;
+gap: 40px;
+}
+
+.exploreParent {
+display: none;
+}
+
+.sliderbar_AllUniPage {
+order: 1;
+margin: 2%;
+display: none;
+flex-direction: row;
+}
+
+
+
+.SidebarFilterArea{
+order:1;
+flex: 90%;
+display: flex;
+flex-direction: column;
+padding-top: 0%;
+padding-left:1%;
+
+}
+.crossBtn{
+order: 2;
+border: 0px;
+background-color: #0C1D2F;
+flex: 7%;
+}
+}
+
+/* Phone size */
+@media only screen and (max-width: 700px) {
+
+
+.Slidebar_Filter{
+height: 65px;
+width: 100%;
+padding-top: 0%;
+padding-left:0%;
+background-color: #dce0e2;
+text-align: center;
+
+padding-left: 75%;
+display: flex;
+
+}
+
+.enterCityOr{
+width:90%;
+height: 2.5rem;
+}
+
+li{
+font-size: 14px;
+}
+
+}
+
+/* Tablet size */
+@media only screen and (min-width: 700px) and (max-width: 992px) {
+
+.points1 ul{
+display: flex;
+justify-content:left;
+gap: 40px;
+}
+.Slidebar_Filter{
+height: 65px;
+width: 100%;
+padding-top: 0%;
+padding-left:0%;
+background-color: #dce0e2;
+text-align: center;
+padding-left: 80%;
+display: flex;
+
+/* display: none; */
+
+}
+
+}
+
+/* Desktop size */
+@media only screen and (min-width: 992px) {
+
+.Slidebar_Filter{
+display: none;
+}
+
+.crossBtn{
+display: none;
+}
+
+
+}
+

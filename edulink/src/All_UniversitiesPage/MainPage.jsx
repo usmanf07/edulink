@@ -2,11 +2,9 @@ import React, { useRef } from 'react';
 import "./MainPage.css";
 import image from './Vector.png';
 import picture from './PictureBox.jpg';
-import Nav from '../containers/All_UniversitiesPage_Components/Nav';
 import SearchGroup from '../containers/All_UniversitiesPage_Components/SearchGroup';
 import Body from '../containers/All_UniversitiesPage_Components/Body';
-
-
+import Nav  from '../components/navbar/Navbar';
 
 const MainPage = () => {
 
@@ -14,7 +12,7 @@ const MainPage = () => {
     <div className='mainpage'>
 
 
-    <div className='mysvg'>
+    {/* <div className='mysvg'>
       <img src={image} alt="" />
     </div>
 
@@ -32,10 +30,10 @@ const MainPage = () => {
         </defs>
       </svg>
 
-    </div>
+    </div> */}
 
+    <Nav/>
     <div className='upper_layer'>
-      <Nav/>
 
       <div className="picturebox" id="picture" picture>
 

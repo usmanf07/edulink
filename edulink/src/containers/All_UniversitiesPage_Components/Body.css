@@ -1,292 +1,41 @@
-
-
-.blur03Icon {
-  position: absolute;
-  top: 19.48rem;
-  left: 3.56rem;
-  width: 52.35rem;
-  height: 60.71rem;
-}
-
-.ellipseIcon {
-  position: absolute;
-  top: 22.24rem;
-  left: 6.04rem;
-  width: 0.48rem;
-  height: 0.42rem;
-}
-
-.uni_table,.phone_uni_table{
-  border-spacing:0.7rem;
-
-}
-.i1 {
-  position: relative;
-  /* top: 0;
-  left: 0; */
-  
-  border-radius: 1rem;
-  background-color: #ece3e3;
+.body_AllUniversityPage{
   width: 100%;
-  height: 18rem;
-  overflow: hidden;
-}
-.th1Icon {
-  position: relative;
-  width: 100%;
-  height: 13rem;
-  object-fit: cover;
-}
-.universityAbcCityContainer {
-  position: relative;
-  margin-top: 0.5rem;
-  left: 1.17rem;
-  display: inline-block;
-  width: 12.19%;
-  height: 2.94rem;
-  font-weight: 800;
-}
-.universityAbc {
-  margin: 0;
-  font-weight: 800;
-}
-.city {
-  margin: 0;
-  font-size: var(--font-size-mini);
+  height: auto;
+  display: flex;
+
 }
 
-.category,.exploreParent {
-  margin-top: 2rem;
-  font-size: 0.8rem;
-  /* font-family:inherit; */
-}
-
-.enterCityOr{
-  position: relative;
-  border-radius: 1rem;
-  width:85%;
-  height: 2.5rem;
-}
-
-.exploreByLocation ,
-.exploreByCategory,
-.HowToApply{
-  position: relative;
-  font-size: var(--font-size-xl);
-  font-weight: 800;
-  font-family: var(--font-manrope);
-  color: var(--color-white);
-  display: inline-block;
- 
-}
-.location {
-  order:1;
-  /* position: relative; */
-  /* color: var(--color-gray-400); */
-  /* font-family: var(--font-kdam-thmor); */
-}
-.category{
+.universities_AllUniversityPage{
   order: 2;
-}
-.exploreParent{
-  order:3;
+  /* flex: 3; */
+  width: 75%;
+  height: auto;
 }
 
-.sliderbar {
+.slidebar_AllUniversityPage{
   order: 1;
-  position: relative;
-  padding-top: 2%;
-  padding-left:1%;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  width:26%;
-  height: auto;
-  font-size: var(--font-size-sm);
-  color: white;
-  background-color: #0C1D2F;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.body {
-  position: relative;
-
-  background-color: #FFFDFD;
-  /* background-color: pink; */
-  display: flex;
-  flex-direction: row;
-  width:100%;
-  height: auto;
-  overflow: hidden;
-  text-align: left;
-  font-size: var(--font-size-xl);
-  color: var(--color-black);
-  font-family: var(--font-manrope);
-}
-
-.universities {
+  /* flex: 1; */
+  width: 25%;
   
-  order: 2;
-  position: relative;
-  padding-top: 2rem;
-  padding-left: 1.5rem;
-  /* left: 21.38rem; */
-  width: 78rem;
+background-color: #0C1D2F;
+
+box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   height: auto;
-  /* display: block; */
 }
-
-
 
 
 @media only screen and (max-width: 992px) {
-
-  .svgh2_slidebar{
-    order: 1;
-    color: #040c18;
-
-  }
-  .svgBtn_slidebar{
-    order: 2;
-    border: 0px;
-    background-color: transparent;
-  }
-
-  .points1 ul{
-    display: flex;
-    justify-content:left;
-    /* justify-content: start; */
-    gap: 40px;
-    /* list-style-type; */
-  }
-
-  .exploreParent {
-    display: none;
-  }
-
-  .sliderbar {
-    order: 1;
-    position: relative;
-    padding-top: 2%;
-    padding-left:1%;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  .body_AllUniversityPage{
     width: 100%;
     height: auto;
-    font-size: var(--font-size-sm);
-    color: white;
-    background-color: #0C1D2F;
-  
-    /* display: flex; */
-    display: none;
-    flex-direction: row;
-  }
-  
-  
-  .body {
-    flex-direction: column;
-  }
-
-  .SidebarFilterArea{
-    order:1;
-    flex: 90%;
     display: flex;
     flex-direction: column;
-    padding-top: 0%;
-    padding-left:1%;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    height: auto;
-    font-size: var(--font-size-sm);
-    color: white;
-    background-color: #0C1D2F;
   }
-  .crossBtn{
-    order: 2;
-    border: 0px;
-    background-color: #0C1D2F;
-    flex: 7%;
-  }
-
-}
-
-/* Phone size */
-@media only screen and (max-width: 700px) {
-  .uni_table {
-    display: none;
-  }
-
-  .universities {
-    padding-top: 2rem;
-    padding: 0%;
-    width:100%;
-    justify-content: space-around;
-  }
-
-  
-
-  .Slidebar_Filter{
-    height: 65px;
+  .universities_AllUniversityPage{
     width: 100%;
-    padding-top: 0%;
-    padding-left:0%;
-    background-color: #dce0e2;
-    text-align: center;
-    
-    padding-left: 75%;
-    display: flex;
-
-    /* display: none; */
-
   }
   
-
-
-}
-
-/* Tablet size */
-@media only screen and (min-width: 700px) and (max-width: 992px) {
-
-  .phone_uni_table{
-    display: none;
-  }
-  .universities {
-    padding-top: 2rem;
-    padding-left: 0%;
-    width:100%;
-  }
-  .points1 ul{
-    display: flex;
-    justify-content:left;
-    gap: 40px;
-  }
-  .Slidebar_Filter{
-    height: 65px;
+  .slidebar_AllUniversityPage{
     width: 100%;
-    padding-top: 0%;
-    padding-left:0%;
-    background-color: #dce0e2;
-    text-align: center;
-    padding-left: 80%;
-    display: flex;
-
-    /* display: none; */
-
   }
- 
 }
-
-/* Desktop size */
-@media only screen and (min-width: 992px) {
-
-.phone_uni_table{
-  display: none;
-}
-.Slidebar_Filter{
-  display: none;
-}
-
-.crossBtn{
-  display: none;
-}
-  
-}
-

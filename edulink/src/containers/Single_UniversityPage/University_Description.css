@@ -1,0 +1,24 @@
+.description_Paragraph{
+width: 95%;
+height: auto;
+color: aliceblue;
+margin: 2%;
+
+/* margin-right: 9%; */
+font-family: var(--font-manrope);
+overflow: hidden;
+
+}
+
+@media only screen and (max-width: 700px) {
+.description_Paragraph{
+font-size: 70%;
+}
+
+}
+
+@media only screen and (min-width: 700px) and (max-width: 992px) {
+.description_Paragraph{
+font-size: 90%;
+}
+}

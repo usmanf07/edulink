@@ -9,21 +9,29 @@ const App = () => {
   return (
     <div className="App">
       <div className="gradient_bg">
-        <Navbar />
+         <Navbar />  
         <Header />
         <Features />
         <Edulink />
         <Possiblity />
-        <CTA />
+         <CTA />
+
+        {/* <All_UniversitiesPage />     */}
+
       </div>
+
+    
+
+       
 {/*       
       <Brand />
        */}
 {/*       
       <Blog />
       <Footer />
+      <All_UniversitiesPage />
 
-      {/* <All_UniversitiesPage /> */}
+  {/* <All_UniversitiesPage /> */}
     </div>
   )
 }

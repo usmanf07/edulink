@@ -2,6 +2,11 @@ import"./Body.css";
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import dummy1 from '../../assets/th (1).jpeg'
+import dummy2 from '../../assets/th (2).jpeg'
+import dummy3 from '../../assets/th (3).jpeg'
+import dummy4 from '../../assets/th (4).jpeg'
+import dummy5 from '../../assets/th (5).jpeg'
 
 class Body extends React.Component{
 
@@ -11,20 +16,20 @@ class Body extends React.Component{
       id: 1,
 
       University_Info : [
-        {src: '/th (1).jpeg', name: 'ABC', city:'123'},
-        {src: '/th (2).jpeg', name: 'DEF', city:'456'},
-        {src: '/th (3).jpeg', name: 'GHI', city:'789'},
+        {src: dummy1, name: 'ABC', city:'123'},
+        {src: dummy2, name: 'DEF', city:'456'},
+        {src: dummy3, name: 'GHI', city:'789'},
 
-        {src: '/th (4).jpeg', name: 'JKL', city:'123'},
-        {src: '/th (1).jpeg', name: 'MNO', city:'456'},
-        {src: '/th (5).jpeg', name: 'PQR', city:'789'},
+        {src: dummy4, name: 'JKL', city:'123'},
+        {src: dummy1, name: 'MNO', city:'456'},
+        {src: dummy5, name: 'PQR', city:'789'},
 
-        {src: '/th (1).jpeg', name: 'ABC', city:'123'},
-        {src: '/th (2).jpeg', name: 'DEF', city:'456'},
-        {src: '/th (3).jpeg', name: 'GHI', city:'789'},
+        {src: dummy1, name: 'ABC', city:'123'},
+        {src: dummy2, name: 'DEF', city:'456'},
+        {src: dummy3, name: 'GHI', city:'789'},
         
-        {src: '/th (3).jpeg', name: 'GHI', city:'789'},
-        {src: '/th (2).jpeg', name: 'DEF', city:'456'},
+        {src: dummy3, name: 'GHI', city:'789'},
+        {src: dummy2, name: 'DEF', city:'456'},
         
       ]
 

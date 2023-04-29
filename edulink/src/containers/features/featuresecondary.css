@@ -15,7 +15,7 @@
   border: 1px solid #ccc;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  height: 560px;
+  height: 570px;
   margin-right: 2rem;
 }
 
@@ -27,7 +27,7 @@
   border: 1px solid #ccc;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  height: 560px;
+  height: 570px;
 }
 
 .edulink__featuresecondary-box1-header {
@@ -69,12 +69,12 @@
   box-sizing: border-box;
   box-shadow: 0px 3px 10px 2px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  margin: 1rem 1rem;
+  margin: 1rem 0rem;
 }
 
 .edulink__featuresecondary-instituteBox-info:hover{
   transition: transform 0.2s ease-in-out;
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .edulink__featuresecondary-instituteBox-info p{
@@ -93,10 +93,14 @@
 
 .edulink__featuresecondary-institute-details {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding-right: 50px;
 }
 
 .edulink__featuresecondary-institute-details img {
+  height: 75px;
+  width: 80px;
   margin-right: 10px;
 }
 

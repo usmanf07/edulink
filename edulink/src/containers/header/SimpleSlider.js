@@ -8,12 +8,12 @@ export default class SimpleSlider extends Component {
     this.myRef = React.createRef();
   }
 
-  componentDidMount() {
-    // Trigger slickNext() method on the slider every 2 seconds
-    setInterval(() => {
-      this.myRef.current.slickNext();
-    }, 2000);
-  }
+  // componentDidMount() {
+  //   // Trigger slickNext() method on the slider every 2 seconds
+  //   setInterval(() => {
+  //     this.myRef.current.slickNext();
+  //   }, 2000);
+  // }
   
   render() {
     const { imageNames } = this.props; // Get the list of image names from props
@@ -23,10 +23,13 @@ export default class SimpleSlider extends Component {
       centerMode: true,
       variableWidth: true,
       infinite: true,
-      speed: 500,
+      speed: 1000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      arrows:false
+      arrows:false,
+      autoplay: true,
+      speed: 2000,
+      autoplaySpeed: 2000
     };
 
     return (

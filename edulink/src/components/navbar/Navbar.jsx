@@ -8,9 +8,7 @@ const Navbar = () => {
 
   return (
     <div className="edulink__navbar">
-      <div className='edulink__header-svg'>
-        <img src={image} alt="Header Image" />
-      </div>
+      
       <div className="edulink__navbar-links">
         <div className="edulink__navbar-links_logo">
           <img src={logo} />

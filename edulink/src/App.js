@@ -1,5 +1,5 @@
 import React from 'react'
-import {Footer, Blog, Possiblity, Features, Header, Edulink} from './containers'
+import {Footer, Blog, Possiblity, Features, Header, Edulink, Featuresecondary} from './containers'
 import {CTA, Navbar, Brand} from './components'
 import './App.css'
 
@@ -10,6 +10,7 @@ const App = () => {
         <Navbar />
         <Header />
         <Features />
+        <Featuresecondary />
         <Edulink />
         <Possiblity />
         <CTA />

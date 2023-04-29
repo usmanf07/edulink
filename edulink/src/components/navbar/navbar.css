@@ -13,13 +13,6 @@
     align-items: center;
 }
 
-.edulink__background-svg
-{
-  position: absolute;
-  right: 0px;
-  top:0px;
-  z-index: 0;
-}
 
 .edulink__navbar-links_logo {
     margin-right: 2rem;

@@ -23,10 +23,13 @@ export default class SimpleSlider extends Component {
       centerMode: true,
       variableWidth: true,
       infinite: true,
-      speed: 500,
+      speed: 1000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      arrows:false
+      arrows:false,
+      autoplay: true,
+      speed: 2000,
+      autoplaySpeed: 2000
     };
 
     return (

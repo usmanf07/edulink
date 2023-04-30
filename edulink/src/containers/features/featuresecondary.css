@@ -35,6 +35,8 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
+  z-index: 1;
+
 }
 .edulink__featuresecondary-box1-header h2 {
   margin: 0;
@@ -44,8 +46,40 @@
   width: 30px;
 }
 
-.edulink__featuresecondary-box1-header svg:hover {
-  fill: #27A6F4;
+.edulink__featuresecondary-box1-header .edutemper:hover{
+  cursor: pointer;
+}
+.filter-menu{
+  z-index: 2;
+  float: right;
+  margin-top: 230px;
+  position: absolute;
+  background-color: #fff;
+  width: 150px;
+  border: #333 1px solid;
+  border-radius: 4px;
+  padding: 1rem;
+  box-shadow: 0px 3px 10px 2px rgba(0, 0, 0, 0.1);
+}
+.filter-menu__header h3{
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+.filter-menu__header h3:hover{
+  color: var(--color-button-primary);
+}
+.edutemper{
+  display: flex;
+  align-items: center;
+  justify-content: center ;
+}
+.edutemper2{
+  /* margin-top: 8px;
+  margin-left: 10px; */
+  align-self: flex-end;
+  margin-left: 10px;
 }
 
 .edulink__featuresecondary-box1-header button {
@@ -167,5 +201,11 @@
 }
 
 .edulink__featuresecondary-institutes svg#down-arrow{
+  transform: rotate(180deg);
+}
+
+#down-arrow-2{
+  height: 15px;
+  width: 15px;
   transform: rotate(180deg);
 }

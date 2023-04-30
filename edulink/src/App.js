@@ -17,7 +17,8 @@ const App = () => {
         <Sectors />
         <Edulink />
         <Possiblity />
-         <CTA />
+         <CTA />  
+         <Footer />
 
         {/* <All_UniversitiesPage />     */}
          {/* <UniPage /> */}

@@ -32,6 +32,34 @@ const institutesData = [
       location: 'Johar Town, Lahore',
       distance: '1.9km'
     },
+    {
+      id: 5,
+      name: 'University 1',
+      logo: 'myimages/uni1.png',
+      location: 'Faisal Town, Lahore',
+      distance: '200m'
+    },
+    {
+      id: 6,
+      name: 'University 2',
+      logo: 'myimages/uni1.png',
+      location: 'Johar Town, Lahore',
+      distance: '900m'
+    },
+    {
+      id: 7,
+      name: 'Uni 4',
+      logo: 'myimages/uni1.png',
+      location: 'Johar Town, Lahore',
+      distance: '1.6km'
+    },
+    {
+      id: 8,
+      name: 'Uni 8',
+      logo: 'myimages/uni1.png',
+      location: 'Johar Town, Lahore',
+      distance: '1.9km'
+    },
   ]
 
 const Featurethird = () => {
@@ -50,13 +78,27 @@ const Featurethird = () => {
   
     const settings = {
         rows: 2,
-		dots: false,
-		arrows: true,
-		infinite: true,
-		speed: 300,
-		slidesToShow: 4,
-		slidesToScroll: 4,
-        autoplay: true,
+        slidesToShow: 2,
+        slidesToScroll: 4,
+          autoplay: true,
+    autoplaySpeed: 3000,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    arrows: false,
+    dots: false,
+    draggable: false,
+    swipe: true,
+    touchMove: false,
+    pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          vertical: false,
+          slidesToShow: 1,
+        },
+      },
+    ],
     };
 
   
@@ -84,7 +126,8 @@ const Featurethird = () => {
     </svg>
         
         <div className="featurethird__institutes">
-        {/* <Slider {...settings} ref={sliderRef}> */}
+          <div className='featurethird__institutes_newdiv'>
+        <Slider {...settings} ref={sliderRef}>
         {institutesData.map(institute => (
               <div key={institute.id} className="featurethird__institutebox">
                     <img src={institute.logo} alt={`${institute.name} logo`} />
@@ -95,7 +138,8 @@ const Featurethird = () => {
                     </div>
               </div>
             ))}
-           {/* </Slider> */}
+           </Slider>
+           </div>
         </div>
         
             <svg onClick={handleRightArrowClick} fill="#000000" id="right-arrow" version="1.1"  xmlns="http://www.w3.org/2000/svg" 

@@ -37,7 +37,7 @@
 
 .edulink__footer-links {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
@@ -65,8 +65,8 @@
 
 .edulink__footer-links_logo p {
     font-family: var(--font-family);
-    font-size: 15px;
-    line-height: 20px;
+    font-size: 20px;
+    line-height: 30px;
     color: #fff;
 }
 
@@ -77,8 +77,8 @@
 }
 
 .edulink__footer-links_div h4 {
-    font-size: 25px;
-    line-height: 17px;
+    font-size: 50px;
+    line-height: 50px;
     font-family: var(--font-family);
     color: #fff;
 
@@ -86,11 +86,11 @@
 }
 
 .edulink__footer-links_div p {
-    font-size: 15px;
-    line-height: 15px;
+    font-size: 20px;
+    line-height: 25px;
     font-family: var(--font-family);
     color: #fff;
-
+    
     margin: 0.5rem 0;
     cursor: pointer;
 }

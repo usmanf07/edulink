@@ -43,6 +43,10 @@
     margin: 10px;
 }
 
+.featurethird__institutes_newdiv{
+    width: 100%;
+    /* border: 1px solid black; */
+}
 .featurethird__institutebox:hover{
     transition: transform 0.2s ease-in-out;
     transform: scale(1.04);

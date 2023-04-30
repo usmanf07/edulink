@@ -3,6 +3,7 @@ import './featuresecondary.css';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Featurethird from './featurethird';
 
 
 const institutesData = [
@@ -61,9 +62,9 @@ const Featuresecondary = () => {
     arrows: false,
     dots: false,
     draggable: false,
-    swipe: false,
+    swipe: true,
     touchMove: false,
-    pauseOnHover: false,
+    pauseOnHover: true,
     responsive: [
       {
         breakpoint: 768,
@@ -120,7 +121,7 @@ const Featuresecondary = () => {
                     <img src={institute.logo} alt={`${institute.name} logo`} />
                     <div>
                       <h3>{institute.name}</h3>
-                      <p>{institute.program}</p>
+                      <h4>{institute.program}</h4>
                     </div>
                   </div>
                   <div className="edulink__featuresecondary-institute-apply">
@@ -145,7 +146,7 @@ const Featuresecondary = () => {
           </div>
         </div>
         <div className="edulink__featuresecondary-box2">
-            
+            <Featurethird />
         </div>
     </div>
   );

@@ -19,19 +19,15 @@ export default class SimpleSlider extends Component {
     const { imageNames } = this.props; // Get the list of image names from props
 
     const settings = {
-
       centerMode: true,
       variableWidth: true,
       infinite: true,
-      speed: 1000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      arrows:false,
-      autoplay: true,
       speed: 2000,
-      autoplaySpeed: 2000
+      arrows: false,
+      autoplay: true,
+      autoplaySpeed: 1000
     };
-
+    
     return (
       <div >
         <Slider  ref={this.myRef} {...settings} >

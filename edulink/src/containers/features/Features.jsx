@@ -261,7 +261,7 @@ const Features = () => {
       } else {
         handleRightArrowClick();
       }
-    }, 2000);
+    }, 3000);
   
     return () => clearInterval(interval);
   }, [startIndex, endIndex, activeCategory]);

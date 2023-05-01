@@ -5,33 +5,38 @@ import All_UniversitiesPage from './All_UniversitiesPage/MainPage';
 import UniPage from './Single_UniversityPage/MainPage'
 
 import './App.css'
-
+import Test from './Test';
+import Log from './Login/Log';
 const App = () => {
   return (
     <div className="App">
       <div className="gradient_bg">
-         <Navbar />  
+         {/* <Navbar />
         <Header />
         <Features />
         <Featuresecondary />
         <Sectors />
         <Edulink />
         <Possiblity />
-         <CTA />  
+         <CTA />
          <Footer />
 
         {/* <All_UniversitiesPage />     */}
-         {/* <UniPage /> */}
+         <UniPage />
 
+        {/* <All_UniversitiesPage /> */}
+         {/* <UniPage /> */}
+          <Log/>
+          {/* <Example /> */}
       </div>
 
-    
 
-       
-{/*       
+
+
+{/*
       <Brand />
        */}
-{/*       
+{/*
       <Blog />
       <Footer />
       <All_UniversitiesPage />

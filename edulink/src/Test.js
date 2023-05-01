@@ -1,5 +1,8 @@
-import React, { useState,useEffect } from 'react';
-import './features.css';
+import React from 'react'
+import Slider from "react-slick";
+import './App.css'
+
+
 
 const institutesData = [
   {
@@ -234,89 +237,41 @@ const institutesData = [
     logo: 'myimages/uni1.png',
     category: 'Schools'
   },
-  // Add more institutes as needed
 ];
 
-const Features = () => {
-  const totalInstitutesDisplay = 6;
-  const [activeCategory, setActiveCategory] = useState('Universities');
-  const [sliderPosition, setSliderPosition] = useState(0);
-  const sliderWidth = 200; // adjust as needed
 
-  const handleCategoryClick = (category) => {
+export default function Test() {
 
-    setActiveCategory(category);
-    setStartIndex(0);
-    setEndIndex(totalInstitutesDisplay - 1);
-    filteredData = institutesData.filter(institute => institute.category === activeCategory);
-    visibleData = filteredData.slice(startIndex, endIndex + 1);
 
-  };
 
-  const handleLeftArrowClick = () => {
-    setStartIndex(Math.max(0, startIndex - totalInstitutesDisplay));
-    setEndIndex(Math.max(totalInstitutesDisplay - 1, endIndex - totalInstitutesDisplay));
-    setSlideTransition(1);
-  };
-
-  const handleRightArrowClick = () => {
-    setStartIndex(Math.min(filteredData.length - 1, startIndex + totalInstitutesDisplay));
-    setEndIndex(Math.min(filteredData.length - 1, endIndex + totalInstitutesDisplay));
-    setSlideTransition(1);
-  };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setSlideTransition(0);
-    }, 300);
-    return () => clearTimeout(timer);
-  }, [slideTransition]);
-
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 1
+    };
   return (
-    <div className="edulink__features">
-    <div className="feature-box">
-      <div className="feature-box-header">
-        <h2>Quick Apply to Institute of Your Choice</h2>
-        <div className="categories">
-          <button
-            className={activeCategory === 'Universities' ? 'active' : ''}
-            onClick={() => handleCategoryClick('Universities')}
-          >
-            Universities
-          </button>
-          <button
-            className={activeCategory === 'Colleges' ? 'active' : ''}
-            onClick={() => handleCategoryClick('Colleges')}
-          >
-            Colleges
-          </button>
-          <button
-            className={activeCategory === 'Schools' ? 'active' : ''}
-            onClick={() => handleCategoryClick('Schools')}
-          >
-            Schools
-          </button>
+    <div >
+
+      <Slider {...settings}>
+        <div className='t4'>
+          <h3>1</h3>
+          <div>2</div>
         </div>
-      </div>
-      <hr />
-      <div className={`institute-list ${slideTransition ? 'slide' : ''}`}>
-        {visibleData.map(institute => (
-          <div key={institute.id} className="institute-box">
-            <img src={institute.logo} alt={`${institute.name} logo`} />
-            <div className="institute-details">
-              <h3>{institute.name}</h3>
-              <p>{institute.location}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="arrow-buttons">
-        <button disabled={startIndex === 0} onClick={handleLeftArrowClick}>{"<"}</button>
-        <button disabled={endIndex === filteredData.length - 1} onClick={handleRightArrowClick}>{">"}</button>
-      </div>
-    </div>
+        <div className='t4'>
+          <h3>1</h3>
+          <div>2</div>
+        </div>
+        <div className='t4'>
+          <h3>1</h3>
+          <div>2</div>
+        </div>
+        <div className='t4'>
+          <h3>1</h3>
+          <div>2</div>
+        </div>
+      </Slider>
     </div>
   );
-};
-
-export default Features;
+}

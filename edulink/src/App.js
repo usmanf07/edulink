@@ -1,5 +1,5 @@
 import React from 'react'
-import {Footer, Blog, Possiblity, Features, Header, Edulink} from './containers'
+import {Footer, Blog, Possiblity, Features, Header, Edulink, Featuresecondary, Sectors} from './containers'
 import {CTA, Navbar, Brand} from './components'
 import All_UniversitiesPage from './All_UniversitiesPage/MainPage';
 import UniPage from './Single_UniversityPage/MainPage'
@@ -14,11 +14,15 @@ const App = () => {
          {/* <Navbar />
         <Header />
         <Features />
+        <Featuresecondary />
+        <Sectors />
         <Edulink />
         <Possiblity />
-         <CTA /> */}
+         <CTA />
+         <Footer />
 
-        {/* <Test/> */}
+        {/* <All_UniversitiesPage />     */}
+         <UniPage />
 
         {/* <All_UniversitiesPage /> */}
          {/* <UniPage /> */}

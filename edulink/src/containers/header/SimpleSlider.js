@@ -18,7 +18,8 @@ export default class SimpleSlider extends Component {
       speed: 2000,
       arrows: false,
       autoplay: true,
-      autoplaySpeed: 1000
+      autoplaySpeed: 500
+      
     };
     
     return (

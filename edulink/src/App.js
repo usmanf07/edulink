@@ -27,7 +27,7 @@ const App = () => {
       <div className="gradient_bg">
 
       <BrowserRouter>
-         <Navbar handleNext={handleDivClick}/>
+         <Navbar/>
          <Routes>
          <Route path="/" exact element={<Home myLogin={login}/>} />
 

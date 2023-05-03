@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './features.css';
 
 const institutesData = [
@@ -37,6 +37,13 @@ const institutesData = [
     logo: 'myimages/uni1.png',
     category: 'Schools'
   },
+  {
+    id: 6,
+    name: 'Fast University',
+    location: 'Lahore, PK',
+    logo: 'myimages/uni2.png',
+    category: 'Universities'
+  },
   // Add more institutes as needed
 ];
 
@@ -44,6 +51,18 @@ const Features = () => {
   const [activeCategory, setActiveCategory] = useState('Universities');
   const [sliderPosition, setSliderPosition] = useState(0);
   const sliderWidth = 200; // adjust as needed
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const filteredInstitutes = institutesData.filter((institute) => institute.category === activeCategory);
+      if (sliderPosition >= (filteredInstitutes.length - 1) * sliderWidth) {
+        setSliderPosition(0);
+      } else {
+        setSliderPosition(sliderPosition + sliderWidth);
+      }
+    }, 2000);
+    return () => clearInterval(intervalId);
+  }, [activeCategory, sliderPosition, sliderWidth]);
 
   const handleCategoryClick = (category) => {
       setActiveCategory(category);
@@ -74,7 +93,7 @@ const Features = () => {
   return (
     <div className="feature-box">
       <div className="feature-box-header">
-        <h2>Quick Apply to Institute of Your Choice</h2>
+        <h2>Quick Apply to Our Premium Institute</h2>
         <div className="categories">
           <button
             className={activeCategory === 'Universities' ? 'active' : ''}

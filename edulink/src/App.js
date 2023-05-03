@@ -20,12 +20,22 @@ const App = () => {
   return (
     <div className="App">
       <div className="gradient_bg">
-        <Navbar />
-        <Header />
-        <Features />
-        <Edulink />
-        <Possiblity />
-        <CTA />
+
+      <BrowserRouter>
+         <Navbar/>
+         <Routes>
+         <Route path="/" exact element={<Home myLogin={login}/>} />
+
+        </Routes>
+         <Footer />
+      </BrowserRouter>
+        {/* <All_UniversitiesPage />
+         {/* <UniPage /> */}
+
+        {/* <All_UniversitiesPage /> */}
+         {/* <UniPage /> */}
+          {/* <Log/> */}
+          {/* <Example /> */}
       </div>
 
 

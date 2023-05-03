@@ -1,5 +1,5 @@
-import React, { useState,useEffect } from 'react';
-import './features.css';
+import React, {useState, useEffect} from 'react'
+import './features.css'
 
 const institutesData = [
   {
@@ -234,14 +234,39 @@ const institutesData = [
     logo: 'myimages/uni1.png',
     category: 'Schools'
   },
-  // Add more institutes as needed
 ];
 
 const Features = () => {
   const totalInstitutesDisplay = 6;
   const [activeCategory, setActiveCategory] = useState('Universities');
-  const [sliderPosition, setSliderPosition] = useState(0);
-  const sliderWidth = 200; // adjust as needed
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(totalInstitutesDisplay - 1);
+  const [slideTransition, setSlideTransition] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  let filteredData = institutesData.filter(institute => institute.category === activeCategory);
+  let visibleData = filteredData.slice(startIndex, endIndex + 1);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (endIndex === filteredData.length - 1) {
+        const categories = ['Universities', 'Colleges', 'Schools'];
+        const index = categories.indexOf(activeCategory);
+        if (index === categories.length - 1) {
+          setActiveCategory(categories[0]);
+        } else {
+          setActiveCategory(categories[index + 1]);
+        }
+        setStartIndex(0);
+        setEndIndex(totalInstitutesDisplay - 1);
+      } else {
+        handleRightArrowClick();
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [startIndex, endIndex, activeCategory]);
+
+
 
   const handleCategoryClick = (category) => {
 
@@ -275,28 +300,11 @@ const Features = () => {
   return (
     <div className="edulink__features">
     <div className="feature-box">
-      <div className="feature-box-header">
-        <h2>Quick Apply to Institute of Your Choice</h2>
-        <div className="categories">
-          <button
-            className={activeCategory === 'Universities' ? 'active' : ''}
-            onClick={() => handleCategoryClick('Universities')}
-          >
-            Universities
-          </button>
-          <button
-            className={activeCategory === 'Colleges' ? 'active' : ''}
-            onClick={() => handleCategoryClick('Colleges')}
-          >
-            Colleges
-          </button>
-          <button
-            className={activeCategory === 'Schools' ? 'active' : ''}
-            onClick={() => handleCategoryClick('Schools')}
-          >
-            Schools
-          </button>
-        </div>
+      <h2>Quick Apply to Our Premium Institutes</h2>
+      <div className="category-buttons">
+        <button className={activeCategory === 'Universities' ? 'active' : ''} onClick={() => handleCategoryClick('Universities')}>Universities</button>
+        <button className={activeCategory === 'Colleges' ? 'active' : ''} onClick={() => handleCategoryClick('Colleges')}>Colleges</button>
+        <button className={activeCategory === 'Schools' ? 'active' : ''} onClick={() => handleCategoryClick('Schools')}>Schools</button>
       </div>
       <hr />
       <div className={`institute-list ${slideTransition ? 'slide' : ''}`}>

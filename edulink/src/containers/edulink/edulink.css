@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 4rem;
 }
 
 .edulink__infoedulink {
@@ -81,10 +82,9 @@ background-clip: text;
 
 .edulink__infoedulink-container {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: row;
 
-    margin-top: 2rem;
+    margin: 2rem 1rem;
 }
 
 /* Customizing feature component as per needs */
@@ -99,6 +99,11 @@ background-clip: text;
 /* Customizing feature component as per needs */
 .edulink__infoedulink-container .edulink__features-container_feature-text {
     margin-top: 0.5rem;
+}
+
+.edulink__infoedulink-container-card:hover{
+    transform: scale(1.1);
+    transition: all 0.5s ease-in-out;
 }
 
 @media screen and (max-width: 850px) {

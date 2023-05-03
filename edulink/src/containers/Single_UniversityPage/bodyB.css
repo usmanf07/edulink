@@ -1,0 +1,138 @@
+.bodyB{
+height: auto;
+margin-left: 0%;
+color: white;
+font-size: 120%;
+font-weight:700;
+font-family: var(--font-family);
+
+display: flex;
+flex-direction: column;
+gap: 30px;
+}
+
+
+.AdmissionOffice{
+order: 1;
+}
+.AdmissionOffice img{
+margin-top: 3%;
+width:20rem;
+height: 15rem;
+}
+
+.Location{
+order: 2;
+}
+.Location p,
+.Email li,
+.Inquiries li,
+.RelatedInstitutes li{
+font-family: var(--font-family);
+font-weight: 200;
+font-size: 60%;
+line-height: 30px;
+color:  #b2dfea;
+cursor: pointer;
+list-style-type: none;
+margin: 0%;
+padding:0%;
+
+}
+
+.Email{
+order: 3;
+}
+.Inquiries{
+order: 4;
+}
+.RelatedInstitutes{
+order: 5;
+margin-top: 30%;
+}
+
+
+@media only screen and (max-width: 700px) {
+
+    .bodyB{
+        
+        margin: 2%;
+        color: white;
+        font-size: 110%;
+        font-weight:800;
+        font-family: var(--font-family);
+        
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        }
+        
+        .AdmissionOffice img{
+        margin-top: 3%;
+        width:25rem;
+        height: 15rem;
+        }
+        
+        
+        .RelatedInstitutes{
+        order: 5;
+        margin-top: 5%;
+        }
+
+
+}
+
+@media only screen and (max-width: 850px) and (min-width:700px) {
+
+    .bodyB{
+        
+        margin: 2%;
+        color: white;
+        font-size: 120%;
+        font-weight:800;
+        font-family: var(--font-family);
+        
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        }
+        
+        
+        .AdmissionOffice{
+        order: 1;
+        }
+        .AdmissionOffice img{
+        margin-top: 3%;
+        width:40rem;
+        height: 25rem;
+        }
+        
+        
+        .RelatedInstitutes{
+        order: 5;
+        margin-top: 5%;
+        }
+        
+        
+
+
+}
+
+@media only screen and (max-width: 992px) and (min-width: 850px) {
+
+
+.bodyB{
+font-size: 110%;
+display: flex;
+flex-direction: column;
+gap: 30px;
+/* width: 0%; */
+/* background-color: brown; */
+}
+.AdmissionOffice img{
+margin-top: 3%;
+width:15rem;
+height: 12rem;
+}
+
+}

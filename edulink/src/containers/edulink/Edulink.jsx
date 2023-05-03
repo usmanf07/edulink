@@ -13,9 +13,15 @@ const Edulink = () => {
       <p>Explore eduLink for Institutions</p>
     </div>
     <div className="edulink__infoedulink-container">
+      <div className='edulink__infoedulink-container-card'>
       <Feature title="1. Search" text="Enter your preferences and browse our recommendations to find the best institutions for you." />
+      </div>
+      <div className='edulink__infoedulink-container-card'>
       <Feature title="2. Upload Your Details" text="Upload and make your application once securely through our streamlined platform." />
+      </div>
+      <div className='edulink__infoedulink-container-card'>
       <Feature title="3. Apply in One Click" text="Take the First Step Towards Your Future & quickly apply to your favourite institute in a single click with real time application tracking" />
+      </div>
     </div>
     </div>
   </div>

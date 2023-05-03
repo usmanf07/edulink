@@ -1,0 +1,43 @@
+.buttons_bar {
+color: white;
+display: flex;
+float: right;
+padding-right: 5rem;
+gap: 3%;
+
+}
+
+.button_bar_btns{
+font-weight: 700;
+color: white;
+margin-left:0rem;
+margin-top: 0%;
+margin-bottom:2%;
+border-radius:0.5rem;
+background-color: dodgerblue;
+width: 9rem;
+height: 2.5rem;
+}
+
+@media only screen and (max-width: 700px) {
+.buttons_bar {
+padding-right: 3rem;
+}
+.button_bar_btns{
+font-size: 70%;
+width: 7rem;
+height: 2.1rem;
+}
+
+}
+
+@media only screen and (min-width: 700px) and (max-width: 992px) {
+.buttons_bar {
+padding-right: 2rem;
+}
+.button_bar_btns{
+font-size: 80%;
+width: 8rem;
+height: 2.3rem;
+}
+}

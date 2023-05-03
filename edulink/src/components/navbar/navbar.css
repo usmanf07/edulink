@@ -1,26 +1,45 @@
 .edulink__navbar {
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
     align-items: center;
-
+    z-index: 1;
     padding: 2rem 6rem;
+    transition: all 0.3s ease-in-out;
 }
 
 .edulink__navbar-links {
     flex: 1;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
 }
 
-.edulink__background-svg
-{
-  position: absolute;
-  right: 0px;
-  top:0px;
-  z-index: 0;
+.edulink__navbar-categories_links{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 1rem;
+    text-align: center;
 }
 
+.edulink__navbar-categories_links a{
+    margin: 2rem;
+    font-family: var(--font-family);
+    font-weight: 500;   
+    font-size: 20px;
+    line-height: 25px;
+    color: #000;
+    cursor: pointer;
+}
+.edulink__navbar-categories_links a:hover{
+    color: var(--color-button-primary);
+}
+.edulink__navbar-categories
+{
+    margin-top: 1rem;
+    transition: all 0.3s ease-in-out;
+    
+}
 .edulink__navbar-links_logo {
     margin-right: 2rem;
 }
@@ -41,6 +60,67 @@
     align-items: center;
 }
 
+.edulink__navbar.sticky {
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    z-index: 2;
+    top: 0;
+    transition: all 0.3s ease-in-out;
+    
+  }
+
+  .edulink__navbar.sticky .edulink__navbar-links a{
+    color: #000;
+  }
+
+  .edulink__navbar.sticky .edulink__navbar-links_container a[href="#institute"] {
+    color: #0085FF;
+    font-weight: 700;
+    font-size: 24px;
+  }
+  .edulink__navbar.sticky .edulink__navbar-search {
+    display: flex;
+    justify-content: flex-start;
+    align-self: center;
+    margin-left: 30px;
+    width: 600px;
+    font-family: var(--font-family);
+    height: 40px;
+  }
+  
+  .edulink__navbar.sticky .edulink__navbar-search input[type="text"] {
+    flex: 1;
+    width: 500px;
+    padding: 0.5rem 1rem;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border: 2px solid black;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    
+  }
+  .edulink__navbar.sticky .edulink__navbar-search_icon{
+    background-color: #000;
+    text-align: center;
+    height: 40px;
+    width: 50px;
+    align-items: center;
+    justify-content: center;    
+    display: flex;
+  }
+  .edulink__navbar.sticky .edulink__navbar-search_icon svg{
+    margin-left: 5px;
+    height: 25px;
+    width: 25px;
+    fill: #fff;
+  }
+  
+  .edulink__navbar.sticky .edulink__navbar-sign p{
+    color: #000;
+  }
+
+  
 .edulink__navbar-links_container p,
 .edulink__navbar-sign p,
 .edulink__navbar-menu_container p {
@@ -123,16 +203,23 @@
         display: flex;
         z-index: 2;
     }
+    .edulink__navbar.sticky{
+        display: none;
+    }
 }
 
 @media screen and (max-width: 700px) {
     .edulink__navbar {
         padding: 2rem 4rem;
     }
+    .edulink__navbar.sticky{
+        display: none;
+    }
 }
 
 @media screen and (max-width: 650px) {
     .edulink__navbar {
+        
         padding: 2rem;
     }
 
@@ -144,8 +231,14 @@
         top: 20px;
         z-index: 2;
     }
+    .edulink__navbar.sticky{
+        display: none;
+    }
 
     .edulink__navbar-menu_container-links-sign {
         display: block;
+    }
+    .edulink__navbar.sticky{
+        display: none;
     }
 }

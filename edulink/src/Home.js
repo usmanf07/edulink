@@ -1,13 +1,15 @@
 import React,{ useEffect }  from 'react'
-import { Blog, Possiblity, Features, Header, Edulink, Featuresecondary, Sectors} from './containers'
-import {CTA, Brand} from './components'
+import { Possiblity, Features, Header, Edulink, Featuresecondary, Sectors} from './containers'
+import {CTA, Navbar} from './components'
 import './App.css'
-export default function Home(props) {
-
+import { useLocation } from 'react-router-dom';
+export default function Home() {
+  const location = useLocation();
 
   return (
-    <div className={props.myLogin ? "blue" : ""}>
-       <Header />
+    <div> 
+        <Navbar />
+        <Header name={location.state.id}/>
         <Features />
         <Featuresecondary />
         <Sectors />

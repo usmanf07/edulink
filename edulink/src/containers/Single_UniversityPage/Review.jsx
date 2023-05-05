@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import "./Review.css";
 // import SimpleSlider from '../header/SimpleSlider';
 

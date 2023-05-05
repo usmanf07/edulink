@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import "./bodyA.css";
 import Review from './Review';
 import SimpleSlider from '../header/SimpleSlider';

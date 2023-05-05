@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React  from 'react';
 import "./bodyB.css";
 import Map from '../../assets/GoogleMaps.png';
 // import ButtonBar from './buttons_bar'

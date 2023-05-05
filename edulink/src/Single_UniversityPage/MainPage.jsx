@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import "./MainPage.css";
 import image from './Vector.png';
 import picture from '../assets/th (3).jpeg';

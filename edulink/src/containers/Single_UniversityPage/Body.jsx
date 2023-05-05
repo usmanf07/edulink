@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import "./Body.css";
 import BodyA from './bodyA';
 import BodyB from './bodyB';

@@ -11,7 +11,7 @@ const Header = (props) => {
 
       <div className="edulink__header-content">
         <h1 className="gradient_text">
-          “Hello {props.name}, Your Academic Destiny Starts Here”
+          “Your Academic Destiny Starts Here”
         </h1>
         <div className='searchbar'>
           <input className='mysearch' placeholder='Search from over 2000+ institutes worldwide'/>

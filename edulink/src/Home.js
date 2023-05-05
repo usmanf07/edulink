@@ -8,8 +8,8 @@ export default function Home() {
 
   return (
     <div> 
-        <Navbar />
-        <Header name={location.state.id}/>
+        <Navbar isLogin={true} name={location.state.id}/>
+        <Header/>
         <Features />
         <Featuresecondary />
         <Sectors />

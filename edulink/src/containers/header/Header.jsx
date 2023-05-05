@@ -3,7 +3,7 @@ import './header.css'
 import SimpleSlider from './SimpleSlider';
 
 
-const Header = () => {
+const Header = (props) => {
   const imageNames = ["uni7", "uni2", "uni3", "uni4", "uni5", "uni6"]
   return (
     <div className="edulink__header" id="home">
@@ -11,7 +11,7 @@ const Header = () => {
 
       <div className="edulink__header-content">
         <h1 className="gradient_text">
-          “Your Academic Destiny Starts Here”
+          “Hello {props.name}, Your Academic Destiny Starts Here”
         </h1>
         <div className='searchbar'>
           <input className='mysearch' placeholder='Search from over 2000+ institutes worldwide'/>

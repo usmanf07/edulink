@@ -1,44 +1,28 @@
 import React,{useState} from 'react'
-import {Footer, Blog, Possiblity, Features, Header, Edulink, Featuresecondary, Sectors} from './containers'
-import {CTA, Navbar, Brand} from './components'
-import All_UniversitiesPage from './All_UniversitiesPage/MainPage';
-import UniPage from './Single_UniversityPage/MainPage'
-
-import './App.css'
-import Test from './Test';
-import Log from './Login/Log';
 import Home from './Home';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Signin from './Login/Signin.js';
+import Signup1 from './Login/Signup1.js';
 const App = () => {
-
-
-
-  const [login, setLogin] = useState(0);
-
-  const handleDivClick = () => {
-   setLogin(1);
-
-  };
 
   return (
     <div className="App">
       <div className="gradient_bg">
 
-      <BrowserRouter>
 
-          <Routes>
-            <Route path="/" exact element={<Home/>} />
-          </Routes>
-         <Footer />
-      </BrowserRouter>
 
+
+
+
+      
+      <Router>
+        <Routes>
+        <Route path="/login" element={<Signin />}  />
+        <Route path="/home" element={<Home />}  />
+        <Route path="/Signup1" element={<Signup1 />}  />
+        </Routes>
+      </Router>
       </div>
-
-
-
-
 
     </div>
   )

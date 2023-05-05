@@ -3,7 +3,7 @@ import './header.css'
 import SimpleSlider from './SimpleSlider';
 
 
-const Header = () => {
+const Header = (props) => {
   const imageNames = ["uni7", "uni2", "uni3", "uni4", "uni5", "uni6"]
   return (
     <div className="edulink__header" id="home">

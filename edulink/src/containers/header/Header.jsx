@@ -8,8 +8,8 @@ const Header = (props) => {
   return (
     <div className="edulink__header" id="home">
 
-
       <div className="edulink__header-content">
+
         <h1 className="gradient_text">
           “Your Academic Destiny Starts Here”
         </h1>

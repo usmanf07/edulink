@@ -121,3 +121,56 @@
   cursor: default;
 }
 
+@media only screen and (max-width: 700px){
+
+
+.category-buttons button{
+
+  font-size: 20px;
+}
+
+
+
+
+}
+
+@media only screen and (max-width: 500px){
+
+
+  .category-buttons button{
+
+    font-size: 10px;
+  }
+
+  .feature-box{
+    height: 750px;
+  }
+
+  .institute-box h3 {
+
+    font-size: 10px;
+
+  }
+
+  .institute-box p {
+
+    font-size: 8px;
+
+  }
+
+  }
+  @media only screen and (max-width: 400px){
+    .institute-box h3 {
+
+      font-size: 5px;
+
+    }
+
+    .institute-box p {
+
+      font-size: 4px;
+
+    }
+
+
+  }

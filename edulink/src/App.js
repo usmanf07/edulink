@@ -8,6 +8,12 @@ const App = () => {
   return (
     <div className="App">
       <div className="gradient_bg">
+
+
+
+
+
+
       
       <Router>
         <Routes>
@@ -17,6 +23,7 @@ const App = () => {
         </Routes>
       </Router>
       </div>
+
     </div>
   )
 }

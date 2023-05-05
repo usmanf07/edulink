@@ -21,9 +21,9 @@ const Sectors = () => {
               <div className='pa'>
                   <p>Choose from the best private sector institutions for your future in Pakistan</p>
               </div>
-              
+
           </div>
-          <div id='private'>
+          <div className='mycenbutton'>
             <button className='buttons'>Go!</button>
           </div>
         </div>
@@ -40,10 +40,10 @@ const Sectors = () => {
               <div className='pa'>
                   <p>Take the first step towards your dream career with our public sector institute recommendations</p>
               </div>
-              
+
           </div>
-          <div id='public' >
-            <button className='buttons'>Go!</button>
+          <div className='mycenbutton'>
+            <button className='buttons1'>Go!</button>
           </div>
 
 
@@ -62,8 +62,8 @@ const Sectors = () => {
                   <p>Expand your horizons with our recommended international institutions</p>
               </div>
           </div>
-          <div id='overseas' >
-            <button className='buttons'>Go!</button>
+          <div className='mycenbutton'>
+            <button className='buttons2'>Go!</button>
           </div>
 
         </div>

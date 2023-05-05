@@ -27,34 +27,19 @@ const App = () => {
       <div className="gradient_bg">
 
       <BrowserRouter>
-         <Navbar/>
-         <Routes>
-         <Route path="/" exact element={<Home myLogin={login}/>} />
 
-        </Routes>
+          <Routes>
+            <Route path="/" exact element={<Home/>} />
+          </Routes>
          <Footer />
       </BrowserRouter>
-        {/* <All_UniversitiesPage />
-         {/* <UniPage /> */}
 
-        {/* <All_UniversitiesPage /> */}
-         {/* <UniPage /> */}
-          {/* <Log/> */}
-          {/* <Example /> */}
       </div>
 
 
 
 
-{/*
-      <Brand />
-       */}
-{/*
-      <Blog />
-      <Footer />
-      <All_UniversitiesPage />
 
-  {/* <All_UniversitiesPage /> */}
     </div>
   )
 }

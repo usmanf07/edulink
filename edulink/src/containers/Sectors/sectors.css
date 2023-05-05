@@ -1,5 +1,5 @@
 .edulink__sectors{
-    margin: 2rem 5rem 0rem 5rem;
+
 }
 
 .text2{
@@ -22,7 +22,7 @@
       background:url("../../assets/rectangle-91.svg") no-repeat;
       width: 365px;
     height: 274px;
-   
+
   }
   .sectors:hover{
     transform: scale(1.1);
@@ -49,7 +49,35 @@
     color: white;
     font-size: 20px;
     font-weight: 500;
-    
+
+  }
+  .buttons2
+  {
+    width: 90px;
+    height: 40px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    background: #D3FCFF;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+
+  }
+  .buttons1
+  {
+    width: 90px;
+    height: 40px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    background: #FFEDE8;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+
   }
     button:hover{
         transition: transform 0.2s ease-in-out;
@@ -119,7 +147,7 @@
   }
   .info .pa{
     margin-top: 10px;
-    padding-right: 50px;
+    padding-right: 0px;
     font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
@@ -130,6 +158,32 @@
   letter-spacing: -0.02em;
 
   color: #757095;
+
+
+
+  }
+  .mycenbutton{
+
+    display: flex;
+    width: 90%;
+    justify-content: center;
+
+  }
+  @media only screen and (max-width: 850px){
+
+    .allSectors{
+      flex-direction: column;
+      align-items: center;
+    }
+
+
+    .sectors{
+
+      margin-top: 70px;
+
+
+    }
+
 
 
 

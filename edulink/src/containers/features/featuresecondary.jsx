@@ -42,7 +42,7 @@ const institutesData = [
 ]
 
 const Featuresecondary = () => {
-  
+
   const sliderRef = useRef(null);
   let visibleData = institutesData;
 
@@ -73,14 +73,14 @@ const Featuresecondary = () => {
     // Update the institutesData state with the sorted data
     visibleData = sortedData;
   };
-  
+
   const sortByMostPopular = () => {
     // const sortedData = institutesData.sort((a, b) => b.id - a.id);
     // // Update the institutesData state with the sorted data
     // setInstitutesData(sortedData);
   };
-  
-  
+
+
   const settings = {
     vertical: true,
     autoplay: true,
@@ -97,13 +97,13 @@ const Featuresecondary = () => {
       {
         breakpoint: 768,
         settings: {
-          vertical: false,
+
           slidesToShow: 1,
         },
       },
     ],
   };
-  
+
   const [filterMenuOpen, setFilterMenuOpen] = useState(false);
 
   const toggleFilterMenu = () => {
@@ -111,9 +111,12 @@ const Featuresecondary = () => {
   };
 
   return (
+
+
+
     <div className='edulink__featuresecondary'>
         <div className="edulink__featuresecondary-box1">
-          <div className='edulink__featuresecondary-box1-header'>
+        <div className='edulink__featuresecondary-box1-header'>
               <div>
                 <h2>Recent Programs</h2>
               </div>
@@ -132,14 +135,14 @@ const Featuresecondary = () => {
                       <h3 onClick={sortByMostPopular}>By Most Popular</h3>
                       <h3 onClick={sortByDeadline}>By Deadline</h3>
                       <h3 onClick={sortByMostRecent}>By Most Recent</h3>
-                      
-                    </div>   
+
+                    </div>
                 </div>
               )}
               </div>
-              
+
           </div>
-          
+
           <hr></hr>
           <div className='edulink__featuresecondary-institutes'>
             <div onClick={handleUpArrowClick}>
@@ -149,6 +152,8 @@ const Featuresecondary = () => {
                 C307.322,253.536,311.161,255,315,255c3.839,0,7.678-1.464,10.607-4.394C331.464,244.748,331.464,235.251,325.606,229.393z"/>
               </svg>
             </div>
+
+
             <Slider {...settings} ref={sliderRef}>
               {visibleData.map(institute => (
               <div key={institute.id} className="edulink__featuresecondary-instituteBox-info">
@@ -171,15 +176,18 @@ const Featuresecondary = () => {
               </div>
             ))}
              </Slider>
-            <div onClick={handleDownArrowClick}>
+
+
+             <div onClick={handleDownArrowClick}>
                <svg id="down-arrow" fill="#000000" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 330">
                 <path id="XMLID_224_" d="M325.606,229.393l-150.004-150C172.79,76.58,168.974,75,164.996,75c-3.979,0-7.794,1.581-10.607,4.394
                 l-149.996,150c-5.858,5.858-5.858,15.355,0,21.213c5.857,5.857,15.355,5.858,21.213,0l139.39-139.393l139.397,139.393
                 C307.322,253.536,311.161,255,315,255c3.839,0,7.678-1.464,10.607-4.394C331.464,244.748,331.464,235.251,325.606,229.393z"/>
               </svg>
             </div>
-           
-          </div>
+            </div>
+
+
         </div>
         <div className="edulink__featuresecondary-box2">
             <Featurethird />

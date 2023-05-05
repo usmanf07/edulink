@@ -4,7 +4,7 @@ import './navbar.css'
 import logo from '../../assets/logo.svg'
 import logowhite from '../../assets/logo-w-bg.svg'
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
@@ -49,10 +49,16 @@ const Navbar = () => {
           </svg>
         </div>
       </div>}
+      {!props.isLogin && (
       <div className="edulink__navbar-sign">
         <p>Sign in</p>
         <button type="button">Sign up</button>
-      </div>
+      </div>)}
+      {props.isLogin && (
+        <div className="edulink__navbar-sign">
+          <p>Hi, {props.name}</p>
+          <button type="button">Logout</button>
+        </div>)}
       </div>
       
       

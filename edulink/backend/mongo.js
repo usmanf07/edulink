@@ -1,14 +1,9 @@
 const mongoose = require('mongoose');
-const mongoUrl = "mongodb+srv://orthoimplantsgu:miansahib@mycluster.hpxkjj2.mongodb.net/?retryWrites=true&w=majority";
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true 
-}).then(() => {
-    console.log("Connected to database");
-}
-).catch((err) => {
-    console.log(err);
-});
 
 const Schema = mongoose.Schema;
+
+
+
 
 const userSchema = new Schema({
   username: {

@@ -12,9 +12,11 @@ function Signin() {
   async function submit(e){
     e.preventDefault();
     try{
-        await axios.post("http://localhost:8000/", {email, password
+        await axios.post("http://localhost:8000/login", {email, password
       })
       .then(res=>{
+
+
           if(res.data){
               history('/home', {state:{id:email}})
 
@@ -33,6 +35,7 @@ function Signin() {
               //   sessionStorage.setItem('sessionId', sessionId);
               // })
               // .catch(error => console.error(error));
+
           }
           else{
               alert("User does not exist")

@@ -3,7 +3,7 @@ import {RiMenu3Line, RiCloseLine} from 'react-icons/ri';
 import './navbar.css'
 import logo from '../../assets/logo.svg'
 import logowhite from '../../assets/logo-w-bg.svg'
-import { Link } from 'react-router-dom';  
+import { Link } from 'react-router-dom';
 const Navbar = (props) => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
@@ -28,7 +28,7 @@ const Navbar = (props) => {
   const handleLogout = () => {
     localStorage.setItem("loggedin", false);
   };
-  
+
   return (
     <div className={navbarClassNames}>
       <div>
@@ -64,13 +64,13 @@ const Navbar = (props) => {
           <button type="button" onClick={handleLogout()}>Logout</button>
         </div>)}
       </div>
-      
-      
+
+
       </div>
       <div>
-      
+
       {showSearchBar && (
-        
+
         <div className="edulink__navbar-categories">
           <hr></hr>
           <div className='edulink__navbar-categories_links'>
@@ -108,7 +108,7 @@ const Navbar = (props) => {
         )}
       </div>
     </div>
-    
+
   );
 };
 

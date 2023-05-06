@@ -1,3 +1,17 @@
+
+
+const mongoose = require('mongoose');
+const mongoUrl = "mongodb+srv://orthoimplantsgu:miansahib@mycluster.hpxkjj2.mongodb.net/?retryWrites=true&w=majority";
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true
+}).then(() => {
+    console.log("Connected to database");
+}
+).catch((err) => {
+    console.log(err);
+});
+
+
+
 const express = require('express');
 const User = require('./mongo');
 const cors = require('cors')
@@ -12,6 +26,12 @@ const app = express();
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
+app.use('/images', express.static('images'));
+
+
+
+const usersRouter = require('./routes/university');
+app.use('/university', usersRouter);
 
 // app.use(bodyParser.json());
 // app.use(cookieParser());
@@ -24,11 +44,11 @@ app.use(session({
 app.get('/', cors(), (req, res) => {
 })
 
-app.post("/", async(req,res)=>{
+app.post("/login", async(req,res)=>{
     const{email, password}=req.body
     // console.log("ygygt")
-    
-    
+
+
     try{
         // const check = await User.findOne({email:email, password:password})
         const check = await User.findOne({ $or: [{ email }, { password }] });
@@ -36,6 +56,7 @@ app.post("/", async(req,res)=>{
         // console.log(check)
         if(check)
         {
+
            
               
             // True condition to be logged in
@@ -55,6 +76,7 @@ app.post("/", async(req,res)=>{
             //     res.json({ myData: req.session.myData });
             //   });
 
+
         }
         else{
             res.json("notexists")
@@ -71,7 +93,7 @@ app.post("/", async(req,res)=>{
 
 app.post("/SignUp1", async(req,res)=>{
     const{username,email, password}=req.body
-   
+
     const data = {
         username:username,
         email:email,
@@ -80,7 +102,7 @@ app.post("/SignUp1", async(req,res)=>{
 
     try{
         const check = await User.findOne({email:email, password:password})
-       
+
         if(check)
         {
             res.json("exists")
@@ -89,21 +111,21 @@ app.post("/SignUp1", async(req,res)=>{
         else{
             res.json("notexists")
 
-           try 
+           try
            {
             const result =  await User.insertMany([data]);
             // console.log(result);
             // res.status(200).send("Data inserted successfully");
-            } 
-            catch (error) 
+            }
+            catch (error)
             {
-                // if (error.message.includes("User Validation Failed")) 
+                // if (error.message.includes("User Validation Failed"))
                 // {
                 //     // Handle the validation error
                 //     res.json("Uservalidationfailed.");
 
-                // } 
-                // else 
+                // }
+                // else
                 // {
                 //     res.json("password_error")
                 //     // console.log("An error occurred while inserting data.");
@@ -120,5 +142,5 @@ app.post("/SignUp1", async(req,res)=>{
 
 
 app.listen(8000, () => {
-    console.log("Server is running on port 8000"); 
+    console.log("Server is running on port 8000");
 })

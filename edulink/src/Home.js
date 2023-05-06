@@ -3,25 +3,27 @@ import React, { useEffect, useState } from 'react';
 import { Possiblity, Features, Header, Edulink, Featuresecondary, Sectors } from './containers';
 import { CTA, Navbar } from './components';
 import './App.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 
 export default function Home() {
-  const location = useLocation();
-  const [isLogin, setIsLogin] = useState(localStorage.getItem('loggedin'));
 
+  const [isLogin, setIsLogin] = useState(localStorage.getItem('loggedin'));
+  const temp =useParams();
   useEffect(() => {
-    if (location.state == null || location.state.id == null) {
+    ;
+    if (temp.id==null) {
       setIsLogin(false);
+
     } else {
       setIsLogin(true);
     }
-  }, [location.state]);
+  }, [temp]);
 
   return (
     <div>
 
-      <Navbar login={isLogin} name={location.state?.id} />
+      <Navbar login={isLogin} name={temp.id} />
       <Header />
       <Features />
       <Featuresecondary />

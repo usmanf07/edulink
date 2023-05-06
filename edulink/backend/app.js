@@ -15,6 +15,13 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true
 const express = require('express');
 const User = require('./mongo');
 const cors = require('cors')
+
+
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const mongoose = require('mongoose');
+
 const app = express();
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -26,6 +33,14 @@ app.use('/images', express.static('images'));
 const usersRouter = require('./routes/university');
 app.use('/university', usersRouter);
 
+// app.use(bodyParser.json());
+// app.use(cookieParser());
+app.use(session({
+    secret: 'secret-key',
+    resave: false,
+    saveUninitialized: false,
+  }));
+
 app.get('/', cors(), (req, res) => {
 })
 
@@ -35,12 +50,33 @@ app.post("/login", async(req,res)=>{
 
 
     try{
-        const check = await User.findOne({email:email, password:password})
+        // const check = await User.findOne({email:email, password:password})
+        const check = await User.findOne({ $or: [{ email }, { password }] });
         // console.log(email)
         // console.log(check)
         if(check)
         {
-            return res.status(200).json({ userId: check._id, username: check.username });
+
+           
+              
+            // True condition to be logged in
+            req.session.userId = check.email;
+            console.log(req.session.userId);
+
+            
+
+            // var c = res.cookie('userId', check._id, { maxAge: 30 * 24 * 60 * 60 }); // Set a cookie that expires in 30 days
+            // console.log(c);
+            // res.json({ check });
+            res.json( req.session.userId)
+
+
+            // app.get('/my-route', (req, res) => {
+            //     req.session.myData = 'some data';
+            //     res.json({ myData: req.session.myData });
+            //   });
+
+
         }
         else{
             res.json("notexists")

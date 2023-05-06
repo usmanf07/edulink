@@ -15,9 +15,27 @@ function Signin() {
         await axios.post("http://localhost:8000/login", {email, password
       })
       .then(res=>{
-          if(res.data!="notexists"){
 
-              history('/'+res.data.username, {state:{id:email}})
+
+          if(res.data){
+              history('/home', {state:{id:email}})
+
+              const sessionId = res.data;
+                sessionStorage.setItem('sessionId', sessionId);
+
+                
+
+              // fetch('/', {
+              //   method: 'POST'
+              // })
+              // .then(response => response.json())
+              // .then(data => {
+              //   const sessionId = data.sessionId;
+              //   // Do something with the session ID
+              //   sessionStorage.setItem('sessionId', sessionId);
+              // })
+              // .catch(error => console.error(error));
+
           }
           else{
               alert("User does not exist")
@@ -32,6 +50,8 @@ function Signin() {
     }
 
   }
+
+  
 
   return (
     <div className='sign'>

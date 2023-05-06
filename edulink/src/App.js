@@ -3,6 +3,7 @@ import Home from './Home';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signin from './Login/Signin.js';
 import Signup1 from './Login/Signup1.js';
+import Log from './Login/Log'
 const App = () => {
 
   return (
@@ -10,7 +11,7 @@ const App = () => {
       <div className="gradient_bg">
 
 
-
+{/* <Log/> */}
 
 
 

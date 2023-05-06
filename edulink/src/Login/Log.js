@@ -5,6 +5,12 @@ import Signup1 from './Signup1'
 import Signup2 from './Signup2'
 import Signup3 from './Signup3'
 import Signup4 from './Signup4'
+import InstituteLocation from './InstituteLocation'
+import EducationInformationForm from './AddMore'
+import AdmissionsOpen from './AdmissionsOpen'
+import Contact_Institute from './Contact_Institute'
+import Review_Institute from './Review_Institute'
+import ProgramOffered from './ProgramsOffered'
 export default function Log() {
 
 
@@ -44,9 +50,20 @@ export default function Log() {
         <div className='righte'>
 
 
-          {step===1 && <Signup1 onNext={handleNext}/>}
-          {step===2 && <Signup2  onNext={handleNext}/>}
-          {step===3 && <Signup3  onNext={handleNext}/>}
+          {/* {step===1 && <Signup1 onNext={handleNext}/>} */}
+          {/* {step===2 && <Signup2  onNext={handleNext}/>}
+          {step===3 && <Signup3  onNext={handleNext}/>}  */}
+          {/* {step===1 && <Signup4  onNext={handleNext}/>}  */}
+          {/* {step===1 && <EducationInformationForm onNext={handleNext}/>} */}
+          {/* {step === 1 && <InstituteLocation onNext={handleNext}/>} */}
+
+          {/* {step===1 && <AdmissionsOpen  onNext={handleNext}/>} */}
+          {/* {step===1 && <Contact_Institute  onNext={handleNext}/>}  */}
+          {/* {step===1 && <Review_Institute  onNext={handleNext}/>}  */}
+          {/* {step===1 && <ProgramOffered  onNext={handleNext}/>}  */}
+
+
+
 
             {/* <Signup4/> */}
         </div>

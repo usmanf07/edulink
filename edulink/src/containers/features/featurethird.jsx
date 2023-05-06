@@ -1,81 +1,38 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef,useEffect } from 'react';
+import axios from 'axios';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './featurethird.css';
-const institutesData = [
-    {
-      id: 1,
-      name: 'FAST National University',
-      logo: 'myimages/uni1.png',
-      location: 'Faisal Town, Lahore',
-      distance: '200m'
-    },
-    {
-      id: 2,
-      name: 'Comsats University',
-      logo: 'myimages/uni1.png',
-      location: 'Johar Town, Lahore',
-      distance: '900m'
-    },
-    {
-      id: 3,
-      name: 'UMT Lahore',
-      logo: 'myimages/uni1.png',
-      location: 'Johar Town, Lahore',
-      distance: '1.6km'
-    },
-    {
-      id: 4,
-      name: 'UCP Lahore',
-      logo: 'myimages/uni1.png',
-      location: 'Johar Town, Lahore',
-      distance: '1.9km'
-    },
-    {
-      id: 5,
-      name: 'University 1',
-      logo: 'myimages/uni1.png',
-      location: 'Faisal Town, Lahore',
-      distance: '200m'
-    },
-    {
-      id: 6,
-      name: 'University 2',
-      logo: 'myimages/uni1.png',
-      location: 'Johar Town, Lahore',
-      distance: '900m'
-    },
-    {
-      id: 7,
-      name: 'Uni 4',
-      logo: 'myimages/uni1.png',
-      location: 'Johar Town, Lahore',
-      distance: '1.6km'
-    },
-    {
-      id: 8,
-      name: 'Uni 8',
-      logo: 'myimages/uni1.png',
-      location: 'Johar Town, Lahore',
-      distance: '1.9km'
-    },
-  ]
+
 
 const Featurethird = () => {
 
     const sliderRef = useRef(null);
+
+    const [universities, setUniversities] = useState([]);
+
+
+    useEffect(() => {
+      axios.get('http://localhost:8000/university/')
+      .then((response) => {
+        console.log('Universities:', response.data);
+        setUniversities(response.data);
+      })
+        .catch((error) => console.error('Failed to retrieve universities:', error));
+    }, []);
+
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const handleLeftArrowClick = () => {
       sliderRef.current.slickPrev();
     };
-  
+
     const handleRightArrowClick = () => {
       sliderRef.current.slickNext();
     };
-  
+
     const settings = {
         rows: 2,
         slidesToShow: 2,
@@ -101,7 +58,7 @@ const Featurethird = () => {
     ],
     };
 
-  
+
   return (
     <div className='edulink__featurethird'>
     <div className='edulink__featuresecondary-box1-header'>
@@ -117,32 +74,32 @@ const Featurethird = () => {
     </div>
     <hr></hr>
     <div className="featurethird__content" >
-    <svg onClick={handleLeftArrowClick} fill="#000000" id="left-arrow" version="1.1"  xmlns="http://www.w3.org/2000/svg" 
+    <svg onClick={handleLeftArrowClick} fill="#000000" id="left-arrow" version="1.1"  xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 330 330">
         <path id="XMLID_222_" d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001
         c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213
         C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606
         C255,161.018,253.42,157.202,250.606,154.389z"/>
     </svg>
-        
+
         <div className="featurethird__institutes">
           <div className='featurethird__institutes_newdiv'>
         <Slider {...settings} ref={sliderRef}>
-        {institutesData.map(institute => (
-              <div key={institute.id} className="featurethird__institutebox">
-                    <img src={institute.logo} alt={`${institute.name} logo`} />
+        {universities.map(institute => (
+              <div key={institute._id} className="featurethird__institutebox">
+                    <img src={"http://localhost:8000/images/"+institute.imageName} alt={`${institute.name} logo`} />
                     <div>
                       <h3>{institute.name}</h3>
-                      <h4>{institute.location}</h4>
-                      <p>{institute.distance}</p>
+                      <h4>{institute.address}</h4>
+                      <p>{"9km"}</p>
                     </div>
               </div>
             ))}
            </Slider>
            </div>
         </div>
-        
-            <svg onClick={handleRightArrowClick} fill="#000000" id="right-arrow" version="1.1"  xmlns="http://www.w3.org/2000/svg" 
+
+            <svg onClick={handleRightArrowClick} fill="#000000" id="right-arrow" version="1.1"  xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 330 330">
             <path id="XMLID_222_" d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001
             c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213
@@ -150,7 +107,7 @@ const Featurethird = () => {
             C255,161.018,253.42,157.202,250.606,154.389z"/>
         </svg>
     </div>
-    
+
     </div>
   )
 }

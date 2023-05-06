@@ -3,10 +3,18 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 
-
+import { BrowserRouter } from 'react-router-dom';
 
 import "slick-carousel/slick/slick.css";
 
 import "slick-carousel/slick/slick-theme.css";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+
+    <BrowserRouter>
+    <App />
+    </BrowserRouter>
+  </React.StrictMode>
+);

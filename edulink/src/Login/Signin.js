@@ -12,11 +12,12 @@ function Signin() {
   async function submit(e){
     e.preventDefault();
     try{
-        await axios.post("http://localhost:8000/", {email, password
+        await axios.post("http://localhost:8000/login", {email, password
       })
       .then(res=>{
-          if(res.data=="exists"){
-              history('/home', {state:{id:email}})
+          if(res.data!="notexists"){
+
+              history('/'+res.data.username, {state:{id:email}})
           }
           else{
               alert("User does not exist")

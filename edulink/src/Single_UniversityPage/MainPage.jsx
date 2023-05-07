@@ -9,11 +9,12 @@ import ButtonBar from '../containers/Single_UniversityPage/buttons_bar';
 import Body from '../containers/Single_UniversityPage/Body';
 
 // class MainPage extends React.Component{
-  function MainPage(){
+  function MainPage(props){
 
     const [InstituteName1, setInstituteName] = useState();
 
     useEffect(() => {
+
       axios.get('http://localhost:8000/SingleInstitutePage')
         .then((response) => {
           // console.log(response.data[0].instituteName);
@@ -21,46 +22,46 @@ import Body from '../containers/Single_UniversityPage/Body';
         })
         .catch((error) => console.error('Failed to retrieve universities:', error));
 
-  
+
     }, []);
 
-   
+
 
 
 
     return (
       <div className='mainpage'>
-  
+
       <div className='upper_layer'>
         <Nav/>
-  
+
         <div className="picturebox" id="picture" picture>
           <div className="studentsInAStudyGroup008Wrapper" id="Pic_Container">
             <img className="studentsInAStudyGroup008Icon" alt="" src={picture}/>
-          </div> 
-  
+          </div>
+
           <h1 className="heading" id="Picture_text">
-            <p className="yourAcademic">{InstituteName1}</p> 
+            <p className="yourAcademic">{InstituteName1}</p>
           </h1>
-        </div> 
-  
-  
+        </div>
+
+
         <Desc />
         <ButtonBar />
         <Body />
-        
-        {/* <SearchGroup /> 
+
+        {/* <SearchGroup />
         <Body /> */}
-  
-       
+
+
       </div>
-  
-  
-  
-      
+
+
+
+
       </div>
     )
-  
+
 }
 
 export default MainPage;

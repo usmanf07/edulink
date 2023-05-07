@@ -8,6 +8,22 @@ let Uni = require('../models/university.model');
       .catch(err => res.status(400).json('Error: ' + err));
   });
 
+  router.route('/delete').delete((req, res) => {
+    if (!req.body) {
+      return res.status(400).json({ message: 'Missing required fields' });
+    }
+    const query = req.body;
+  
+    Uni.deleteOne(query)
+      .then(result => {
+        if (result.deletedCount === 0) {
+          res.status(404).json({ message: 'Document not found' });
+        } else {
+          res.json({ message: 'Document deleted successfully' });
+        }
+      })
+      .catch(err => res.status(400).json('Error: ' + err));
+  });
 
   router.route('/add').post((req, res) => {
 

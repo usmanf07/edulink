@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import axios from 'axios';
 import "./Review.css";
 // import SimpleSlider from '../header/SimpleSlider';
 
@@ -7,10 +8,32 @@ class Review extends React.Component{
         super();
         this.state = 
         {
-          review : "FAST University was one of the top contenders even before I came to see it, and now it is my home away from home. The university staff are amazing and helpful, coursework is very interesting, and the town itself offers everything you need.",
-          reviewer: "Helene Husebo, 2nd Year Student, Computer Science",
+          review : "",
+          reviewer: "",
         }
     }
+
+    componentDidMount() {
+       
+
+        axios.get('http://localhost:8000/SingleInstitutePage')
+            .then((response) => {
+
+                console.log(response.data[0].reviews);
+                this.setState({ review: response.data[0].reviews[0].review, reviewer:response.data[0].reviews[0].reviewerName}
+                    // {AdmissionsOpen:response.data[0].admissionsOpen}
+                    );
+                
+                // console.log(this.state.ProgramsList );  
+            })
+            .catch((error) => console.error('Failed to retrieve universities:', error));
+
+            this.intervalId = setInterval(this.nextImage, 2000);
+
+
+
+      }
+
 
     render(){
         

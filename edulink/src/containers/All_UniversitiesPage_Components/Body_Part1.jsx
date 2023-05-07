@@ -1,12 +1,8 @@
 import"./Body_Part1.css";
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import {Link,useNavigate } from 'react-router-dom';
 
-import dummy1 from '../../assets/th (1).jpeg'
-import dummy2 from '../../assets/th (2).jpeg'
-import dummy3 from '../../assets/th (3).jpeg'
-import dummy4 from '../../assets/th (4).jpeg'
-import dummy5 from '../../assets/th (5).jpeg'
-import t1 from '../../assets/logo.svg';
 
 class Body_Part1_AllUniPage extends React.Component{
 
@@ -15,26 +11,41 @@ class Body_Part1_AllUniPage extends React.Component{
     this.state = {
       id: 1,
 
-      University_Info : [
-        {src: dummy1, name: 'ABC', city:'123'},
-        {src: dummy2, name: 'DEF', city:'456'},
-        {src: t1, name: 'GHI', city:'789'},
-
-        {src: t1, name: 'JKL', city:'123'},
-        {src: dummy1, name: 'MNO', city:'456'},
-        {src: dummy5, name: 'PQR', city:'789'},
-
-        {src: dummy1, name: 'ABC', city:'123'},
-        {src: dummy2, name: 'DEF', city:'456'},
-        {src: dummy3, name: 'GHI', city:'789'},
-        
-        {src: t1, name: 'GHI', city:'789'},
-        {src: dummy2, name: 'DEF', city:'456'},
-        
-      ]
-
+      Universities_src:[],
+      University_Info : [],
     }
   }
+
+  SingleUniversityPage = (instituteName) => {
+    alert("oiuytfr");
+    // this.props.navigate('/temp2');
+  }
+
+
+  componentDidMount() {
+    axios.get('http://localhost:8000/university')
+      .then((response) => {
+        console.log('Universities:', response.data);
+        this.setState({ Universities_src: response.data });
+        
+       const placesArray = this.state.Universities_src.map((item, index) => {
+      return {
+        src: "http://localhost:8000/images/"+ item.imageName,
+        city: item.address,
+        name: item.name,
+      };
+    });
+
+    // set the state with the new placesArray
+    this.setState({ University_Info: placesArray });
+
+
+      })
+      .catch((error) => console.error('Failed to retrieve universities:', error));
+  }
+
+ 
+ 
  
 
   render(){
@@ -54,7 +65,7 @@ class Body_Part1_AllUniPage extends React.Component{
               {
                 index < next.length &&
                 <td className="i1">
-                <div >
+                <div onClick={()=>this.SingleUniversityPage(row.name)}>
                   <img className="th1Icon" alt="" src={row.src} />
                   <div className="universityAbcCityContainer">
                     <p className="universityAbc">{row.name}</p>
@@ -69,7 +80,7 @@ class Body_Part1_AllUniPage extends React.Component{
               {
                 (index+1) < next.length && 
                 <td className="i1">
-                <div>
+                 <div onClick={()=>this.SingleUniversityPage(row.name)}>
                   <img className="th1Icon" alt="" src={next[index+1].src} />
                   <div className="universityAbcCityContainer">
                     <p className="universityAbc">{next[index+1].name}</p>
@@ -83,7 +94,7 @@ class Body_Part1_AllUniPage extends React.Component{
               {
                 index+2 < next.length && 
                 <td className="i1">
-                <div >
+                <div onClick={()=>this.SingleUniversityPage(row.name)}>
                   <img className="th1Icon" alt="" src={next[index+2].src} />
                   <div className="universityAbcCityContainer">
                     <p className="universityAbc">{next[index+2].name}</p>
@@ -114,7 +125,7 @@ class Body_Part1_AllUniPage extends React.Component{
               {
                 index < next.length &&
                 <td className="i1">
-                <div>
+                 <div onClick={()=>this.SingleUniversityPage(row.name)}>
                   <img className="th1Icon" alt="" src={row.src} />
                   <div className="universityAbcCityContainer">
                     <p className="universityAbc">{row.name}</p>
@@ -129,7 +140,7 @@ class Body_Part1_AllUniPage extends React.Component{
               {
                 (index+1) < next.length && 
                 <td className="i1">
-                <div>
+                  <div onClick={()=>this.SingleUniversityPage(row.name)}>
                   <img className="th1Icon" alt="" src={next[index+1].src} />
                   <div className="universityAbcCityContainer">
                     <p className="universityAbc">{next[index+1].name}</p>
@@ -153,5 +164,11 @@ class Body_Part1_AllUniPage extends React.Component{
     );
   }
 }
+
+export function navigateTo(prop) {
+  const navigate = useNavigate();
+  return(<Body_Part1_AllUniPage navigate={navigate} ></Body_Part1_AllUniPage>)
+}
+
 
 export default Body_Part1_AllUniPage;

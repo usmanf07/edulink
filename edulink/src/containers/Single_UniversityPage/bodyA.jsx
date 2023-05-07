@@ -1,4 +1,6 @@
 import React, { useRef } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import "./bodyA.css";
 import Review from './Review';
 import SimpleSlider from '../header/SimpleSlider';
@@ -9,32 +11,35 @@ import dummy4 from '../../assets/th (4).jpeg'
 import dummy5 from '../../assets/th (5).jpeg'
 
 class BodyA extends React.Component{
+
+
     constructor(){
         super();
         this.state = 
         {
             ProgramsList : 
             [
-                {programName: "Bachelor Of Science", 
-                Domains: ['Computer Science', 'Software Engineering','Electrical Engineering', 'Civil Engineering',
-                        'Robotics', 'Accounting & Finance', 'Artifical Intelligence', 'Machine Learning'] },
+                // {programName: "Bachelor Of Science", 
+                // Domains: ['Computer Science', 'Software Engineering','Electrical Engineering', 'Civil Engineering',
+                //         'Robotics', 'Accounting & Finance', 'Artifical Intelligence', 'Machine Learning'] },
 
-                {programName: "Master Of Science", 
-                Domains: ['Computer Science', 'Software Engineering','Electrical Engineering', 'Civil Engineering',
-                        'Robotics', 'Accounting & Finance', 'Artifical Intelligence'] },
+                // {programName: "Master Of Science", 
+                // Domains: ['Computer Science', 'Software Engineering','Electrical Engineering', 'Civil Engineering',
+                //         'Robotics', 'Accounting & Finance', 'Artifical Intelligence'] },
 
-                {programName: "PHD", 
-                Domains: ['Business Administration', 'Business Analytics','Computer Science', 'Data Science',
-                        'Mathematics'] },
-            ],
+                // {programName: "PHD", 
+                // Domains: ['Business Administration', 'Business Analytics','Computer Science', 'Data Science',
+                //         'Mathematics'] },
+            ]
+            ,
 
             AdmissionsOpen : 
             [
-                {programName: "Bachelor Of Science", 
-                 deadline: '27th May, 2023' },
+                // {programName: "Bachelor Of Science", 
+                //  deadline: '27th May, 2023' },
 
-                 {programName: "Bachelor Of Master", 
-                 deadline: '30th May, 2023' },
+                //  {programName: "Bachelor Of Master", 
+                //  deadline: '30th May, 2023' },
 
                
             ],
@@ -46,8 +51,27 @@ class BodyA extends React.Component{
         }
     }
 
+
+
     componentDidMount() {
-        this.intervalId = setInterval(this.nextImage, 2000);
+       
+
+        axios.get('http://localhost:8000/SingleInstitutePage')
+            .then((response) => {
+
+                console.log(response.data[0]);
+                this.setState({ ProgramsList: response.data[0].programs, AdmissionsOpen:response.data[0].admissionsOpen }
+                    // {AdmissionsOpen:response.data[0].admissionsOpen}
+                    );
+                
+                // console.log(this.state.ProgramsList );  
+            })
+            .catch((error) => console.error('Failed to retrieve universities:', error));
+
+            this.intervalId = setInterval(this.nextImage, 2000);
+
+
+
       }
       
       componentWillUnmount() {
@@ -75,10 +99,10 @@ class BodyA extends React.Component{
 
                     <div className="ProgramsOfferedList">
 
-                        <p className="ProgramName"> {programlist.programName}</p>
+                        <p className="ProgramName"> {programlist.name}</p>
                         <div className="ProgramDomain">
                             <table>
-                            {programlist.Domains.map((domain,index,next) => 
+                            {programlist.domains[0].map((domain,index,next) => 
                                 index%3 === 0 && 
                                 (
                                     <tr className='tr' key={index}>
@@ -113,7 +137,7 @@ class BodyA extends React.Component{
                     <div className="AdmissionNews">
                     <div className='center'>
 
-                    <h1>Admissions Open For {admission.programName}</h1>
+                    <h1>Admissions Open For {admission.name}</h1>
                     <p>Deadline : {admission.deadline}</p>
                     <button className="ApplyBtn">Apply Now</button>
                     </div>

@@ -17,10 +17,11 @@ function Signin() {
       .then(res=>{
 
 
-          if(res.data){
+          if(res.data != "notexists"){
               history('/home', {state:{id:email}})
 
               const sessionId = res.data;
+              console.log(res.data);
                 sessionStorage.setItem('sessionId', sessionId);
 
                 
@@ -35,6 +36,9 @@ function Signin() {
               //   sessionStorage.setItem('sessionId', sessionId);
               // })
               // .catch(error => console.error(error));
+
+          }
+          else if(res.data == "notexists"){
 
           }
           else{

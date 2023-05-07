@@ -2,12 +2,13 @@ import"./Body_Part1.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Link,useNavigate } from 'react-router-dom';
-
+import AllUniversity from "../../AllUniversity";
 
 class Body_Part1_AllUniPage extends React.Component{
 
   constructor(props) {
     super(props);
+    // alert(props.color);
     this.state = {
       id: 1,
 
@@ -17,8 +18,9 @@ class Body_Part1_AllUniPage extends React.Component{
   }
 
   SingleUniversityPage = (instituteName) => {
-    alert("oiuytfr");
-    // this.props.navigate('/temp2');
+    // alert(this.props.color);
+    this.props.navigate('/temp2');
+    // AllUniversity('/home');
   }
 
 
@@ -27,7 +29,7 @@ class Body_Part1_AllUniPage extends React.Component{
       .then((response) => {
         console.log('Universities:', response.data);
         this.setState({ Universities_src: response.data });
-        
+
        const placesArray = this.state.Universities_src.map((item, index) => {
       return {
         src: "http://localhost:8000/images/"+ item.imageName,
@@ -44,9 +46,9 @@ class Body_Part1_AllUniPage extends React.Component{
       .catch((error) => console.error('Failed to retrieve universities:', error));
   }
 
- 
- 
- 
+
+
+
 
   render(){
     const { id, University_Info } = this.state;
@@ -56,10 +58,10 @@ class Body_Part1_AllUniPage extends React.Component{
       <div className="universities" id="University_Div">
 
 
-        <table className="uni_table"> 
-          
+        <table className="uni_table">
+
           {University_Info.map((row,index, next) => (
-            index%3 === 0 && 
+            index%3 === 0 &&
             (<tr key={index}>
 
               {
@@ -75,10 +77,10 @@ class Body_Part1_AllUniPage extends React.Component{
                 </td>
 
               }
-             
+
 
               {
-                (index+1) < next.length && 
+                (index+1) < next.length &&
                 <td className="i1">
                  <div onClick={()=>this.SingleUniversityPage(row.name)}>
                   <img className="th1Icon" alt="" src={next[index+1].src} />
@@ -90,9 +92,9 @@ class Body_Part1_AllUniPage extends React.Component{
                 </td>
 
               }
-              
+
               {
-                index+2 < next.length && 
+                index+2 < next.length &&
                 <td className="i1">
                 <div onClick={()=>this.SingleUniversityPage(row.name)}>
                   <img className="th1Icon" alt="" src={next[index+2].src} />
@@ -103,9 +105,9 @@ class Body_Part1_AllUniPage extends React.Component{
                 </div>
                 </td>
               }
-              
-             
-             
+
+
+
             </tr>)
 
           )
@@ -116,10 +118,10 @@ class Body_Part1_AllUniPage extends React.Component{
 
 
 
-        <table className="phone_uni_table"> 
-          
+        <table className="phone_uni_table">
+
           {University_Info.map((row,index, next) => (
-            index%2 === 0 && 
+            index%2 === 0 &&
             (<tr key={index}>
 
               {
@@ -135,10 +137,10 @@ class Body_Part1_AllUniPage extends React.Component{
                 </td>
 
               }
-             
+
 
               {
-                (index+1) < next.length && 
+                (index+1) < next.length &&
                 <td className="i1">
                   <div onClick={()=>this.SingleUniversityPage(row.name)}>
                   <img className="th1Icon" alt="" src={next[index+1].src} />
@@ -150,8 +152,8 @@ class Body_Part1_AllUniPage extends React.Component{
                 </td>
 
               }
-              
-              
+
+
             </tr>)
 
           )
@@ -165,10 +167,10 @@ class Body_Part1_AllUniPage extends React.Component{
   }
 }
 
-export function navigateTo(prop) {
-  const navigate = useNavigate();
-  return(<Body_Part1_AllUniPage navigate={navigate} ></Body_Part1_AllUniPage>)
-}
+// export function navigateTo(prop) {
+//   const navigate = useNavigate();
+//   return(<Body_Part1_AllUniPage navigate={navigate} ></Body_Part1_AllUniPage>)
+// }
 
 
 export default Body_Part1_AllUniPage;

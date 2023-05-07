@@ -8,22 +8,24 @@ import UniversityList from './UniversityList';
 import AllUniversityPage from './All_UniversitiesPage/MainPage'
 import SingleInstitutePage from './Single_UniversityPage/MainPage'
 import Temp1 from './Temp2';
+import AllUniversity from './AllUniversity';
 const App = () => {
 
   return (
     <div className="App">
       <div className="gradient_bg">
 
-  
+
       <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/:id/' element={<Home/>}/>
           <Route path='/login'  element={<Signin />}/>
           <Route path="/Signup1" element={<Signup1 />}  />
-          <Route path="/AllUniversityPage" element={<AllUniversityPage />}  />
+          {/* <Route path="/AllUniversityPage" element={<AllUniversityPage />}  /> */}
+          <Route path="/AllUniversityPage" element={<AllUniversity />}  />
           <Route path="/SingleInstitutePage" element={<SingleInstitutePage />}  />
           <Route path="/temp2" element={<Temp1 />}  />
-          
+
       </Routes>
 
 

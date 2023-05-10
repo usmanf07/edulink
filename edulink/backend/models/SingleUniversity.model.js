@@ -15,6 +15,13 @@ const reviewSchema = new mongoose.Schema({
   reviewerName: { type: String, required: true },
 });
 
+
+const inquirySchema = new mongoose.Schema({
+  helpline: { type: String },
+  officialWebsite: { type: String },
+  facebook:{type: String} ,
+});
+
 const instituteSchema = new mongoose.Schema({
   instituteName: { type: String, required: true },
   bigPicture: { type: String },
@@ -23,7 +30,11 @@ const instituteSchema = new mongoose.Schema({
   images: [{ type: String }],
   reviews: [reviewSchema],
   programs: [{ type: programSchema, required: true }],
-  location: [{}]
+  location: [{}],
+  inquiries: [inquirySchema],
+  emails: [{type: String}],
+  relatedInstitutes: [{ type: String}]
+
 });
 
 const SingleInstitute = mongoose.model('Institute', instituteSchema);

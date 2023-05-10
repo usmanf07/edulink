@@ -7,21 +7,31 @@ import Nav  from '../components/navbar/Navbar';
 import Desc from '../containers/Single_UniversityPage/University_Description';
 import ButtonBar from '../containers/Single_UniversityPage/buttons_bar';
 import Body from '../containers/Single_UniversityPage/Body';
+import { useParams } from 'react-router-dom';
+
 
 // class MainPage extends React.Component{
   function MainPage(props){
 
     const [InstituteName1, setInstituteName] = useState();
+    const { name } = useParams();
+    const [BigPicture, setBigPicture] = useState();
+    // console.log({name});
 
     useEffect(() => {
 
-      axios.get('http://localhost:8000/SingleInstitutePage')
+      console.log({name});
+
+      axios.get(`http://localhost:8000/SingleInstitutePage/${name}`)
         .then((response) => {
-          // console.log(response.data[0].instituteName);
-          setInstituteName(response.data[0].instituteName);
+          console.log(response.data);
+          setInstituteName(response.data.instituteName);
+          setBigPicture(response.data.bigPicture);
         })
         .catch((error) => console.error('Failed to retrieve universities:', error));
 
+
+       
 
     }, []);
 
@@ -37,7 +47,7 @@ import Body from '../containers/Single_UniversityPage/Body';
 
         <div className="picturebox" id="picture" picture>
           <div className="studentsInAStudyGroup008Wrapper" id="Pic_Container">
-            <img className="studentsInAStudyGroup008Icon" alt="" src={picture}/>
+            <img className="studentsInAStudyGroup008Icon" alt="" src={"http://localhost:8000/images/"+BigPicture}/>
           </div>
 
           <h1 className="heading" id="Picture_text">
@@ -46,9 +56,9 @@ import Body from '../containers/Single_UniversityPage/Body';
         </div>
 
 
-        <Desc />
-        <ButtonBar />
-        <Body />
+        <Desc name={name}/>
+        <ButtonBar name={name}/>
+        <Body name={name}/> 
 
         {/* <SearchGroup />
         <Body /> */}

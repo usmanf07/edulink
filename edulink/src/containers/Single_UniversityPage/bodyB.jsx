@@ -1,26 +1,34 @@
 import React, { useRef } from 'react';
 import "./bodyB.css";
 import Map from '../../assets/GoogleMaps.png';
+import axios from 'axios';
 // import ButtonBar from './buttons_bar'
 
 class BodyB extends React.Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
-            Location: "852-B Milaad St, Block B Faisal Town, Lahore, Punjab 54770, Pakistan",
-            Email:["admissions@lhr.nu.edu.pk","saif.ullah@nu.edu.pk"],
+            Location: "",
+            Email:[],
             Inquiry:
-            [
-                {Helpline:'(042) 111 128 128'},
-                {Official_Website: 'https://lhr.nu.edu.pk/'},
-                {Facebook: ''},
-            ],
+            [],
             RelatedInstitutes:
-            [
-                "Comats","Ghulam Ishaq Khan Institute (Giki)","Lahore University of Managemnt Sciences (LUMS)", "Pieas","National University of Science and Technologies (NUST) Islamabad",
-            ]
+            [],
+            name: props.name,
         }
     }
+
+    componentDidMount() {
+       
+        axios.get(`http://localhost:8000/SingleInstitutePage/${this.state.name}`)
+            .then((response) => {
+
+                this.setState({ Location: response.data.location[0], Email:response.data.emails ,Inquiry:response.data.inquiries,RelatedInstitutes:response.data.relatedInstitutes}
+                    );
+                    // console.log("imageehbhebgevg    " + this.state.imageNames);
+            })
+            .catch((error) => console.error('Failed to retrieve universities:', error));
+      }
 
     render(){
         return(
@@ -52,13 +60,13 @@ class BodyB extends React.Component{
                 <ul>
                 {this.state.Inquiry.map( (inq)=>
                 
-                (inq.Helpline &&
-                <li>Helpline : {inq.Helpline}</li>)
+                (inq.helpline &&
+                <li>Helpline : {inq.helpline}</li>)
 
                 ||
 
-                (inq.Official_Website &&
-                <li>Official Website : {inq.Official_Website}</li>)
+                (inq.officialWebsite &&
+                <li>Official Website : {inq.officialWebsite}</li>)
 
                 ||
 

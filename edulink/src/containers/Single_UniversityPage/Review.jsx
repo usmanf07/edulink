@@ -4,23 +4,24 @@ import "./Review.css";
 // import SimpleSlider from '../header/SimpleSlider';
 
 class Review extends React.Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = 
         {
           review : "",
           reviewer: "",
+          name: props.name,
         }
     }
 
     componentDidMount() {
        
 
-        axios.get('http://localhost:8000/SingleInstitutePage')
+        axios.get(`http://localhost:8000/SingleInstitutePage/${this.state.name}`)
             .then((response) => {
 
-                console.log(response.data[0].reviews);
-                this.setState({ review: response.data[0].reviews[0].review, reviewer:response.data[0].reviews[0].reviewerName}
+                // console.log(response.data.reviews);
+                this.setState({ review: response.data.reviews[0].review, reviewer:response.data.reviews[0].reviewerName}
                     // {AdmissionsOpen:response.data[0].admissionsOpen}
                     );
                 

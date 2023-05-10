@@ -23,7 +23,8 @@ const App = () => {
           <Route path="/Signup1" element={<Signup1 />}  />
           {/* <Route path="/AllUniversityPage" element={<AllUniversityPage />}  /> */}
           <Route path="/AllUniversityPage" element={<AllUniversity />}  />
-          <Route path="/SingleInstitutePage" element={<SingleInstitutePage />}  />
+
+          <Route path="/SingleInstitutePage/:name" element={<SingleInstitutePage />}  />
           <Route path="/temp2" element={<Temp1 />}  />
 
       </Routes>

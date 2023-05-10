@@ -18,9 +18,10 @@ class Body_Part1_AllUniPage extends React.Component{
   }
 
   SingleUniversityPage = (instituteName) => {
-    // alert(this.props.color);
-    this.props.navigate('/temp2');
-    // AllUniversity('/home');
+    // instituteName = instituteName.replace(/\s+/g, '');
+    // alert(instituteName);
+    this.props.navigate(`/SingleInstitutePage/${instituteName}`);
+
   }
 
 
@@ -82,7 +83,7 @@ class Body_Part1_AllUniPage extends React.Component{
               {
                 (index+1) < next.length &&
                 <td className="i1">
-                 <div onClick={()=>this.SingleUniversityPage(row.name)}>
+                 <div onClick={()=>this.SingleUniversityPage(next[index+1].name)}>
                   <img className="th1Icon" alt="" src={next[index+1].src} />
                   <div className="universityAbcCityContainer">
                     <p className="universityAbc">{next[index+1].name}</p>
@@ -96,7 +97,7 @@ class Body_Part1_AllUniPage extends React.Component{
               {
                 index+2 < next.length &&
                 <td className="i1">
-                <div onClick={()=>this.SingleUniversityPage(row.name)}>
+                <div onClick={()=>this.SingleUniversityPage(next[index+2].name)}>
                   <img className="th1Icon" alt="" src={next[index+2].src} />
                   <div className="universityAbcCityContainer">
                     <p className="universityAbc">{next[index+2].name}</p>
@@ -142,7 +143,7 @@ class Body_Part1_AllUniPage extends React.Component{
               {
                 (index+1) < next.length &&
                 <td className="i1">
-                  <div onClick={()=>this.SingleUniversityPage(row.name)}>
+                  <div onClick={()=>this.SingleUniversityPage(next[index+1].name)}>
                   <img className="th1Icon" alt="" src={next[index+1].src} />
                   <div className="universityAbcCityContainer">
                     <p className="universityAbc">{next[index+1].name}</p>

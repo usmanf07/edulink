@@ -4,49 +4,28 @@ import axios from 'axios';
 import "./bodyA.css";
 import Review from './Review';
 import SimpleSlider from '../header/SimpleSlider';
-import dummy1 from '../../assets/th (1).jpeg'
-import dummy2 from '../../assets/th (2).jpeg'
-import dummy3 from '../../assets/th (3).jpeg'
-import dummy4 from '../../assets/th (4).jpeg'
-import dummy5 from '../../assets/th (5).jpeg'
+
+// import { useParams } from 'react-router-dom';
+
 
 class BodyA extends React.Component{
 
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = 
         {
             ProgramsList : 
-            [
-                // {programName: "Bachelor Of Science", 
-                // Domains: ['Computer Science', 'Software Engineering','Electrical Engineering', 'Civil Engineering',
-                //         'Robotics', 'Accounting & Finance', 'Artifical Intelligence', 'Machine Learning'] },
-
-                // {programName: "Master Of Science", 
-                // Domains: ['Computer Science', 'Software Engineering','Electrical Engineering', 'Civil Engineering',
-                //         'Robotics', 'Accounting & Finance', 'Artifical Intelligence'] },
-
-                // {programName: "PHD", 
-                // Domains: ['Business Administration', 'Business Analytics','Computer Science', 'Data Science',
-                //         'Mathematics'] },
-            ]
+            [ ]
             ,
 
             AdmissionsOpen : 
-            [
-                // {programName: "Bachelor Of Science", 
-                //  deadline: '27th May, 2023' },
+            [ ],
 
-                //  {programName: "Bachelor Of Master", 
-                //  deadline: '30th May, 2023' },
-
-               
-            ],
-
-            imageNames : [dummy1,dummy2,dummy3,dummy4,dummy5],
-            img :dummy1,
-            currentImageIndex: 0
+            imageNames : [],
+            // img :pi,
+            currentImageIndex: 0,
+            name: props.name,
 
         }
     }
@@ -55,23 +34,17 @@ class BodyA extends React.Component{
 
     componentDidMount() {
        
+        // alert(name);
+        this.intervalId = setInterval(this.nextImage, 2000);
 
-        axios.get('http://localhost:8000/SingleInstitutePage')
+        axios.get(`http://localhost:8000/SingleInstitutePage/${this.state.name}`)
             .then((response) => {
 
-                console.log(response.data[0]);
-                this.setState({ ProgramsList: response.data[0].programs, AdmissionsOpen:response.data[0].admissionsOpen }
-                    // {AdmissionsOpen:response.data[0].admissionsOpen}
+                this.setState({ ProgramsList: response.data.programs, AdmissionsOpen:response.data.admissionsOpen ,imageNames:response.data.images}
                     );
-                
-                // console.log(this.state.ProgramsList );  
+                    // console.log("imageehbhebgevg    " + this.state.imageNames);
             })
             .catch((error) => console.error('Failed to retrieve universities:', error));
-
-            this.intervalId = setInterval(this.nextImage, 2000);
-
-
-
       }
       
       componentWillUnmount() {
@@ -148,13 +121,13 @@ class BodyA extends React.Component{
               
                 {/* {this.state.imageNames.map( (image)=> */}
                   <div >
-                    <img  className='UniversityImages' alt="" src={imageUrl}/>
+                    <img  className='UniversityImages' alt="" src={"http://localhost:8000/images/"+imageUrl}/>
                   </div>
                    
                     {/* )} */}
               
 
-                <Review />
+                <Review  name={this.state.name}/>
                 
             </div>
         )

@@ -3,9 +3,10 @@ import "./Body.css";
 import BodyA from './bodyA';
 import BodyB from './bodyB';
 class Body extends React.Component{
-    constructor(){
-        super();
-        this.state = {}
+    constructor(props){
+        super(props);
+        this.state = { name: props.name,}
+       
     }
 
     render(){
@@ -14,12 +15,12 @@ class Body extends React.Component{
 
 
                 <div className='bodyA'>
-                <BodyA />
+                <BodyA  name ={this.state.name} />
 
                 </div>
 
                 <div className='bodyB'>
-                <BodyB/>
+                <BodyB name ={this.state.name} />
                 </div>
 
                

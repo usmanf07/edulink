@@ -33,7 +33,8 @@ const instituteSchema = new mongoose.Schema({
   location: [{}],
   inquiries: [inquirySchema],
   emails: [{type: String}],
-  relatedInstitutes: [{ type: String}]
+  relatedInstitutes: [{ type: String}],
+  googlemap : {type: String},
 
 });
 

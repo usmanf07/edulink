@@ -26,22 +26,11 @@ const App = () => {
 
           <Route path="/SingleInstitutePage/:name" element={<SingleInstitutePage />}  />
           <Route path="/temp2" element={<Temp1 />}  />
+          <Route path="/SignUp" element={<Log />}  />
 
       </Routes>
 
 
-      {/* <UniversityList/> */}
-{/* <Log/> */}
-
-
-
-      {/* <Router>
-        <Routes>
-        <Route path="/login" element={<Signin />}  />
-        <Route path="/home" element={<Home />}  />
-        <Route path="/Signup1" element={<Signup1 />}  />
-        </Routes>
-      </Router> */}
       </div>
 
     </div>

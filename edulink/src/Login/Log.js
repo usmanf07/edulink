@@ -55,7 +55,7 @@ export default function Log() {
           {step===3 && <Signup3  onNext={handleNext}/>}  */}
           {/* {step===1 && <Signup4  onNext={handleNext}/>}  */}
           {/* {step===1 && <EducationInformationForm onNext={handleNext}/>} */}
-          {/* {step === 1 && <InstituteLocation onNext={handleNext}/>} */}
+          {step === 1 && <InstituteLocation onNext={handleNext}/>}
 
           {/* {step===1 && <AdmissionsOpen  onNext={handleNext}/>} */}
           {/* {step===1 && <Contact_Institute  onNext={handleNext}/>}  */}

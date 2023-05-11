@@ -14,6 +14,7 @@ class BodyB extends React.Component{
             [],
             RelatedInstitutes:
             [],
+            GoogleMap:"",
             name: props.name,
         }
     }
@@ -23,7 +24,8 @@ class BodyB extends React.Component{
         axios.get(`http://localhost:8000/SingleInstitutePage/${this.state.name}`)
             .then((response) => {
 
-                this.setState({ Location: response.data.location[0], Email:response.data.emails ,Inquiry:response.data.inquiries,RelatedInstitutes:response.data.relatedInstitutes}
+                this.setState({ Location: response.data.location[0], Email:response.data.emails ,Inquiry:response.data.inquiries,RelatedInstitutes:response.data.relatedInstitutes
+                    ,GoogleMap: response.data.googlemap}
                     );
                     // console.log("imageehbhebgevg    " + this.state.imageNames);
             })
@@ -37,12 +39,14 @@ class BodyB extends React.Component{
 
             <div className='AdmissionOffice'>
                 <h>Admission Office</h>
-                <img src={Map}></img>
+                <iframe className="gmap_iframe" src={`https://maps.google.com/maps?q=${this.state.GoogleMap}&output=embed`} ></iframe>
+                {/* <img src={Map}></img> */}
             </div>
 
             <div className='Location'>
                 <h>Location</h>
-                <p>{this.state.Location}</p>
+                
+                {/* <p>{this.state.Location}</p> */}
             </div>
 
             <div className='Email'>

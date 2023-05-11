@@ -32,7 +32,7 @@ router.route('/:name').get((req, res) => {
   });
 
   router.route('/add').post((req, res) => {
-    const { instituteName, bigPicture, description, admissionsOpen, images, reviews, programs ,location,inquiries,emails,relatedInstitutes} = req.body;
+    const { instituteName, bigPicture, description, admissionsOpen, images, reviews, programs ,location,inquiries,emails,relatedInstitutes, googlemap} = req.body;
     const institute = new Uni({
       instituteName,
       bigPicture,
@@ -44,7 +44,8 @@ router.route('/:name').get((req, res) => {
       location,
       inquiries,
       emails,
-      relatedInstitutes
+      relatedInstitutes,
+      googlemap
     });
 
     const name = instituteName;

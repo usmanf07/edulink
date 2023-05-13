@@ -95,6 +95,7 @@
 
 .edulink__featuresecondary-institutes{
     text-align: center;
+    margin-top: 2rem;
 
 }
 
@@ -141,18 +142,21 @@
   justify-content: space-between;
   align-items: center;
   text-align: start ;
+  padding: 1rem;
 }
 
 .edulink__featuresecondary-institute-details img {
   height: 75px;
   width: 80px;
-  margin-right: 10px;
+  margin-right: 1rem !important;
+  
 }
 
 .edulink__featuresecondary-institute-details h3{
-  margin: 0;
+  
   font-size: 24px;
   font-weight: 1000;
+  
 }
 
 .edulink__featuresecondary-institute-details p{
@@ -203,10 +207,13 @@
 }
 
 .edulink__featuresecondary-institutes svg#down-arrow{
+  margin-top: 1rem;
   transform: rotate(180deg);
 }
 
 #down-arrow-2{
+  margin-top: 1rem;
+  
   height: 15px;
   width: 15px;
   transform: rotate(180deg);
@@ -225,11 +232,6 @@
 
   .edulink__featuresecondary{
     flex-direction: column;
-
-
-
-
-
 
   }
   .edulink__featuresecondary-institute-details h3{

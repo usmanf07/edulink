@@ -10,6 +10,7 @@ import SingleInstitutePage from './Single_UniversityPage/MainPage'
 import Temp1 from './Temp2';
 import AllUniversity from './AllUniversity';
 import EditProfile from './EditProfile/EditProfile';
+import UserApplications from './UserApplications/UserApplications';
 const App = () => {
 
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path='/:id/' element={<Home/>}/>
           <Route path='/login'  element={<Log />}/>
           <Route path="/Signup1" element={<Signup1 />}  />
+          <Route path='/UserApplications' element={<UserApplications/>}/>
           <Route path='/EditProfile' element={<EditProfile/>}/>
           <Route path="/AllUniversityPage" element={<AllUniversityPage />}  /> 
           <Route path="/AllUniversityPage" element={<AllUniversity />}  />

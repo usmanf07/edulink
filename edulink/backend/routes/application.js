@@ -37,5 +37,45 @@ router.route('/').post(async (req, res) => {
     }
   });
   
+  router.route('/:id').delete( (req, res) => {
+    const id = req.params.id;
+  console.log(id);
+    // Perform a database query to delete the application with the given ID
+    Application.findByIdAndDelete(id)
+    .then((deletedApplication) => {
+      if (!deletedApplication) {
+        res.status(404).json({ error: 'Application not found' });
+      } else {
+        res.json({ message: 'Application deleted successfully' });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: 'Failed to delete the application' });
+    });
+  });
+  
+  router.route('/:email').get(async (req, res) => {
+    
+    try {
+      // Get the email from the user's cookie
+      const userEmail = req.params.email;
+      
+      // Find all applications for the user with the given email
+      const applications = await Application.find({ studentEmail: userEmail }).exec();
+      
+      // Check if any applications were found
+      if (applications.length === 0) {
+        return res.status(404).json({ message: 'No applications found for this user' });
+      }
+      
+      // Return the applications
+      return res.status(200).json(applications);
+    } catch (error) {
+      console.error('Error getting applications:', error);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+  
   module.exports = router;
 

@@ -1,50 +1,25 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef,useEffect } from 'react';
 import './featuresecondary.css';
+import axios from 'axios';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Featurethird from './featurethird';
 
-
-const institutesData = [
-  {
-    id: 1,
-    name: 'FAST National University',
-    logo: 'myimages/uni1.png',
-    program: 'BS Computer Science',
-    lastDate: '29 April, 2023',
-    updated: '2 mins ago'
-  },
-  {
-    id: 2,
-    name: 'Comsats University',
-    logo: 'myimages/uni1.png',
-    program: 'BS CS, Civil, Electrical',
-    lastDate: '2 May, 2023',
-    updated: '5 mins ago'
-  },
-  {
-    id: 3,
-    name: 'Ethad University',
-    logo: 'myimages/uni1.png',
-    program: 'BS CS, Civil, Electrical',
-    lastDate: '8 May, 2023',
-    updated: '7 mins ago'
-  },
-  {
-    id: 4,
-    name: 'UET Lahore',
-    logo: 'myimages/uni3.png',
-    program: 'BS CS',
-    lastDate: '10 May, 2023',
-    updated: '9 mins ago'
-  },
-]
-
 const Featuresecondary = () => {
 
   const sliderRef = useRef(null);
+  const [institutesData, setinstitutesData] = useState([]);
   let visibleData = institutesData;
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/university/')
+    .then((response) => {
+      console.log('Universities:', response.data);
+      setinstitutesData(response.data);
+    })
+      .catch((error) => console.error('Failed to retrieve universities:', error));
+  }, []);
 
   const handleUpArrowClick = () => {
     sliderRef.current.slickPrev();

@@ -204,7 +204,9 @@ const Featuresecondary = () => {
     <div key={institute.id} className="edulink__featuresecondary-instituteBox-info">
       <div className="edulink__featuresecondary-instituteBox">
         <div className="edulink__featuresecondary-institute-details">
+          <div>
           <img src={"http://localhost:8000/images/"+institute.logo} alt={`${institute.name} logo`} />
+          </div>
           <div>
             <h3>{institute.uniName}</h3>
             <h4>{institute.program}</h4>

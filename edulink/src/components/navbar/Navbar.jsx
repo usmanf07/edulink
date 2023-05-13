@@ -41,7 +41,16 @@ const Navbar = (props) => {
           <p><a href="#wedulink">What is edulink?</a></p>
           <p><a href="#possibility">Find Institutes</a></p>
           <p><a href="#features">Contact</a></p>
-          <p><a href="#institute">eduInstitute</a></p>
+          {!props.login ? (
+              <p>
+                <a href="#institute">eduInstitute</a>
+              </p>
+            ) : (
+              <p>
+                <Link to="/UserApplications"><a href="#institute" >My Applications</a></Link>
+              </p>
+            )}
+
         </div>
         {showSearchBar && <div className={searchClassNames}>
         <div className='edulink__navbar-search_input'>

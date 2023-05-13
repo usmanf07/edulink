@@ -1,5 +1,6 @@
 const router = require('express').Router();
 let Uni = require('../models/university.model');
+let RecentProgram = require('../models/recentPrograms.model');
 
 
   router.route('/').get((req, res) => {
@@ -47,6 +48,34 @@ let Uni = require('../models/university.model');
 
 
   });
+
+  router.route('/recent-programs').get(async (req, res) => {
+    try {
+      const recentPrograms = await RecentProgram.find();
+      const results = [];
+      for (const program of recentPrograms) {
+        const university = await Uni.findById(program.uniID);
+        if(university == null) continue;  
+        
+        const programWithUniversity = {
+          uniID: university._id,
+          uniName: university.name,
+          logo: university.imageName,
+          program: program.program,
+          lastApplyDate: program.lastApplyDate,
+          updated: program.updated
+        };
+        results.push(programWithUniversity);
+      }
+      res.json(results);
+    } catch (error) {
+      console.error('Failed to retrieve recent programs:', error);
+      res.status(500).json({ error: 'Failed to retrieve recent programs' });
+    }
+  });
+  
+  
+
 module.exports = router;
 
 

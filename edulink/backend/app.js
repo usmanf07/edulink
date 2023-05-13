@@ -45,6 +45,9 @@ const uRouter = require('./routes/users');
 app.use('/users', uRouter);
 
 app.use('/uploads', express.static('uploads'));
+
+const applicationRouter = require('./routes/application');
+app.use('/application', applicationRouter);
 // app.use(cookieParser());
 // app.use(session({
 //     secret: 'secret-key',

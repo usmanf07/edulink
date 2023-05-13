@@ -8,22 +8,30 @@ import { useLocation, useParams } from 'react-router-dom';
 
 export default function Home() {
 
-  const [isLogin, setIsLogin] = useState(localStorage.getItem('loggedin'));
-  const temp =useParams();
+  const [isLogin, setIsLogin] = useState(sessionStorage.getItem('email'));
+  const [email, setEmail] = useState('');
   useEffect(() => {
-    ;
-    if (temp.id==null) {
+    // Get sessionId and email from sessionStorage
+    const sessionId = sessionStorage.getItem('sessionId');
+    const email = sessionStorage.getItem('email');
+    console.log(email)
+   
+    if(email === null) {  
       setIsLogin(false);
-
-    } else {
+      console.error('User is not logged in.'); // Log error message
+      return;
+    }
+    else{
       setIsLogin(true);
     }
-  }, [temp]);
+    setEmail(email);
+  }, []);
+
 
   return (
     <div>
 
-      <Navbar login={isLogin} name={temp.id} />
+      <Navbar login={isLogin} name={email} />
       <Header />
       <Features />
       <Featuresecondary />

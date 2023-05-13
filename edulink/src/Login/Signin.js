@@ -20,7 +20,7 @@ function Signin() {
         const email = res.data.email;
         sessionStorage.setItem('sessionId', sessionId);
         sessionStorage.setItem('email', email);
-        history('/EditProfile', { state: { id: email } });
+        history('/home', { state: { id: email } });
       } else {
         setError('Invalid email or password. Please try again.');
       }

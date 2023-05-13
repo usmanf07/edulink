@@ -41,6 +41,10 @@ app.use('/login',signin);
 const SingleInstitute = require('./routes/SingleUniversity');
 app.use('/SingleInstitutePage',SingleInstitute);
 
+const uRouter = require('./routes/users');
+app.use('/users', uRouter);
+
+app.use('/uploads', express.static('uploads'));
 // app.use(cookieParser());
 // app.use(session({
 //     secret: 'secret-key',

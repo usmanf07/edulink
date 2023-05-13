@@ -8,6 +8,10 @@
   padding: 3rem;
 
 }
+.error {
+  color: red;
+}
+
 .outside{
 
   padding: 2rem;

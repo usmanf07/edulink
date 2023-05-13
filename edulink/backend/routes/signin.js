@@ -10,11 +10,11 @@ router.use(session({
   }));
 
 
-console.log("khugytfr");
+//console.log("khugytfr");
 // router.use(cors())
   
   router.route('/').get((req, res) => {
-    console.log("Helloo");
+    //console.log("Helloo");
 
     signin.find()
     .then(users => res.json(users))
@@ -23,32 +23,25 @@ console.log("khugytfr");
   });
 
   router.route('/').post(async(req, res) => {
-
-    const{email, password}=req.body
-
-    try{
-        const check = await signin.findOne({email:email, password:password})
-        // const check = signin.findOne({ $or: [{ email }, { password }] });
-        console.log(email)
-        // console.log(check)
-        if(check._id)
-        {
-            // True condition to be logged in
-            req.session.id = check.email;
-            console.log(req.session.id);
-            res.json( req.session.id)
-        }
-        else{
-            res.json("notexists")
-        }
+    const { email, password } = req.body;
+  
+    try {
+      const check = await signin.findOne({ email: email, password: password });
+      if (check._id) {
+        req.session.id = check.email;
+        console.log(req.session.id);
+        console.log(check.email);
+        const responseObj = { sessionId: req.session.id, email: check.email };
+        res.json(responseObj);
+      } else {
+        res.json("notexists");
+      }
+    } catch (e) {
+      res.json("notexists");
+      console.log(e);
     }
-    catch(e){
-        res.json("notexists")
-        console.log(e);
-    }
-
-
   });
+  
 
 
 

@@ -15,22 +15,21 @@ const App = () => {
   return (
     <div className="App">
       <div className="gradient_bg">
-
-      <EditProfile/>
-      {/* <Routes>
-          <Route path='/EditProfile' element={<EditProfile/>}/>
+   
+      <Routes>
+          
            <Route path='/' element={<Home/>}/>
           <Route path='/:id/' element={<Home/>}/>
-          <Route path='/login'  element={<Signin />}/>
+          <Route path='/login'  element={<Log />}/>
           <Route path="/Signup1" element={<Signup1 />}  />
+          <Route path='/EditProfile' element={<EditProfile/>}/>
           <Route path="/AllUniversityPage" element={<AllUniversityPage />}  /> 
           <Route path="/AllUniversityPage" element={<AllUniversity />}  />
-
           <Route path="/SingleInstitutePage/:name" element={<SingleInstitutePage />}  />
           <Route path="/temp2" element={<Temp1 />}  />
           <Route path="/SignUp" element={<Log />}  /> 
 
-      </Routes> */}
+      </Routes> 
 
 
       </div>

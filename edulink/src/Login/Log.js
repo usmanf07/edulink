@@ -49,13 +49,13 @@ export default function Log() {
         </div>
         <div className='righte'>
 
-
+          <Signin />
           {/* {step===1 && <Signup1 onNext={handleNext}/>} */}
           {/* {step===2 && <Signup2  onNext={handleNext}/>}
           {step===3 && <Signup3  onNext={handleNext}/>}  */}
           {/* {step===1 && <Signup4  onNext={handleNext}/>}  */}
           {/* {step===1 && <EducationInformationForm onNext={handleNext}/>} */}
-          {step === 1 && <InstituteLocation onNext={handleNext}/>}
+          {/* {step === 1 && <InstituteLocation onNext={handleNext}/>} */}
 
           {/* {step===1 && <AdmissionsOpen  onNext={handleNext}/>} */}
           {/* {step===1 && <Contact_Institute  onNext={handleNext}/>}  */}

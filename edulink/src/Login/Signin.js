@@ -12,6 +12,7 @@ function Signin() {
 
   async function submit(e) {
     e.preventDefault();
+
     try {
       setError('');
       const res = await axios.post('http://localhost:8000/login', { email, password });
@@ -35,9 +36,12 @@ function Signin() {
         // Something happened in setting up the request that triggered an Error
         setError('Something went wrong. Please try again later.');
       }
+
     }
   }
+
   
+
 
   return (
     <div className="sign">

@@ -1,7 +1,12 @@
 
-
+process.env.TMPDIR = '/path/to/directory';
 const mongoose = require('mongoose');
 const mongoUrl = "mongodb+srv://orthoimplantsgu:miansahib@mycluster.hpxkjj2.mongodb.net/?retryWrites=true&w=majority";
+const cors=require('cors');
+const fs = require('fs');
+const formidable = require('formidable');
+const mv = require('mv');
+
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true
 }).then(() => {
     console.log("Connected to database");
@@ -14,7 +19,7 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true
 
 const express = require('express');
 // const User = require('./mongo');
-const cors = require('cors')
+
 
 
 const bodyParser = require('body-parser');
@@ -40,6 +45,7 @@ app.use('/login',signin);
 
 const SingleInstitute = require('./routes/SingleUniversity');
 app.use('/SingleInstitutePage',SingleInstitute);
+
 
 const uRouter = require('./routes/users');
 app.use('/users', uRouter);
@@ -155,6 +161,25 @@ app.use('/application', applicationRouter);
 // })
 
 
+
+app.post('/upload', (req, res) => {
+
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+      var oldpath = files.image.filepath;
+      console.log(oldpath);
+      var newpath = __dirname+'/images/' + files.image.originalFilename;
+
+      mv(oldpath, newpath, function (err) {
+        if (err) throw err;
+        else
+        res.write('File uploaded and moved!');
+        res.end();
+      });
+ ;
+    });
+
+  });
 app.listen(8000, () => {
     console.log("Server is running on port 8000");
 })

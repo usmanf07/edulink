@@ -1,0 +1,242 @@
+.mainpage{
+
+background-color: #040c18;
+width: auto;
+height: auto;
+overflow: hidden;
+
+}
+.mysvg{
+position: absolute;
+right: 0px;
+top:0px;
+z-index: 0;
+}
+
+.blur{
+position: absolute;
+left: -20rem;
+top:-20rem;
+z-index: 0;
+}
+
+.upper_layer{
+position: relative;
+z-index: 1;
+background-color: transparent;
+width: 100%;
+height: auto;
+/* background-color: #031b34; */
+
+}
+.backgroundpic{
+  padding: 5px 10px;
+  margin-top: 15px;
+  margin-left: 20px;
+  background-color: dodgerblue;
+  color:white;
+  border-radius: 10px;
+  border-color: dodgerblue;
+}
+.picturebox{
+/* z-index: 1; */
+width: auto;
+height: 35.56rem;
+/* background-color: blue; */
+overflow: hidden;
+
+}
+
+.studentsInAStudyGroup008Icon {
+width: auto;
+top: 0;
+left: 0;
+box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+width: 100%;
+height: 35.56rem;
+overflow: hidden;
+object-fit: cover;
+opacity: 0.8;
+}
+
+.yourAcadem {
+margin: 0;
+
+flex-grow: 0;
+height: auto;
+}
+.heading {
+color: #ffffff;
+margin-top: -14rem;
+display: flex;
+justify-content: flex-start;
+background-color: transparent;
+position: relative;
+
+
+font-family: var(--font-manrope);
+
+}
+.head{
+  border: 1px solid black;
+}
+
+.editBackgroud{
+
+  position: absolute;
+  top: 250px;
+  right: 10px;
+
+}
+
+.frontdialogue{
+
+  position: fixed;
+  top:200px;
+  left:35%;
+  overflow: auto;
+  background-color: white;
+  padding: 20px 20px;
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+
+
+}
+
+.cancelconfirm{
+  margin-top: 10px;
+
+
+}
+
+.l_button{
+  background-color: dodgerblue;
+  float: left;
+  border-color: dodgerblue;
+  color:white;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+.r_button{
+  background-color: dodgerblue;
+  float: right;
+  padding: 5px 10px;
+  border-radius: 10px;
+  color:white;
+  border-color: dodgerblue;
+}
+/* Phone size */
+@media only screen and (max-width: 700px) {
+
+.heading {
+margin-top: -10rem;
+position: relative;
+left: 3.5rem;
+font-size: 130%;
+}
+
+.frontdialogue{
+
+  top:100px;
+  left:15%;
+
+
+
+}
+.editname{
+
+
+
+
+
+}
+.mysvg{
+position: absolute;
+right: 0px;
+top: -90%;
+z-index: 0;
+}
+.blur{
+display: none;
+}
+.picturebox
+{
+
+height: 20rem;
+overflow: hidden;
+}
+
+.studentsInAStudyGroup008Icon
+{
+
+height: 20rem;
+overflow: hidden;
+}
+
+}
+.editSymbol {
+  height: 30px;
+  width: 30px;
+}
+.editPicture{
+  margin-left: 10px;
+
+}
+@media only screen and (min-width: 700px) and (max-width: 992px) {
+
+.heading {
+margin-top: -12rem;
+left: 3.5rem;
+font-size: 180%;
+}
+
+.picturebox
+{
+height: 28rem;
+overflow: hidden;
+}
+
+.studentsInAStudyGroup008Icon
+{
+height: 28rem;
+overflow: hidden;
+}
+
+
+
+
+}
+
+@media only screen and (max-width: 800px) {
+
+
+
+
+}
+
+
+.blue{
+
+
+  filter: blur(5px);
+}
+.backgroundchose{
+
+  margin-left: 20px;
+  color:white;
+  margin-top: 10px;
+}
+.changeinput{
+  color:white;
+}
+.changebackbutton{
+
+  margin-top: 15px;
+  border-radius: 10px;
+
+  padding:5px 15px;
+  background-color: dodgerblue;
+  border-color: dodgerblue;
+  color:white;
+}

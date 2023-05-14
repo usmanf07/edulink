@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import "./bodyB.css";
-import Map from '../../assets/GoogleMaps.png';
+// import Map from '../../assets/GoogleMaps.png';
 import axios from 'axios';
 // import ButtonBar from './buttons_bar'
 
@@ -20,7 +20,7 @@ class BodyB extends React.Component{
     }
 
     componentDidMount() {
-       
+
         axios.get(`http://localhost:8000/SingleInstitutePage/${this.state.name}`)
             .then((response) => {
 
@@ -45,7 +45,7 @@ class BodyB extends React.Component{
 
             <div className='Location'>
                 <h>Location</h>
-                
+
                 {/* <p>{this.state.Location}</p> */}
             </div>
 
@@ -63,7 +63,7 @@ class BodyB extends React.Component{
                 <h>Inquiries</h>
                 <ul>
                 {this.state.Inquiry.map( (inq)=>
-                
+
                 (inq.helpline &&
                 <li>Helpline : {inq.helpline}</li>)
 
@@ -76,8 +76,8 @@ class BodyB extends React.Component{
 
                 (inq.Facebook &&
                 <li>Facebook : {inq.Facebook}</li>  )
-                
-                
+
+
 
                 )}
 
@@ -93,7 +93,7 @@ class BodyB extends React.Component{
                 )}
                 </ul>
             </div>
-                
+
             </div>
         )
     }

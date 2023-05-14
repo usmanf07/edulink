@@ -3,8 +3,12 @@ import {RiMenu3Line, RiCloseLine} from 'react-icons/ri';
 import './navbar.css'
 import logo from '../../assets/logo.svg'
 import logowhite from '../../assets/logo-w-bg.svg'
+
+import { Link, useNavigate } from 'react-router-dom';
+
 import { Link } from 'react-router-dom';
 import { FaCaretDown } from 'react-icons/fa';
+
 
 const Navbar = (props) => {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -23,7 +27,12 @@ const Navbar = (props) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+  const navigate = useNavigate();
+  const moveToSignUp=() =>{
+    navigate("/signup");
 
+
+  }
   const navbarClassNames = `edulink__navbar ${isSticky ? 'sticky' : ''}`;
   const searchClassNames = `edulink__navbar-search ${showSearchBar ? 'visible' : ''}`;
 
@@ -70,7 +79,7 @@ const Navbar = (props) => {
       {!props.login && (
       <div className="edulink__navbar-sign">
         <Link to="/login"><p>Sign in</p></Link>
-        <button type="button">Sign up</button>
+        <button type="button" onClick={moveToSignUp}>Sign up</button>
       </div>)}
       {props.login && (
         <div className="edulink__navbar-sign">

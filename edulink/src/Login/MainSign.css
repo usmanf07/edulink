@@ -1,0 +1,131 @@
+.myMain{
+
+
+
+  align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+}
+.signUpHeading{
+  font-family: 'Manrope';
+  margin-top: 50px;
+  font-style: normal;
+  font-size: 20px;
+  color: #FFFFFF;
+
+
+
+
+}
+.myMain .container{
+  margin-top: 50px;
+  width: 90%;
+  background: #01050B;
+  mix-blend-mode: normal;
+  opacity: 0.8;
+  border: 1px solid #FFFCFC;
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: space-around;
+
+
+}
+.le,.re{
+  margin-top: 50px ;
+  margin-bottom: 50px;
+  background: #040C18;
+  flex-basis: 40%;
+  height: 500px;
+  mix-blend-mode: screen;
+  opacity: 0.6;
+  border: 2px solid #FFFCFC;
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transition: all 0.5s ease;
+}
+.le:hover {
+  transform: scale(1.1);
+  border-color: #000;
+  cursor: pointer;
+}
+.re:hover {
+  transform: scale(1.1);
+  border-color: #000;
+  cursor: pointer;
+}
+.imgset{
+
+  margin-top: 20px;
+  object-fit: cover;
+
+}
+.imgset img{
+  width: 250px;
+
+
+}
+ .info_i{
+
+  margin-top: 50px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  font-family: 'Manrope';
+font-style: normal;
+font-weight: 400;
+font-size: 40px;
+line-height: 45px;
+/* or 90% */
+
+
+color: #FFFFFF;
+
+}
+.myButton{
+  align-self: flex-end;
+  margin: 30px 70px;
+}
+
+.myButton button{
+  padding: 10px 10px;
+  width:150px;
+  border:none;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  background: #18567C;
+
+
+}
+@media screen and (max-width: 700px)
+{
+  .myMain .container{
+    flex-direction: column;
+
+  }
+  .info_i{
+
+    font-size: 30px;
+  }
+  .myButton{
+    align-self: center;
+    margin-top: 20px;
+  }
+
+
+}
+
+@media screen and (max-width: 950px)
+{
+
+  .info_i{
+
+    font-size: 20px;
+  }
+
+
+}

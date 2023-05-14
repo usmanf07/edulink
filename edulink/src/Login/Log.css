@@ -4,7 +4,7 @@
   justify-content: center;
   height: auto;
   min-height: 600px;
-  align-items: center; 
+  align-items: center;
   padding: 3rem;
 
 }
@@ -177,7 +177,7 @@ font-size: 76px;
 
 .autocomplete{
   color: wheat;
-  
+
 }
 
 .gmap_iframe{
@@ -284,7 +284,7 @@ font-size: 76px;
   flex-wrap: wrap;
   font-size: 8px;
   margin-top: 20px;
-  
+
 }
 .SelectedDegreeList_Ul{
   display: flex;
@@ -303,5 +303,13 @@ font-size: 76px;
 
   background-color: #27A6F4;
   border-radius: 0.5rem;
-  
+
+}
+
+
+.error{
+
+  margin-top: 5px ;
+  color:red;
+
 }

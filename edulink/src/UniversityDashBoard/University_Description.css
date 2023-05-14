@@ -1,0 +1,39 @@
+.description_Paragraph{
+width: 95%;
+height: auto;
+color: aliceblue;
+margin: 2%;
+
+/* margin-right: 9%; */
+font-family: var(--font-manrope);
+overflow: hidden;
+
+}
+
+
+.description_Paragraph p{
+
+
+
+}
+.editButton{
+  padding: 5px 10px;
+  border-radius: 10px;
+  border:none;
+  margin-top:10px
+
+
+}
+
+@media only screen and (max-width: 700px) {
+.description_Paragraph{
+font-size: 70%;
+}
+
+}
+
+@media only screen and (min-width: 700px) and (max-width: 992px) {
+.description_Paragraph{
+font-size: 90%;
+}
+}

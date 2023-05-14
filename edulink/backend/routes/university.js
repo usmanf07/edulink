@@ -168,7 +168,7 @@ router.route('/admissions/:name').get((req, res) => {
         if(university == null) continue;  
         
         const programWithUniversity = {
-          uniID: university._id,
+          uniID: university.uniID,
           uniName: university.name,
           logo: university.imageName,
           program: program.program,

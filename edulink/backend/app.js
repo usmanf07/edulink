@@ -44,6 +44,9 @@ app.use('/SingleInstitutePage',SingleInstitute);
 const uRouter = require('./routes/users');
 app.use('/users', uRouter);
 
+const authRoutes = require('./routes/auth');
+app.use('/auth', authRoutes);
+
 app.use('/uploads', express.static('uploads'));
 
 const applicationRouter = require('./routes/application');

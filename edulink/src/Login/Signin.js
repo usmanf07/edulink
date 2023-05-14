@@ -9,18 +9,47 @@ function Signin() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const history = useNavigate();
-
+  const [phone, setPhone] = useState('');
   async function submit(e) {
     e.preventDefault();
     try {
       setError('');
       const res = await axios.post('http://localhost:8000/login', { email, password });
       if (res.data !== 'notexists') {
+
+
         const sessionId = res.data.sessionId;
         const email = res.data.email;
-        sessionStorage.setItem('sessionId', sessionId);
-        sessionStorage.setItem('email', email);
-        history('/UseApplications', { state: { id: email } });
+        
+
+        axios.get(`http://localhost:8000/users/${email}`)
+        .then(res => {
+          const userData = res.data;
+          setPhone(userData.phone)
+          console.log(userData.phone);
+          sessionStorage.setItem('phone', userData.phone);
+
+      
+          axios.post('http://localhost:8000/auth/send-otp', { phoneNumber: userData.phone })
+          .then(resp => {
+            const { success, message, token } = resp.data;
+            if (success) {
+              console.log(`OTP sent successfully. Token: ${token}`);
+              sessionStorage.setItem('otp-token', token);
+            } else {
+              console.log(`Failed to send OTP. Message: ${message}`);
+            }
+          })
+          .catch(err => {
+            console.log(`Failed to send OTP: ${err}`);
+          });
+                
+        })
+        .catch(err => {
+          console.log(err);
+        });
+        history('/Verify', { state: { id: email } });
+
       } else {
         setError('Invalid email or password. Please try again.');
       }

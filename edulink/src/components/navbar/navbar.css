@@ -183,6 +183,12 @@
     font-size: 24px;
   }
 
+  .edulink__navbar-links_container a[href="#membership"] {
+    color: #ffd900;
+    font-weight: 700;
+    font-size: 24px;
+    margin-right: 30px;
+  }
 .edulink__navbar-sign button,
 .edulink__navbar-menu_container button {
     padding: 0.5rem 1rem;

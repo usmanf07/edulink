@@ -52,7 +52,9 @@ const Navbar = (props) => {
               </p>
             ) : (
               <p>
+                <Link to="/Payment"><a href="#membership" >Membership</a></Link>
                 <Link to="/UserApplications"><a href="#institute" >My Applications</a></Link>
+                
               </p>
             )}
 

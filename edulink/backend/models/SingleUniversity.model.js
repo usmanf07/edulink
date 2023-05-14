@@ -24,12 +24,12 @@ const inquirySchema = new mongoose.Schema({
 
 const instituteSchema = new mongoose.Schema({
   instituteName: { type: String, required: true },
-  bigPicture: { type: String },
-  description: { type: String, required: true },
+  bigPicture: { type: String ,default:null},
+  description: { type: String, required: false },
   admissionsOpen: [admissionSchema],
   images: [{ type: String }],
   reviews: [reviewSchema],
-  programs: [{ type: programSchema, required: true }],
+  programs: [{ type: programSchema, required: false }],
   location: [{}],
   inquiries: [inquirySchema],
   emails: [{type: String}],

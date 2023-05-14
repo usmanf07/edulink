@@ -12,7 +12,7 @@ router.use(session({
 
 console.log("khugytfr");
 // router.use(cors())
-  
+
   router.route('/').get((req, res) => {
     console.log("Helloo");
 

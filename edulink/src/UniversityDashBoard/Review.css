@@ -1,0 +1,44 @@
+.Review{
+margin-top:20%;
+font-family: var(--font-family);
+font-style: normal;
+/* font-size: 75%; */
+line-height: 35px;
+background: linear-gradient(103.22deg, #41BDD8 -13.86%, #8C67F4 102.58%), #FFFFFF;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+font-weight: 500;
+max-width: 700px;
+
+
+}
+
+.Review p {
+font-family: var(--font-family);
+font-weight: 500;
+font-size: 65%;
+line-height: 30px;
+color: var(--color-subtext);
+cursor: pointer;
+}
+
+@media only screen and (max-width: 992px) and (min-width: 850px) {
+.Review{    
+font-size: 80%;
+}
+
+}
+
+@media only screen and (min-width:700px) and (max-width: 850px) {
+.Review{    
+font-size: 75%;
+}
+
+}
+
+@media only screen and (max-width: 700px) {
+.Review{    
+font-size: 70%;
+}
+}

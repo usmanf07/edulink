@@ -24,7 +24,7 @@ function Signin() {
               console.log(res.data);
                 sessionStorage.setItem('sessionId', sessionId);
 
-                
+
 
               // fetch('/', {
               //   method: 'POST'
@@ -55,7 +55,7 @@ function Signin() {
 
   }
 
-  
+
 
   return (
     <div className='sign'>

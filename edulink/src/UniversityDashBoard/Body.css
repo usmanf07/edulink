@@ -1,0 +1,66 @@
+.body{
+width:100%;
+height: auto;
+display: flex;
+padding-top: 2%;
+}
+
+.bodyA{
+order: 1;
+flex:75%;
+}
+
+.bodyB{
+order: 2;
+flex:25%;
+margin-right:1.5rem ;
+}
+
+
+
+
+@media only screen and (max-width: 850px) {
+.body{
+flex-direction: column;
+}
+.bodyA{
+order: 1;
+flex:100%;
+/* background-color: blue; */
+width: 100%;
+}
+
+.bodyB{
+order: 2;
+flex:100%;
+width: 100%;
+/* background-color: rgb(110, 110, 169); */
+}
+
+}
+
+@media only screen and (max-width: 850px) {
+.body{
+    flex-direction: column;
+}
+.bodyA{
+    flex: 100%;
+    width:100%;
+}
+.bodyB{
+    flex: 100%;
+    width:100%;
+}
+
+}
+
+
+@media only screen and (min-width: 850px) and (max-width: 992px) {
+
+.bodyB{
+margin-right:1rem;
+}
+
+}
+
+

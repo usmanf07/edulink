@@ -6,7 +6,7 @@ import "./Review.css";
 class Review extends React.Component{
     constructor(props){
         super(props);
-        this.state = 
+        this.state =
         {
           review : "",
           reviewer: "",
@@ -15,19 +15,19 @@ class Review extends React.Component{
     }
 
     componentDidMount() {
-       
 
-        axios.get(`http://localhost:8000/SingleInstitutePage/${this.state.name}`)
-            .then((response) => {
 
-                // console.log(response.data.reviews);
-                this.setState({ review: response.data.reviews[0].review, reviewer:response.data.reviews[0].reviewerName}
-                    // {AdmissionsOpen:response.data[0].admissionsOpen}
-                    );
-                
-                // console.log(this.state.ProgramsList );  
-            })
-            .catch((error) => console.error('Failed to retrieve universities:', error));
+        // axios.get(`http://localhost:8000/SingleInstitutePage/${this.state.name}`)
+        //     .then((response) => {
+
+        //         // console.log(response.data.reviews);
+        //         this.setState({ review: response.data.reviews[0].review, reviewer:response.data.reviews[0].reviewerName}
+        //             // {AdmissionsOpen:response.data[0].admissionsOpen}
+        //             );
+
+        //         // console.log(this.state.ProgramsList );
+        //     })
+        //     .catch((error) => console.error('Failed to retrieve universities:', error));
 
             this.intervalId = setInterval(this.nextImage, 2000);
 
@@ -37,14 +37,14 @@ class Review extends React.Component{
 
 
     render(){
-        
+
         return(
             <div className='Review'>
                 <h>{this.state.review}</h>
                 <p> ---- {this.state.reviewer}</p>
-                
 
-              
+
+
             </div>
         )
     }

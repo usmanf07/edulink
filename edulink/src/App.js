@@ -9,6 +9,8 @@ import AllUniversityPage from './All_UniversitiesPage/MainPage'
 import SingleInstitutePage from './Single_UniversityPage/MainPage'
 import Temp1 from './Temp2';
 import AllUniversity from './AllUniversity';
+import MainSignUp from './Login/MainSignUp';
+import Mainpage from './UniversityDashBoard/Mainpage';
 const App = () => {
 
   return (
@@ -26,8 +28,11 @@ const App = () => {
 
           <Route path="/SingleInstitutePage/:name" element={<SingleInstitutePage />}  />
           <Route path="/temp2" element={<Temp1 />}  />
-          <Route path="/SignUp" element={<Log />}  />
-
+          {/* <Route path="/SignUp" element={<Log />}  /> */}
+          <Route path="/signup" element= {<MainSignUp/>} />
+          <Route path="/universitydash/:name" element= {<Mainpage/>} />
+          <Route path="/signup/university" element= {<Log/>} />
+          <Route path="/signin/university/" element= {<Log/>} />
       </Routes>
 
 

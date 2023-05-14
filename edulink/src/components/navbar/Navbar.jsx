@@ -4,6 +4,8 @@ import './navbar.css'
 import logo from '../../assets/logo.svg'
 import logowhite from '../../assets/logo-w-bg.svg'
 import { Link } from 'react-router-dom';
+import { FaCaretDown } from 'react-icons/fa';
+
 const Navbar = (props) => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
@@ -28,14 +30,17 @@ const Navbar = (props) => {
   const handleLogout = () => {
     localStorage.setItem("loggedin", false);
   };
-
+  const [showDropdown, setShowDropdown] = useState(false);
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
   return (
     <div className={navbarClassNames}>
       <div>
       <div className="edulink__navbar-links">
         <div className="edulink__navbar-links_logo">
-          {!showSearchBar &&(<img src={logo} />)}
-          {showSearchBar &&(<img src={logowhite} />)}
+          {!showSearchBar &&(<Link to="/home"><img src={logo} /></Link>)}
+          {showSearchBar &&(<Link to="/home"><img src={logowhite} /></Link>)}
         </div>
         <div className="edulink__navbar-links_container">
           <p><a href="#wedulink">What is edulink?</a></p>
@@ -69,9 +74,25 @@ const Navbar = (props) => {
       </div>)}
       {props.login && (
         <div className="edulink__navbar-sign">
-          <p>Hi, {props.name}</p>
-          <button type="button" onClick={handleLogout()}>Logout</button>
-        </div>)}
+        <div className="dropdown">
+        <button className="dropbtn" onClick={toggleDropdown}>
+            Hi, {props.name}
+            
+            <FaCaretDown />
+          </button>
+          
+          {showDropdown && (
+            <div className="dropdown-content">
+         
+              <Link to="/EditProfile"><a>Edit Profile</a></Link>
+              <a href="#">Contact</a>
+            </div>
+          )}
+        </div>
+        <button type="button" onClick={handleLogout}>
+          Logout
+        </button>
+      </div>)}
       </div>
 
 

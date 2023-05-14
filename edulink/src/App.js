@@ -11,6 +11,7 @@ import Temp1 from './Temp2';
 import AllUniversity from './AllUniversity';
 import EditProfile from './EditProfile/EditProfile';
 import UserApplications from './UserApplications/UserApplications';
+import PaymentPage from './PaymentPage/PaymentPage';
 const App = () => {
 
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/Signup1" element={<Signup1 />}  />
           <Route path='/UserApplications' element={<UserApplications/>}/>
           <Route path='/EditProfile' element={<EditProfile/>}/>
+          <Route path='/Payment' element={<PaymentPage/>}/>
           <Route path="/AllUniversityPage" element={<AllUniversityPage />}  /> 
           <Route path="/AllUniversityPage" element={<AllUniversity />}  />
           <Route path="/SingleInstitutePage/:name" element={<SingleInstitutePage />}  />

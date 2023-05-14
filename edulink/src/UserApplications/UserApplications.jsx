@@ -63,7 +63,7 @@ useEffect(() => {
               <h2>{application.uniName}</h2>
               <p>Applied For: {application.appliedFor}</p>
               <p>Application Status: {application.applicationStatus}</p>
-              <p>Applied Date: {application.appliedDate}</p> 
+              <p>Applied Date: {new Date(application.appliedDate).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</p>
             </div>
           </div>
           <div className='userApplications__container__card-head-info2'>

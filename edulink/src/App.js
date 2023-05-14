@@ -17,6 +17,7 @@ import EditProfile from './EditProfile/EditProfile';
 import UserApplications from './UserApplications/UserApplications';
 import PaymentPage from './PaymentPage/PaymentPage';
 
+import OtpPage from './Login/otpPage';
 
 const App = () => {
 
@@ -32,6 +33,9 @@ const App = () => {
           <Route path="/Signup1" element={<Signup1 />}  />
           <Route path='/UserApplications' element={<UserApplications/>}/>
           <Route path='/EditProfile' element={<EditProfile/>}/>
+
+          <Route path='/Verify' element={<OtpPage/>}/>
+
           <Route path='/Payment' element={<PaymentPage/>}/>
           <Route path="/AllUniversityPage" element={<AllUniversityPage />}  /> 
           <Route path="/AllUniversityPage" element={<AllUniversity />}  />

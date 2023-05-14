@@ -12,7 +12,7 @@ const Navbar = (props) => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
-
+  const history = useNavigate();
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.pageYOffset;
@@ -35,8 +35,13 @@ const Navbar = (props) => {
   const searchClassNames = `edulink__navbar-search ${showSearchBar ? 'visible' : ''}`;
 
   const handleLogout = () => {
-    localStorage.setItem("loggedin", false);
-  };
+  localStorage.setItem("email", "");
+  localStorage.setItem("name", "");
+  localStorage.setItem("phone", "");
+  localStorage.setItem("loggedin", false);
+  history('/home', { state: {id: '' } }); // use replace instead of push to prevent going back to the previous page
+  window.location.reload(); // refresh the page
+};
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);

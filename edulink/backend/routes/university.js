@@ -164,7 +164,7 @@ router.route('/admissions/:name').get((req, res) => {
       const recentPrograms = await RecentProgram.find();
       const results = [];
       for (const program of recentPrograms) {
-        const university = await Uni.findById(program.uniID);
+        const university = await Uni.findOne({uniID: program.uniID});
         if(university == null) continue;  
         
         const programWithUniversity = {

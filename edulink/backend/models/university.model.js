@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const universitySchema = new mongoose.Schema({
+  uniID: {
+    type: String,
+    required: true
+  },
   name: {
     type: String,
     required: true
@@ -13,6 +17,7 @@ const universitySchema = new mongoose.Schema({
     type: String,
     required: true
   }
+
 });
 
 const University = mongoose.model('University', universitySchema);

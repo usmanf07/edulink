@@ -9,31 +9,46 @@ import AllUniversityPage from './All_UniversitiesPage/MainPage'
 import SingleInstitutePage from './Single_UniversityPage/MainPage'
 import Temp1 from './Temp2';
 import AllUniversity from './AllUniversity';
+
 import MainSignUp from './Login/MainSignUp';
 import Mainpage from './UniversityDashBoard/Mainpage';
+
+import EditProfile from './EditProfile/EditProfile';
+import UserApplications from './UserApplications/UserApplications';
+import PaymentPage from './PaymentPage/PaymentPage';
+
+
 const App = () => {
 
   return (
     <div className="App">
       <div className="gradient_bg">
-
-
+   
       <Routes>
-          <Route path='/' element={<Home/>}/>
+          
+           <Route path='/' element={<Home/>}/>
           <Route path='/:id/' element={<Home/>}/>
-          <Route path='/login'  element={<Signin />}/>
+          <Route path='/login'  element={<Log />}/>
           <Route path="/Signup1" element={<Signup1 />}  />
-          {/* <Route path="/AllUniversityPage" element={<AllUniversityPage />}  /> */}
+          <Route path='/UserApplications' element={<UserApplications/>}/>
+          <Route path='/EditProfile' element={<EditProfile/>}/>
+          <Route path='/Payment' element={<PaymentPage/>}/>
+          <Route path="/AllUniversityPage" element={<AllUniversityPage />}  /> 
           <Route path="/AllUniversityPage" element={<AllUniversity />}  />
-
           <Route path="/SingleInstitutePage/:name" element={<SingleInstitutePage />}  />
           <Route path="/temp2" element={<Temp1 />}  />
+
           {/* <Route path="/SignUp" element={<Log />}  /> */}
           <Route path="/signup" element= {<MainSignUp/>} />
           <Route path="/universitydash/:name" element= {<Mainpage/>} />
           <Route path="/signup/university" element= {<Log/>} />
           <Route path="/signin/university/" element= {<Log/>} />
       </Routes>
+
+          <Route path="/SignUp" element={<Log />}  /> 
+
+      </Routes> 
+
 
 
       </div>

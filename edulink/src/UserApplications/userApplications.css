@@ -1,0 +1,116 @@
+.userApplications
+{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    color: #f5f5f5;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.userApplications__container
+{
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f5f5f5;
+    color: #000000;
+}
+
+.userApplications__container__card
+{
+    padding-top: 1.3rem;
+    
+    background-color: #cbcbcb;
+    width: 1000px;
+    margin: 3rem;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.userApplications__container__card-head
+{
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: #000000 1px solid; */
+}
+.userApplications__container__card-head p 
+{
+    color: #333333;
+    font-size: medium;
+    font-weight: 500;
+}
+
+.userApplications__container__card-head button
+{
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #fff;
+    padding: 0.5rem;
+    margin: 1rem;
+    position: absolute;
+    top: 0;
+    right:0;
+  
+}
+.userApplications__container__card-menubox {
+    background-color: #6b6b6b;
+    width: 1000px;
+    height: 50px;
+    margin-top: 0.7rem;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+   cursor: pointer;
+  }
+  
+  .userApplications__container__card-menu{
+    width: 1000px;
+    padding: 1.3rem 2rem;
+    
+    background-color: #cbcbcb;
+    
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .userApplications__container__card-head-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .userApplications__container__card-head-info img {
+    height: 90px;
+    margin-left: 10px;
+    margin-right: 20px;
+  }
+  
+  .userApplications__container__card-head-info h2 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .userApplications__container__card-head-info p {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+  

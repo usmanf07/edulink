@@ -1,50 +1,30 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef,useEffect } from 'react';
 import './featuresecondary.css';
+import axios from 'axios';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Featurethird from './featurethird';
 
-
-const institutesData = [
-  {
-    id: 1,
-    name: 'FAST National University',
-    logo: 'myimages/uni1.png',
-    program: 'BS Computer Science',
-    lastDate: '29 April, 2023',
-    updated: '2 mins ago'
-  },
-  {
-    id: 2,
-    name: 'Comsats University',
-    logo: 'myimages/uni1.png',
-    program: 'BS CS, Civil, Electrical',
-    lastDate: '2 May, 2023',
-    updated: '5 mins ago'
-  },
-  {
-    id: 3,
-    name: 'Ethad University',
-    logo: 'myimages/uni1.png',
-    program: 'BS CS, Civil, Electrical',
-    lastDate: '8 May, 2023',
-    updated: '7 mins ago'
-  },
-  {
-    id: 4,
-    name: 'UET Lahore',
-    logo: 'myimages/uni3.png',
-    program: 'BS CS',
-    lastDate: '10 May, 2023',
-    updated: '9 mins ago'
-  },
-]
-
 const Featuresecondary = () => {
 
   const sliderRef = useRef(null);
+  const [institutesData, setinstitutesData] = useState([]);
+  const [showConfirmation, setConfirmation] = useState(false);
+  const [email, setEmail] = useState('');
+  const [userData, setuserData] = useState(null);
   let visibleData = institutesData;
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/university/recent-programs')
+    .then((response) => {
+      console.log('Universities:', response.data);
+      setinstitutesData(response.data);
+     
+    })
+      .catch((error) => console.error('Failed to retrieve universities:', error));
+  }, []);
 
   const handleUpArrowClick = () => {
     sliderRef.current.slickPrev();
@@ -52,6 +32,42 @@ const Featuresecondary = () => {
 
   const handleDownArrowClick = () => {
     sliderRef.current.slickNext();
+  };
+
+  useEffect(() => {
+    // Get sessionId and email from sessionStorage
+    const sessionId = sessionStorage.getItem('sessionId');
+    const email = sessionStorage.getItem('email');
+    console.log(email)
+   
+    if(email === null) {  
+      console.error('User is not logged in.'); // Log error message
+      return;
+    }
+    setEmail(email);
+  }, []);
+
+  const handleApplyConfirm = async (index) => {
+
+    const selectedInstitute = institutesData[index];
+    console.log(selectedInstitute.program)
+    
+    try {
+      const response = await axios.post('http://localhost:8000/application', {
+        email: email,
+        status: 'Pending',
+        appliedDate: new Date(),
+        additionalRequirements: [],
+        appliedFor: selectedInstitute.program,
+        otherInfo: '',
+        uniID: selectedInstitute.uniID,
+        
+      });
+      setConfirmation(false);
+      console.log(response.data); // Log success message
+    } catch (error) {
+      console.error('Error adding application:', error);
+    }
   };
 
   const sortByDeadline = () => {
@@ -63,7 +79,7 @@ const Featuresecondary = () => {
     // Update the institutesData state with the sorted data
    visibleData = sortedData;
   };
-
+  const [elapsed, setElapsed] = useState('');
   const sortByMostRecent = () => {
     const sortedData = institutesData.sort((a, b) => {
       const dateA = new Date(a.updated);
@@ -110,6 +126,35 @@ const Featuresecondary = () => {
     setFilterMenuOpen(!filterMenuOpen);
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+      const newData = institutesData.map(institute => {
+        const updated = new Date(institute.updated);
+        const elapsedMs = now - updated;
+        let elapsed;
+        if (elapsedMs < 60 * 1000) {
+          elapsed = `${Math.floor(elapsedMs / 1000)} seconds`;
+        } else if (elapsedMs < 60 * 60 * 1000) {
+          elapsed = `${Math.floor(elapsedMs / (60 * 1000))} minutes`;
+        } else if (elapsedMs < 24 * 60 * 60 * 1000) {
+          elapsed = `${Math.floor(elapsedMs / (60 * 60 * 1000))} hours`;
+        } else {
+          elapsed = `${Math.floor(elapsedMs / (24 * 60 * 60 * 1000))} days`;
+        }
+        setElapsed(`Updated: ${elapsed} ago`);
+        return {
+          ...institute,
+          elapsed: `Updated: ${elapsed} ago`
+          
+        };
+      });
+      setinstitutesData(newData);
+    }, 1000);
+  
+    return () => clearInterval(interval);
+  }, [institutesData]);
+  
   return (
 
 
@@ -155,27 +200,43 @@ const Featuresecondary = () => {
 
 
             <Slider {...settings} ref={sliderRef}>
-              {visibleData.map(institute => (
-              <div key={institute.id} className="edulink__featuresecondary-instituteBox-info">
-                  <div className="edulink__featuresecondary-instituteBox">
-                  <div className="edulink__featuresecondary-institute-details">
-                    <img src={institute.logo} alt={`${institute.name} logo`} />
-                    <div>
-                      <h3>{institute.name}</h3>
-                      <h4>{institute.program}</h4>
-                    </div>
-                  </div>
-                  <div className="edulink__featuresecondary-institute-apply">
-                    <button>Apply Now!</button>
-                    <div>
-                      <h3>Last Date to Apply: {institute.lastDate}</h3>
-                    </div>
-                  </div>
-                  </div>
-                  <p>Updated: {institute.updated}</p>
-              </div>
-            ))}
-             </Slider>
+  {visibleData.map((institute, index) => (
+    <div key={institute.id} className="edulink__featuresecondary-instituteBox-info">
+      <div className="edulink__featuresecondary-instituteBox">
+        <div className="edulink__featuresecondary-institute-details">
+          <div>
+          <img src={"http://localhost:8000/images/"+institute.logo} alt={`${institute.name} logo`} />
+          </div>
+          <div>
+            <h3>{institute.uniName}</h3>
+            <h4>{institute.program}</h4>
+          </div>
+        </div>
+        <div className="edulink__featuresecondary-institute-apply">
+          {!showConfirmation[index] ? (
+            <div>
+              <button onClick={() => setConfirmation(prevState => ({ ...prevState, [index]: true }))}>Apply Now!</button>
+            </div>
+          ) : (
+            <div>
+              <p style={{ marginBottom: '10px' ,color:'green' }}>
+                Are you sure you want to apply to {institute.instituteName} for {institute.program} program?
+               
+              </p>
+              <button onClick={() => handleApplyConfirm(index)}>Confirm</button>
+              <button style={{ border: '0px', marginLeft: '10px', backgroundColor: 'red' }} onClick={() => setConfirmation(prevState => ({ ...prevState, [index]: false }))}>Cancel</button>
+            </div>
+          )}
+          <div>
+            <h3>Last Date to Apply: {new Date(institute.lastApplyDate).toLocaleDateString('en-GB')}</h3>
+          </div>
+        </div>
+      </div>
+      <p>{institute.elapsed}</p>
+    </div>
+  ))}
+</Slider>
+
 
 
              <div onClick={handleDownArrowClick}>

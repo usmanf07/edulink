@@ -28,7 +28,7 @@ router.route('/').post(async (req, res) => {
   
       // Save the new application document
       await application.save();
-  
+      
       // Return a success response
       return res.status(201).json({ message: 'Application added successfully' });
     } catch (error) {
@@ -56,7 +56,6 @@ router.route('/').post(async (req, res) => {
   });
   
   router.route('/:email').get(async (req, res) => {
-    
     try {
       // Get the email from the user's cookie
       const userEmail = req.params.email;
@@ -69,13 +68,33 @@ router.route('/').post(async (req, res) => {
         return res.status(404).json({ message: 'No applications found for this user' });
       }
       
-      // Return the applications
-      return res.status(200).json(applications);
+      const results = [];
+      
+      for (const app of applications) {
+        const university = await Uni.findOne({uniID: app.uniID});
+        if(university == null) continue;  
+        
+        const uniDetails = {
+          uniName: university.name,
+          logo: university.imageName,
+        };
+        
+        const applicationWithDetails = {
+          ...app.toObject(),
+          result: app.result,
+          ...uniDetails,
+        };
+        
+        results.push(applicationWithDetails);
+      }
+      
+      return res.status(200).json(results);
     } catch (error) {
       console.error('Error getting applications:', error);
       return res.status(500).json({ message: 'Internal server error' });
     }
   });
+  
   
   module.exports = router;
 

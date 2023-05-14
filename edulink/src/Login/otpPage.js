@@ -11,8 +11,10 @@ function OtpPage(props) {
     const [otp, setOtp] = useState('');
     const [error, setError] = useState('');
     const history = useNavigate();
-    const [phoneNumber, setPhoneNumber] = useState(sessionStorage.getItem('phone'));
+    
     const location = useLocation();
+    const phoneNumber = location.state.phone;
+    
     const email = location.state.id;
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -50,14 +52,7 @@ function OtpPage(props) {
             <h1>Verify OTP</h1>
         </div>
         <div className="otp_information">
-          {!isOtpSent && (
-            <form onSubmit={handleSubmit}>
-            <h2>You haven't added any phone numbers in your profile!</h2>
-              <label>Phone Number:</label>
-              <input type="number" placeholder="Phone Number" onChange={(e) => setPhoneNumber(e.target.value)} />
-              <button type="submit">Send OTP</button>
-            </form>
-          )}
+          
           {isOtpSent && (
             <form onSubmit={handleSubmit}>
               <label>OTP sent to {phoneNumber}:</label>

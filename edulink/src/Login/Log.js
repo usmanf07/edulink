@@ -52,8 +52,9 @@ export default function Log() {
           </div>
         </div>
         <div className='righte'>
-
+        {!location.state &&
           <Signin />
+        }
           {/* {step===1 && <Signup1 onNext={handleNext}/>} */}
           {/* {step===2 && <Signup2  onNext={handleNext}/>}
           {step===3 && <Signup3  onNext={handleNext}/>}  */}
@@ -70,20 +71,14 @@ export default function Log() {
           {/* {step===1 && <Review_Institute  onNext={handleNext}/>}  */}
           {/* {step===1 && <ProgramOffered  onNext={handleNext}/>}  */}
 
+          {location.state && location.state.id === "university" && (
+            <UniversitySignUp />
+          )}
 
-          {location.state.id ==="university" &&
+          {location.state && location.state.id === "universitylogin" && (
+            <UniversitySignIn />
+          )}
 
-             <UniversitySignUp/>
-
-
-          }
-
-          {location.state.id ==="universitylogin" &&
-
-          <UniversitySignIn/>
-
-
-          }
             {/* <Signup4/> */}
         </div>
       </div>

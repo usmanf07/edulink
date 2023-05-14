@@ -159,11 +159,6 @@ router.route('/admissions/:name').get((req, res) => {
   });
 
 
-
-
-
-  });
-
   router.route('/recent-programs').get(async (req, res) => {
     try {
       const recentPrograms = await RecentProgram.find();

@@ -49,10 +49,6 @@ const App = () => {
           <Route path="/signin/university/" element= {<Log/>} />
       </Routes>
 
-          <Route path="/SignUp" element={<Log />}  /> 
-
-      </Routes> 
-
 
 
       </div>

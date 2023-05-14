@@ -5,8 +5,6 @@ import logo from '../../assets/logo.svg'
 import logowhite from '../../assets/logo-w-bg.svg'
 
 import { Link, useNavigate } from 'react-router-dom';
-
-import { Link } from 'react-router-dom';
 import { FaCaretDown } from 'react-icons/fa';
 
 

@@ -12,6 +12,7 @@ import AllUniversity from './AllUniversity';
 import EditProfile from './EditProfile/EditProfile';
 import UserApplications from './UserApplications/UserApplications';
 import PaymentPage from './PaymentPage/PaymentPage';
+
 const App = () => {
 
   return (

@@ -23,7 +23,6 @@ export default function Signup4({onNext}) {
   const [suggestions, setSuggestions] = useState([]);
   const [suggestionIndex, setSuggestionIndex] = useState(-1);
   const [suggestionsActive, setSuggestionsActive] = useState(false);
-  const [value, setValue] = useState("");
 
   const handleChange = (e) => {
     const query = e.target.value.toLowerCase();
@@ -100,9 +99,7 @@ export default function Signup4({onNext}) {
     );
   };
 
-  const addMoreInformation = (e)=>{
-
-  }
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();

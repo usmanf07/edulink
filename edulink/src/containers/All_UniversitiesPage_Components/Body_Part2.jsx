@@ -1,24 +1,194 @@
 import"./Body_Part2.css";
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { sharedVariable, setSharedVariable } from './sharedFile.js';
 
-class Body_Part2_AllUniPage extends React.Component{
 
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
-  showSlidebar=()=> {
+export default function Body_Part2(){
+
+  const [Institute_, setInstitute_] = useState("");
+  const [AllInstitutes_, setAllInstitutes_] = useState("");
+  const [data_, setData_] = useState([]);
+
+  const [suggestions_, setSuggestions_] = useState([]);
+  const [suggestionIndex_, setSuggestionIndex_] = useState(-1);
+  const [suggestionsActive_, setSuggestionsActive_] = useState(false);
+
+  useEffect(() => {
+    
+    axios.get(`http://localhost:8000/university`)
+      .then((response) => {
+        
+        setAllInstitutes_(response.data);
+
+    
+      })
+      .catch((error) => console.error('Failed to retrieve universities:', error));
+  }, []);
+
+  useEffect(() => {
+    const names = Array.isArray(AllInstitutes_) ? AllInstitutes_.map((institute) => institute.address) : [];
+    setData_(names);
+
+    updateDisplay_("show");
+  }, [AllInstitutes_]);
+
+
+  const showSlidebar=()=> {
     var s = document.getElementById('sliderbar_AllUniPage');
     s.style.display = "flex";
   }
 
-  hideSlidebar=()=> {
+  const hideSlidebar=()=> {
     var s = document.getElementById('sliderbar_AllUniPage');
     s.style.display = "none";
   }
 
-  render(){
-    const { id, University_Info } = this.state;
+
+
+  const handleChange = (e) => {
+    
+   
+    const query = e.target.value.toLowerCase();
+    // setValue(query);
+    setInstitute_(e.target.value);
+
+    if (query.length > 0) {
+      const filterSuggestions = data_.filter(
+        (suggestion_) =>
+          suggestion_.toLowerCase().indexOf(query) > -1
+      );
+      setSuggestions_(filterSuggestions);
+      setSuggestionsActive_(true);
+    } else {
+      setSuggestionsActive_(false);
+    }
+  };
+
+  const handleClick = (e) => {
+    setSuggestions_([]);
+    // setValue(e.target.innerText);
+    setInstitute_(e.target.innerText);
+    setSuggestionsActive_(false);
+  };
+
+
+ 
+  const updateDisplay_ = (display1) => {
+
+    try {
+         
+          if(suggestions_.length <=0 || Institute_ === "")
+          {
+            setSuggestions_(data_);
+          }
+
+          // console.log("suggestions" + suggestions_)
+          const updatedUniversities = suggestions_.map((university) => ({
+          name:university,
+          display: display1,
+          
+           }));
+
+           if(suggestions_.length > 0 )
+          {
+            const filteredNames_ = data_.filter(name => !suggestions_.includes(name));
+            const filtered_ = filteredNames_.map((university) => ({
+             name:university,
+             display: "none",
+             
+            }));
+
+            // console.log("data" + data_)
+            // console.log("filteres" + filteredNames_)
+            
+              axios.put("http://localhost:8000/university/updateLocationDisplay", filtered_)
+              .then((response) => {
+              })
+              .catch((error) => console.error('Failed to update ', error));
+            
+
+            axios.put("http://localhost:8000/university/updateLocationDisplay", updatedUniversities)
+            .then((response) => {
+            })
+            .catch((error) => console.error('Failed to update ', error));
+           
+          }
+          
+
+         
+
+         
+
+        } catch (error) {
+          console.error("Failed to update display:", error);
+        };
+  
+  };
+
+  const handleKeyDown = (e) => {
+    // UP ARROW
+    if (e.keyCode === 38) {
+      if (suggestionIndex_ === 0) {
+        return;
+      }
+      setSuggestionIndex_(suggestionIndex_ - 1);
+    }
+    // DOWN ARROW
+    else if (e.keyCode === 40) {
+      if (suggestionIndex_ - 1 === suggestions_.length) {
+        return;
+      }
+      setSuggestionIndex_(suggestionIndex_ + 1);
+    }
+    // ENTER
+    else if (e.keyCode === 13) {
+      
+      if(suggestionIndex_== -1){
+        setInstitute_(e.target.value);
+
+      }
+      else{
+        setInstitute_(suggestions_[suggestionIndex_]);
+        setSuggestionIndex_(0);
+      }
+      
+      setSuggestionsActive_(false);
+
+      updateDisplay_("show");
+      
+
+     
+    }
+    // console.log("handlecclick" + suggestions);
+   
+
+
+  };
+  const updateCategory = (c) => {
+    console.log(c);
+    setSharedVariable(c);
+  }
+
+  const Suggestions_ = () => {
+    
+    return (
+      <ul className="suggestions">
+        {suggestions_.map((suggestion_, index) => {
+          return (
+            <li
+              className={index === suggestionIndex_ ? "active" : ""}
+              key={index}
+              onClick={handleClick}
+            >
+              {suggestion_}
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
+
 
     return(
 
@@ -30,7 +200,7 @@ class Body_Part2_AllUniPage extends React.Component{
       
       <div className="Slidebar_Filter">
         <h2 className="svgh2_slidebar">Filters</h2>
-        <button className="svgBtn_slidebar" onClick={this.showSlidebar}  >
+        <button className="svgBtn_slidebar" onClick={showSlidebar}  >
           <svg width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -45,7 +215,7 @@ class Body_Part2_AllUniPage extends React.Component{
 
         <div className="crossBtn">
           {/* <button onClick={this.hideSlidebar}> */}
-          <svg onClick={this.hideSlidebar} fill="#ffffff" width="40px" height="40px" viewBox="0 0 1024 1024" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M697.4 759.2l61.8-61.8L573.8 512l185.4-185.4-61.8-61.8L512 450.2 326.6 264.8l-61.8 61.8L450.2 512 264.8 697.4l61.8 61.8L512 573.8z"></path></g></svg>
+          <svg onClick={hideSlidebar} fill="#ffffff" width="40px" height="40px" viewBox="0 0 1024 1024" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M697.4 759.2l61.8-61.8L573.8 512l185.4-185.4-61.8-61.8L512 450.2 326.6 264.8l-61.8 61.8L450.2 512 264.8 697.4l61.8 61.8L512 573.8z"></path></g></svg>
           {/* </button> */}
         </div>
         
@@ -53,7 +223,18 @@ class Body_Part2_AllUniPage extends React.Component{
 
           <div className="location" id="Location_Sidebar" Location_Sidebar >
             <h3 className="exploreByLocation" id="Location_mainlabel" Location_mainlabel> Explore By Location </h3>
-            <input className="enterCityOr" id="search_location_text" search_location_text placeholder="Enter City or Country" />
+
+            <input  
+            type="text" 
+            className="enterCityOr" 
+            id="search_location_text"
+            placeholder="Enter City or Country"
+            value={Institute_}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}> 
+            </input> 
+            {suggestionsActive_ && <Suggestions_ />}
+
           </div>
 
           <div className="category" id="Category_Sidebar">
@@ -62,15 +243,15 @@ class Body_Part2_AllUniPage extends React.Component{
               <ul>
 
               <li>
-                <label className="publicInstitutes" id="category_label" category_label> Public Institutes </label>
+                <button onClick={() => updateCategory("public")} className="publicInstitutes" id="category_label" category_label> Public Institutes </button>
               </li>
               
               <li>
-              <label className="privateInstitutes" id="category_label" category_label> Private Institutes </label>
+              <button onClick={() => updateCategory("private")} className="privateInstitutes" id="category_label" category_label> Private Institutes </button>
               </li>
 
               <li>
-              <label className="overseasInstitutes" id="category_label" category_label> Overseas Institutes </label>
+              <button onClick={() => updateCategory("overseas")} className="overseasInstitutes" id="category_label" category_label> Overseas Institutes </button>
               </li>
 
               </ul>
@@ -111,6 +292,4 @@ class Body_Part2_AllUniPage extends React.Component{
 
     );
   }
-}
 
-export default Body_Part2_AllUniPage;

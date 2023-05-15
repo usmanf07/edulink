@@ -14,10 +14,22 @@ const universitySchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  type:{
+    type: String,
+  },
   uniID: {
     type: String,
     required: true
-  }
+  },
+  Namedisplay:{
+    type: String,
+    default: 'show'
+  },
+  Locationdisplay:{
+    type: String,
+    default: 'show'
+  },
+ 
 });
 
 const University = mongoose.model('University', universitySchema);

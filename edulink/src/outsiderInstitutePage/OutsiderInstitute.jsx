@@ -48,7 +48,7 @@ function OutsiderInstitute()
             <div className='outsiderInstitute__container'>
                 <div>
                 <div>
-                <img src={logo} alt='outsiderInstitute' style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                <img src={logo} alt='outsiderInstitute' style={{ maxWidth: '1000px', maxHeight: '500px', objectFit: 'contain' }} />
                 </div>
                 </div>
                 <div>

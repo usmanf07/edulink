@@ -100,6 +100,74 @@ router.route('/').get((req, res) => {
       res.status(500).json({ error: 'An error occurred while fetching data.' });
     }
   });
+
+  router.get('/fetch-dataa', async (req, res) => {
+    const { query, apiKey, searchEngineId } = req.query;
+  
+    const url = 'https://www.googleapis.com/customsearch/v1';
+    const params = {
+      key: 'AIzaSyDuh1nSDLI1OarsGy_hmWfL9eTfEXryEBI',
+      cx: 'd747bd398b1884125',
+      q: query,
+      num: 3, 
+      siteSearch: 'edu.pk',
+    };
+  
+    try {
+      const response = await axios.get(url, { params });
+      const items = response.data.items.slice(0, params.num); 
+      const results = items.map(item => {
+        const result = {
+          title: item.title,
+          link: item.link,
+          snippet: item.snippet,
+          logo: null, 
+        };
+  
+        if (item.pagemap && item.pagemap.cse_image && item.pagemap.cse_image.length > 0) {
+         
+          result.logo = item.pagemap.cse_image[0].src;
+        }
+  
+        return result;
+      });
+  
+      
+      res.json(results);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'An error occurred while fetching data.' });
+    }
+  });
+  
+
+  router.get('/auto-suggest', async (req, res) => {
+    const { query, apiKey, searchEngineId } = req.query;
+  
+    const url = 'https://www.googleapis.com/customsearch/v1/siterestrict';
+    const params = {
+      key: 'AIzaSyDuh1nSDLI1OarsGy_hmWfL9eTfEXryEBI',
+      cx: 'd747bd398b1884125',
+      q: query,
+      num: 10,
+      siteSearch: 'edu.pk',
+    };
+  
+    try {
+      const response = await axios.get(url, { params });
+      const items = response.data.items;
+  
+      if (items && Array.isArray(items)) {
+        const suggestions = items.map(item => item.title);
+        res.json(suggestions);
+      } else {
+        res.json([]);
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'An error occurred while fetching suggestions.' });
+    }
+  });
   
 
 module.exports = router;

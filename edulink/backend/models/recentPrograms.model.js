@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 const recentProgramSchema = new mongoose.Schema({
   uniID: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'University',
+    type: String,
     required: true
   },
   program: {

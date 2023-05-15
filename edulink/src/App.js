@@ -18,6 +18,7 @@ import UserApplications from './UserApplications/UserApplications';
 import PaymentPage from './PaymentPage/PaymentPage';
 
 import OtpPage from './Login/otpPage';
+import EntryTest from './EntryTest/EntryTest';
 
 const App = () => {
 
@@ -27,13 +28,13 @@ const App = () => {
    
       <Routes>
           
-           <Route path='/' element={<Home/>}/>
+          <Route path='/' element={<Home/>}/>
           <Route path='/:id/' element={<Home/>}/>
           <Route path='/login'  element={<Log />}/>
           <Route path="/Signup1" element={<Signup1 />}  />
           <Route path='/UserApplications' element={<UserApplications/>}/>
           <Route path='/EditProfile' element={<EditProfile/>}/>
-
+          <Route path="/EntryTest" element={<EntryTest />}  />
           <Route path='/Verify' element={<OtpPage/>}/>
 
           <Route path='/Payment' element={<PaymentPage/>}/>

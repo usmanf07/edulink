@@ -19,7 +19,7 @@ import PaymentPage from './PaymentPage/PaymentPage';
 
 import OtpPage from './Login/otpPage';
 import EntryTest from './EntryTest/EntryTest';
-
+import OutsiderInstitute from './outsiderInstitutePage/OutsiderInstitute';
 const App = () => {
 
   return (
@@ -41,6 +41,7 @@ const App = () => {
           <Route path="/AllUniversityPage" element={<AllUniversityPage />}  /> 
           <Route path="/AllUniversityPage" element={<AllUniversity />}  />
           <Route path="/SingleInstitutePage/:name" element={<SingleInstitutePage />}  />
+          <Route path="/OutsiderInstitute" element={<OutsiderInstitute />}  />
           <Route path="/temp2" element={<Temp1 />}  />
 
           {/* <Route path="/SignUp" element={<Log />}  /> */}

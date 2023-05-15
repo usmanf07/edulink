@@ -8,11 +8,13 @@ import Desc from '../containers/Single_UniversityPage/University_Description';
 import ButtonBar from '../containers/Single_UniversityPage/buttons_bar';
 import Body from '../containers/Single_UniversityPage/Body';
 import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 
 // class MainPage extends React.Component{
   function MainPage(props){
-
+    const [isOtherInstitute, setIsOtherInstitute] = useState(props.institute.href);
+    
     const [InstituteName1, setInstituteName] = useState();
     const { name } = useParams();
     const [BigPicture, setBigPicture] = useState();
@@ -22,7 +24,7 @@ import { useParams } from 'react-router-dom';
 
       console.log({name});
 
-      axios.get(`http://localhost:8000/SingleInstitutePage/${name}`)
+      axios.get(`http://localhost:8000/SingleInstitutePage/${name.uniName}`)
         .then((response) => {
           console.log(response.data);
           setInstituteName(response.data.instituteName);

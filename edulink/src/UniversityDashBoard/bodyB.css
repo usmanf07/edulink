@@ -57,6 +57,30 @@ margin-top: 30%;
 
 
 }
+
+.editSymbolwhite{
+    display: flex;
+
+}
+
+.editinput{
+    padding: 5px 5px;
+
+
+}
+.editbut{
+    margin-top: 10px;
+    padding:5px 5px;
+    border-radius: 10px;
+    margin-left: 2px;
+    color:white;
+    background-color: dodgerblue;
+    border-color: dodgerblue;
+}
+
+.myemailflex{
+    display: flex;
+}
 @media only screen and (max-width: 700px) {
 
     .bodyB{

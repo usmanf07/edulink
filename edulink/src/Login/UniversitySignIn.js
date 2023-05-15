@@ -3,6 +3,7 @@ import './Log.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
 export default function UniversitySignIn() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -42,8 +43,16 @@ export default function UniversitySignIn() {
         password: password,
       })
       .then((response) => {
-        console.log(response.data);
-        setError(response.data.message);
+        // console.log(response.data);
+        const { message, id } = response.data;
+        setError(message);
+        sessionStorage.setItem('uniid', id);
+
+
+
+
+
+
         navigate(`/universitydash/${name}`);
       })
       .catch((error) => {
@@ -51,6 +60,7 @@ export default function UniversitySignIn() {
         // handle sign in error here
       });
   };
+
 
   const handleBlur = (event) => {
     event.target.style.backgroundColor = 'white';

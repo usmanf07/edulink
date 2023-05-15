@@ -43,7 +43,10 @@ const Admission = require('../models/admission.model');
 
       if (result) {
         // Institute exists with provided email and password
-        res.status(200).json({ message: result });
+        res.status(200).json({
+          message: "Signin successful",
+          id: result._id // Include the id of the institute in the response
+        });
       } else {
         // Institute doesn't exist with provided email and password
         res.status(401).json({ message: "Invalid name or password" });
@@ -53,6 +56,7 @@ const Admission = require('../models/admission.model');
       res.status(500).json({ message: "Error while checking institute credentials" });
     }
   });
+
 
   //add Oopen addmission into admission schema
 
@@ -82,50 +86,97 @@ router.route('/admissions/:name').get((req, res) => {
 
 
 
+  // router.route('/signup')
+  // .post(async (req, res) => {
+  //   const instituteName = req.body.instituteName;
+  //   const email = req.body.email;
+  //   const password = req.body.password;
+
+
+
+
+  //   try {
+  //     // Check if institute   already exists
+  //     const result = await UniLog.findOne({ instituteName: instituteName });
+
+  //     if (!result) {
+  //       // Institute doesn't exist, so create new institute and add name to university and single university models
+  //       const newInstitute = new UniLog({
+  //         instituteName: instituteName,
+  //         email:email,
+  //         password:password
+
+  //       });
+
+  //       await newInstitute.save();
+
+  //       const name = instituteName;
+  //       const address = "default";
+  //       const imageName = "default";
+
+  //       const newUser = new Uni({name,address,imageName});
+
+
+  //       newUser.save();
+
+  //       const newSingleUniversity = new SingleUni({
+  //         instituteName: instituteName,
+  //         emails: []
+
+  //       });
+  //       newSingleUniversity.emails.push(email);
+  //       await newSingleUniversity.save();
+  //       res.status(200).json({ message: "Signed Up Successfully" });
+  //     }
+  //     else
+  //     {
+  //       res.status(500).json({ message: "Data already exists" });
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //     res.status(500).json({ message: err });
+  //   }
+  // });
+
+
   router.route('/signup')
   .post(async (req, res) => {
     const instituteName = req.body.instituteName;
     const email = req.body.email;
     const password = req.body.password;
 
-
-
-
     try {
-      // Check if institute   already exists
+      // Check if institute already exists
       const result = await UniLog.findOne({ instituteName: instituteName });
 
       if (!result) {
         // Institute doesn't exist, so create new institute and add name to university and single university models
         const newInstitute = new UniLog({
           instituteName: instituteName,
-          email:email,
-          password:password
-
+          email: email,
+          password: password
         });
 
-        await newInstitute.save();
+        // Save the new UniLog and get its id
+        const savedUniLog = await newInstitute.save();
+        const uniLogId = savedUniLog._id;
 
         const name = instituteName;
         const address = "default";
         const imageName = "default";
 
-        const newUser = new Uni({name,address,imageName});
-
-
-        newUser.save();
+        // Create a new University document and set the uniID field to uniLogId
+        const newUniversity = new Uni({ name, address, imageName, uniID: uniLogId });
+        const savedUniversity = await newUniversity.save();
 
         const newSingleUniversity = new SingleUni({
           instituteName: instituteName,
-          emails: []
-
+          emails: [email]
         });
-        newSingleUniversity.emails.push(email);
+
         await newSingleUniversity.save();
         res.status(200).json({ message: "Signed Up Successfully" });
-      }
-      else
-      {
+      } else {
         res.status(500).json({ message: "Data already exists" });
       }
     } catch (err) {
@@ -133,8 +184,6 @@ router.route('/admissions/:name').get((req, res) => {
       res.status(500).json({ message: err });
     }
   });
-
-
 
 
 
@@ -165,8 +214,8 @@ router.route('/admissions/:name').get((req, res) => {
       const results = [];
       for (const program of recentPrograms) {
         const university = await Uni.findById(program.uniID);
-        if(university == null) continue;  
-        
+        if(university == null) continue;
+
         const programWithUniversity = {
           uniID: university._id,
           uniName: university.name,
@@ -183,8 +232,8 @@ router.route('/admissions/:name').get((req, res) => {
       res.status(500).json({ error: 'Failed to retrieve recent programs' });
     }
   });
-  
-  
+
+
 
 module.exports = router;
 

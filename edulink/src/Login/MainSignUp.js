@@ -15,7 +15,7 @@ export default function MainSignUp() {
   return (
     <div className='myMain'>
       <div className='signUpHeading'><h1>Join as a Student Or Institute</h1></div>
-      <div className='container'>
+      <div className='container_1'>
       <div className=' le'>
         <div className="imgset">
           <img src='graduate.png'/>

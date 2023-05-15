@@ -2,14 +2,70 @@ const router = require('express').Router();
 let Uni = require('../models/SingleUniversity.model');
 let university = require('../models/university.model');
 const Admission = require('../models/admission.model');
-let UniLog =require('../models/InstituteLogin.model')
-
+let UniLog =require('../models/InstituteLogin.model');
+let Programs=require('../models/recentPrograms.model');
 
 router.route('/').get((req, res) => {
     Uni.find()
       .then(institutes => res.json(institutes))
       .catch(err => res.status(400).json('Error: ' + err));
   });
+
+
+//add apply program
+
+
+  router.route('/insertprogram/addnewprogram')
+  .post(async (req, res) => {
+    const { uniID, program, lastApplyDate } = req.body;
+
+    const updated = new Date();
+
+    try {
+      // Check if lastApplyDate is in the future
+      const now = new Date();
+      if (new Date(lastApplyDate) <= now) {
+        return res.status(400).json({ message: "Last apply date must be in the future" });
+      }
+
+      // Create a new program and save it to the database
+      const newProgram = new Programs({
+        uniID: uniID,
+        program: program,
+        lastApplyDate: lastApplyDate,
+        updated: updated
+      });
+      const savedProgram = await newProgram.save();
+
+      res.status(200).json({ message: "Program saved successfully", program: savedProgram });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Error saving program", error: err });
+    }
+  });
+
+
+  //delete applications program
+  router.route('/deleteprogram/:uniID/:program')
+  .delete(async (req, res) => {
+    const { uniID, program } = req.params;
+
+    try {
+      // Find and delete the program from the database
+      const deletedProgram = await Programs.findOneAndDelete({ uniID, program });
+
+      if (deletedProgram) {
+        res.status(200).json({ message: "Program deleted successfully", program: deletedProgram });
+      } else {
+        res.status(404).json({ message: "Program not found" });
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Error deleting program", error: err });
+    }
+  });
+
+
 
 router.route('/:name').get((req, res) => {
   const name = req.params.name;
@@ -22,6 +78,62 @@ router.route('/:name').get((req, res) => {
 
 
   });
+
+
+//update location
+  router.route('/:name/location').put((req, res) => {
+  const name = req.params.name;
+  const location = req.body.location;
+
+  Uni.findOneAndUpdate({instituteName: name}, {$set: {location: [location]}}, {new: true})
+    .then(updatedInstitute => {
+      if (!updatedInstitute) {
+        return res.status(404).json({message: 'Institute not found'});
+      }
+      res.json(updatedInstitute);
+    })
+    .catch(err => res.status(400).json({message: 'Error updating institute', error: err}));
+});
+
+
+
+//update email
+router.route('/institutes/:name/email-confirm').put(async (req, res) => {
+  const name = req.params.name;
+  const index = req.body.index;
+  const newEmail = req.body.newEmail;
+  console.log(newEmail);
+  try {
+    const uni = await Uni.findOne({instituteName: name});
+
+    if (!uni) {
+      return res.status(404).json({message: 'Institute not found'});
+    }
+
+    const updatedEmails = uni.emails.map((email, i) => {
+      if (i == index) {
+
+        return newEmail;
+      } else {
+        console.log(email);
+        return email;
+      }
+    });
+
+    uni.emails = updatedEmails;
+
+    const updatedInstitute = await uni.save();
+
+    res.json(updatedInstitute);
+  } catch (error) {
+    console.error('Failed to update email:', error);
+    res.status(400).json({message: 'Error updating email', error: error});
+  }
+});
+
+
+
+
 
  ///add a new picture in picture array
 
@@ -141,6 +253,26 @@ router.route('/:name/programs/:programName/domains/:newDomain').get( (req, res) 
       })
       .catch(err => res.status(400).json('Error: ' + err));
   });
+
+
+  router.route('/getprograms/:uniID')
+  .get(async (req, res) => {
+    const uniID = req.params.uniID;
+
+    try {
+      const programs = await Programs.find({ uniID: uniID }).exec();
+
+      if (programs.length === 0) {
+        return res.status(404).json({ message: "Program not found" });
+      }
+
+      res.status(200).json(programs);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Error retrieving programs", error: err });
+    }
+  });
+
 
 
   router.route('/delete').delete((req, res) => {

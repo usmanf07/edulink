@@ -23,6 +23,7 @@ const inquirySchema = new mongoose.Schema({
 });
 
 const instituteSchema = new mongoose.Schema({
+  instituteType: {type:String, required: true },
   instituteName: { type: String, required: true },
   bigPicture: { type: String ,default:null},
   description: { type: String, required: false },

@@ -1,0 +1,90 @@
+.entryTest{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    margin: 2rem 0;
+}
+
+.entryTest h1{
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.entryTest__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1200px;
+    
+    background-color: #fff;
+   color: #000;
+    padding: 2rem;
+    margin: 2rem 5rem;
+    border-radius: 10px;
+}
+
+.entryTest__container p{
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1rem 0;
+}
+
+.entryTest__container__fields{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.entryTest__container__fields select{
+    width: 50%;
+    height: 2rem;
+    margin: 1rem 0;
+    border: 1px solid #000;
+    border-radius: 5px;
+    outline: none;
+    padding: 0 0.5rem;
+}
+
+.entryTest__container__fields button{
+    width: 20%;
+    height: 2rem;
+    margin: 1rem 0;
+    border: 1px solid #000;
+    border-radius: 5px;
+    outline: none;
+    padding: 0 0.5rem;
+    background-color: var(--color-button-primary);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.entryTest__container__fields button:disabled {
+    background-color: #cccccc;
+}
+@media screen and (max-width: 768px) {
+    .entryTest__container {
+    width: 80%;
+    margin: 2rem 0;
+    height: 370px;
+    }
+    .entryTest h1{
+    font-size: 2rem;
+    }
+    .entryTest__container p{
+    font-size: 0.9rem;
+    }
+    
+    .entryTest__container__fields__select {
+    width: 80%;
+    }
+    
+    .entryTest__container__fields button {
+        width: 70%;
+    }
+    }

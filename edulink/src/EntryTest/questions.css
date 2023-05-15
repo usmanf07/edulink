@@ -1,0 +1,53 @@
+.questions-label
+{
+   
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+    line-height: 1.5;
+    margin-top: 1rem;
+}
+.questions-label label {
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .questions-label label input {
+    margin-right: 0.5rem;
+  }
+  
+  .questions-label label span {
+    margin-right: 0.5rem;
+  }
+  
+  .questions-label button
+{
+    margin-left: 3rem;
+}
+.questions-label button{
+    width: 20%;
+    height: 2rem;
+    margin: 1rem 2rem;
+    border: none    ;
+    border-radius: 5px;
+    outline: none;
+    padding: 0 0.5rem;
+    background-color: var(--color-button-primary);
+    color: #fff;
+    cursor: pointer;
+}
+
+.questions-label button:hover
+{
+    background-color: #000;
+    color: #fff;
+}
+.question-correct {
+    color: green;
+  }
+  
+  .question-incorrect {
+    color: red;
+  }
+  

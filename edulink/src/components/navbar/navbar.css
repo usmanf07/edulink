@@ -181,10 +181,17 @@
     color: #0085FF;
     font-weight: 700;
     font-size: 24px;
+    margin-right: 30px;
   }
 
   .edulink__navbar-links_container a[href="#membership"] {
     color: #ffd900;
+    font-weight: 700;
+    font-size: 24px;
+    margin-right: 30px;
+  }
+  .edulink__navbar-links_container a[href="#entrytest"] {
+    color: #0085FF;
     font-weight: 700;
     font-size: 24px;
     margin-right: 30px;

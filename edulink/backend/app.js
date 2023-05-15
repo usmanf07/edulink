@@ -60,6 +60,10 @@ app.use('/application', applicationRouter);
 
 const entryTestRouter = require('./routes/entrytest');
 app.use('/entrytest', entryTestRouter);
+
+const fetchinstitutesRouter = require('./routes/fetchinstitutes');
+app.use('/fetchinstitutes', fetchinstitutesRouter);
+
 // app.use(cookieParser());
 // app.use(session({
 //     secret: 'secret-key',

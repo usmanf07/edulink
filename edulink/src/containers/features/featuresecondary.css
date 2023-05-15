@@ -219,6 +219,23 @@
   transform: rotate(180deg);
 }
 
+.edulink__featuresecondary-filterfields
+{
+  display: flex;
+  justify-content: space-between;
+  
+ 
+}
+.edulink__featuresecondary-filterfields input{
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #333;
+  font-size: 1rem;
+  font-weight: 400;
+  outline: none;
+  
+}
 
 @media only screen and (max-width: 800px){
 
@@ -278,10 +295,9 @@ width: 100%;
 
 
 }
-.tem{
-
-}
 
 
 
 }
+
+

@@ -66,25 +66,29 @@ router.route('/').get((req, res) => {
       });
   });
 
-  router.route('/searchWebsite').get(async (req, res) => {
-    const { query } = req;
+  router.get('/fetch-data', async (req, res) => {
+    const { query, apiKey, searchEngineId } = req.query;
   
-    google.resultsPerPage = 1;
+    const url = 'https://www.googleapis.com/customsearch/v1';
+    const params = {
+      key: 'AIzaSyDuh1nSDLI1OarsGy_hmWfL9eTfEXryEBI',
+      cx: 'd747bd398b1884125',
+      q: query,
+      num: 1, // Limit to the first 3 results
+    };
   
-    google(query.institute + ' website', (err, response) => {
-      if (err) {
-        console.error(err);
-        res.status(500).json({ error: 'An error occurred while performing the search.' });
-        return;
-      }
-  
-      if (!response.links || response.links.length === 0) {
-        res.status(404).json({ error: 'No website link found.' });
-        return;
-      }
-  
-      const websiteLink = response.links[0].href;
-      res.json({ website: websiteLink });
-    });
+    try {
+      const response = await axios.get(url, { params });
+      const item = response.data.items[0]; // Get the first result
+      const result = { title: item.title, link: item.link, snippet: item.snippet };
+      
+      // Now you can process the results further or send them as a response
+      res.json(result);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'An error occurred while fetching data.' });
+    }
   });
+  
+
 module.exports = router;

@@ -11,6 +11,7 @@ function OutsiderInstitute()
     const [error, setError] = useState(null);
     const [websiteLink, setWebsiteLink] = useState('');
     const[desc , setDesc] = useState('');
+    const [logo, logoUrl] = useState(null);
     useEffect(() => {
         const imageUrlParam = institute.href;
         axios.get(`http://localhost:8000/fetchinstitutes/fetchImage?imageUrl=${imageUrlParam}`)
@@ -30,7 +31,7 @@ function OutsiderInstitute()
             console.log(response.data);
             setDesc(response.data.snippet);
             setWebsiteLink(response.data.link);
-          
+            logoUrl(response.data.logo);
         })
         .catch(error => {
             console.error(error);
@@ -46,6 +47,11 @@ function OutsiderInstitute()
             <p>*This institute is currently not a member of our website!</p>
             <div className='outsiderInstitute__container'>
                 <div>
+                <div>
+                <img src={logo} alt='outsiderInstitute' style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                </div>
+                </div>
+                <div>
             <h1>{institute.uniName}</h1> 
             </div>
             <div>
@@ -55,7 +61,8 @@ function OutsiderInstitute()
                 <p>Institute Description: {desc}</p>
             </div>
             <div>
-           <img src={imageUrl} alt='outsiderInstitute' />
+           <img style={{height:'500px', width:'400px'}} src={imageUrl} alt='outsiderInstitute' />
+           
            </div>
             <div className='editProfile__profile-info-editing'>
             <button>

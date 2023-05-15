@@ -80,8 +80,19 @@ router.route('/').get((req, res) => {
     try {
       const response = await axios.get(url, { params });
       const item = response.data.items[0]; // Get the first result
-      const result = { title: item.title, link: item.link, snippet: item.snippet };
-      
+      const result = {
+        title: item.title,
+        link: item.link,
+        snippet: item.snippet,
+        logo: null, // Initialize logo to null
+      };
+    
+      // Check if the item has a Pagemap object and contains a cse_image array
+      if (item.pagemap && item.pagemap.cse_image && item.pagemap.cse_image.length > 0) {
+        // Set the logo URL to the first image in the cse_image array
+        result.logo = item.pagemap.cse_image[0].src;
+      }
+    
       // Now you can process the results further or send them as a response
       res.json(result);
     } catch (error) {

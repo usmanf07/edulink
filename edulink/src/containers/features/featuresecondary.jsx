@@ -12,7 +12,8 @@ import OutsiderInstitute from '../../outsiderInstitutePage/OutsiderInstitute';
 const Featuresecondary = () => {
 
   const sliderRef = useRef(null);
-  const [institutesData, setinstitutesData] = useState([sessionStorage.getItem('fetchedinstitutesData')]);
+  
+  const [institutesData, setinstitutesData] = useState([sessionStorage.getItem('fetchedinstitutesData') || []]);
   const [showConfirmation, setConfirmation] = useState(false);
   const [email, setEmail] = useState('');
   const [userData, setuserData] = useState(null);

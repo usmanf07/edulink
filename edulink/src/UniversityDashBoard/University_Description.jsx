@@ -21,9 +21,9 @@ function University_Description(props){
     }, [props.des,props.name]);
 
         return (
-            <div className='description_Paragraph'>
+            <div className='description_Paragraph '>
                 <p> {desc}</p>
-                <button className='changebackbutton' onClick={props.onChangeDescription}>change description</button>
+                <button className='changebackbutton changedes' onClick={props.onChangeDescription}>change description</button>
             </div>
         )
 

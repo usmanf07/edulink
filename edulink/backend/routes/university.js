@@ -74,7 +74,7 @@ const Admission = require('../models/admission.model');
 
 router.route('/admissions/:name').get((req, res) => {
   const universityName = req.params.name;
-  console.log(universityName);
+  //console.log(universityName);
   Admission.find({ universityName })
     .then(admissions => res.json(admissions))
     .catch(err => res.status(400).json('Error: ' + err));
@@ -82,50 +82,44 @@ router.route('/admissions/:name').get((req, res) => {
 
 
 
-  router.route('/signup')
+router.route('/signup')
   .post(async (req, res) => {
     const instituteName = req.body.instituteName;
     const email = req.body.email;
     const password = req.body.password;
 
-
-
-
     try {
-      // Check if institute   already exists
+      // Check if institute already exists
       const result = await UniLog.findOne({ instituteName: instituteName });
 
       if (!result) {
         // Institute doesn't exist, so create new institute and add name to university and single university models
         const newInstitute = new UniLog({
           instituteName: instituteName,
-          email:email,
-          password:password
-
+          email: email,
+          password: password
         });
 
-        await newInstitute.save();
+        // Save the new UniLog and get its id
+        const savedUniLog = await newInstitute.save();
+        const uniLogId = savedUniLog._id;
 
         const name = instituteName;
         const address = "default";
         const imageName = "default";
 
-        const newUser = new Uni({name,address,imageName});
-
-
-        newUser.save();
+        // Create a new University document and set the uniID field to uniLogId
+        const newUniversity = new Uni({ name, address, imageName, uniID: uniLogId });
+        const savedUniversity = await newUniversity.save();
 
         const newSingleUniversity = new SingleUni({
           instituteName: instituteName,
-          emails: []
-
+          emails: [email]
         });
-        newSingleUniversity.emails.push(email);
+
         await newSingleUniversity.save();
         res.status(200).json({ message: "Signed Up Successfully" });
-      }
-      else
-      {
+      } else {
         res.status(500).json({ message: "Data already exists" });
       }
     } catch (err) {

@@ -283,8 +283,9 @@ router.route('/:name/programs/:programName/domains/:newDomain').get( (req, res) 
   });
 
   router.route('/add').post((req, res) => {
-    const { instituteName, bigPicture, description, admissionsOpen, images, reviews, programs ,location,inquiries,emails,relatedInstitutes, googlemap} = req.body;
+    const { instituteType,instituteName, bigPicture, description, admissionsOpen, images, reviews, programs ,location,inquiries,emails,relatedInstitutes, googlemap} = req.body;
     const institute = new Uni({
+      instituteType,
       instituteName,
       bigPicture,
       description,
@@ -302,8 +303,9 @@ router.route('/:name/programs/:programName/domains/:newDomain').get( (req, res) 
     const name = instituteName;
     const address = location[0];
     const imageName = bigPicture;
+    const type = instituteType;
 
-    const newUser = new university({name,address,imageName});
+    const newUser = new university({name,address,imageName,type});
 
     // institute.save()
     //   .then(() => res.json('Institute added!'))

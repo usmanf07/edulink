@@ -5,7 +5,16 @@ class University_Description extends React.Component {
 
     constructor(props){
         super(props);
+        this.state={
+          name : props.name,
+        }
+          
+        
 
+    }
+    showAppliedStudents = () =>{
+      
+      this.props.navigate(`/SingleInstitutePage/${this.name}/AppliedStudents`);
     }
 
     addProgram = () => {
@@ -16,7 +25,7 @@ class University_Description extends React.Component {
         return (
             <div className="buttons_bar" id="">
 
-            <button className="button_bar_btns">View Applied Students</button>
+            <button className="button_bar_btns" onClick={this.showAppliedStudents} >View Applied Students</button>
 
             <button className="button_bar_btns" onClick={this.addProgram}>Add A Program</button>
 

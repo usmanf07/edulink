@@ -6,13 +6,16 @@ import logowhite from '../../assets/logo-w-bg.svg'
 
 import { Link, useNavigate } from 'react-router-dom';
 import { FaCaretDown } from 'react-icons/fa';
+import axios from 'axios';
 
 
 const Navbar = (props) => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
-
+  const history = useNavigate();
+  const [isLogin, setIsLogin] = useState(sessionStorage.getItem('email'));
+  const [name, setName] = useState('');
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.pageYOffset;
@@ -25,6 +28,36 @@ const Navbar = (props) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+  
+  const [email, setEmail] = useState('');
+  useEffect(() => {
+    // Get sessionId and email from sessionStorage
+    const sessionId = sessionStorage.getItem('sessionId');
+    const email = sessionStorage.getItem('email');
+    console.log(email)
+   
+    if(email === null) {  
+      setIsLogin(false);
+      console.error('User is not logged in.'); // Log error message
+      return;
+    }
+    else{
+      axios.get(`http://localhost:8000/users/${email}`)
+      .then(res => {
+        const userData = res.data;
+        setName(userData.fullName);
+        
+   
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  
+      setIsLogin(true);
+    }
+    setEmail(email);
+  }, []);
+
   const navigate = useNavigate();
   const moveToSignUp=() =>{
     navigate("/signup");
@@ -35,8 +68,13 @@ const Navbar = (props) => {
   const searchClassNames = `edulink__navbar-search ${showSearchBar ? 'visible' : ''}`;
 
   const handleLogout = () => {
-    localStorage.setItem("loggedin", false);
-  };
+  localStorage.setItem("email", "");
+  localStorage.setItem("phone", "");
+  localStorage.setItem("loggedin", false);
+  history('/home', { replace: true } ); // use replace instead of push to prevent going back to the previous page
+  window.location.reload(); // refresh the page
+
+};
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -51,17 +89,18 @@ const Navbar = (props) => {
         </div>
         <div className="edulink__navbar-links_container">
           <p><a href="#wedulink">What is edulink?</a></p>
-          <p><a href="#possibility">Find Institutes</a></p>
-          <p><a href="#features">Contact</a></p>
-          {!props.login ? (
+          {/* <p><a href="#possibility">Find Institutes</a></p>
+          <p><a href="#features">Contact</a></p> */}
+          {!isLogin ? (
               <p>
                 <a href="#institute">eduInstitute</a>
               </p>
             ) : (
               <p>
-                <Link to="/Payment"><a href="#membership" >Membership</a></Link>
-                <Link to="/UserApplications"><a href="#institute" >My Applications</a></Link>
                 
+                <Link to="/UserApplications"><a href="#institute" >My Applications</a></Link>
+                <Link to="/EntryTest"><a href="#entrytest" >Entry Test Prep</a></Link>
+                <Link to="/Payment"><a href="#membership" >Membership</a></Link>
               </p>
             )}
 
@@ -76,16 +115,16 @@ const Navbar = (props) => {
           </svg>
         </div>
       </div>}
-      {!props.login && (
+      {!isLogin && (
       <div className="edulink__navbar-sign">
         <Link to="/login"><p>Sign in</p></Link>
         <button type="button" onClick={moveToSignUp}>Sign up</button>
       </div>)}
-      {props.login && (
+      {isLogin && (
         <div className="edulink__navbar-sign">
         <div className="dropdown">
         <button className="dropbtn" onClick={toggleDropdown}>
-            Hi, {props.name}
+            Hi, {name}
             
             <FaCaretDown />
           </button>

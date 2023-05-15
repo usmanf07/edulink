@@ -37,6 +37,8 @@ function Signin() {
             if (success) {
               console.log(`OTP sent successfully. Token: ${token}`);
               sessionStorage.setItem('otp-token', token);
+               
+           
             } else {
               console.log(`Failed to send OTP. Message: ${message}`);
             }
@@ -44,12 +46,12 @@ function Signin() {
           .catch(err => {
             console.log(`Failed to send OTP: ${err}`);
           });
-                
+          history('/Verify', { state: { id: email, phone: userData.phone } });
         })
         .catch(err => {
           console.log(err);
         });
-        history('/Verify', { state: { id: email } });
+       
 
       } else {
         setError('Invalid email or password. Please try again.');

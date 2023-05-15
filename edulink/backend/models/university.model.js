@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 
 const universitySchema = new mongoose.Schema({
-  uniID: {
-    type: String,
-    required: true
-  },
+
   name: {
     type: String,
     required: true
@@ -16,8 +13,23 @@ const universitySchema = new mongoose.Schema({
   imageName: {
     type: String,
     required: true
-  }
-
+  },
+  type:{
+    type: String,
+  },
+  uniID: {
+    type: String,
+    required: true
+  },
+  Namedisplay:{
+    type: String,
+    default: 'show'
+  },
+  Locationdisplay:{
+    type: String,
+    default: 'show'
+  },
+ 
 });
 
 const University = mongoose.model('University', universitySchema);

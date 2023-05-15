@@ -5,6 +5,7 @@ let RecentProgram = require('../models/recentPrograms.model');
 let UniLog =require('../models/InstituteLogin.model')
 let SingleUni = require('../models/SingleUniversity.model');
 const Admission = require('../models/admission.model');
+
   router.route('/').get((req, res) => {
 
     Uni.find()
@@ -213,11 +214,13 @@ router.route('/admissions/:name').get((req, res) => {
       const recentPrograms = await RecentProgram.find();
       const results = [];
       for (const program of recentPrograms) {
-        const university = await Uni.findById(program.uniID);
-        if(university == null) continue;
+
+        const university = await Uni.findOne({uniID: program.uniID});
+        if(university == null) continue;  
+        
 
         const programWithUniversity = {
-          uniID: university._id,
+          uniID: university.uniID,
           uniName: university.name,
           logo: university.imageName,
           program: program.program,
@@ -233,6 +236,50 @@ router.route('/admissions/:name').get((req, res) => {
     }
   });
 
+  router.route('/updateDisplay').put(async (req, res) => {
+    console.log("update");
+    const updatedUniversities = req.body;
+  
+    try {
+
+      console.log("updat2");
+      for (const updatedUniversity of updatedUniversities) {
+        
+        const { name, display } = updatedUniversity;
+        console.log(name + "," + display);
+        await Uni.updateOne({ name: name }, { Namedisplay: display })
+        // await Uni.findByIdAndUpdate(name, { display });
+      }
+  
+      res.send(200);
+    } catch (error) {
+      console.error("Failed to update universities:", error);
+      res.send(500);
+    }
+  });
+
+
+  router.route('/updateLocationDisplay').put(async (req, res) => {
+    const updatedUniversities = req.body;
+  
+    try {
+
+      for (const updatedUniversity of updatedUniversities) {
+        
+        const { name, display } = updatedUniversity;
+        console.log("kjhgfgh      " + name + "," + display);
+        await Uni.updateOne({ address: name }, { Locationdisplay: display })
+        // await Uni.findByIdAndUpdate(name, { display });
+      }
+  
+      res.send(200);
+    } catch (error) {
+      console.error("Failed to update universities:", error);
+      res.send(500);
+    }
+  });
+
+  
 
 
 module.exports = router;

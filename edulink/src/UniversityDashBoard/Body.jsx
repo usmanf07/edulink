@@ -30,7 +30,7 @@ class Body extends React.Component{
 
 
                 <div className='bodyA'>
-                <BodyA  name ={this.state.name} update={this.state.update} onAddDomain={this.props.onAddDomain} />
+                <BodyA closeDeadline={this.props.closeDeadline} name ={this.state.name} update={this.state.update} onAddDomain={this.props.onAddDomain} onaddApply={this.props.onaddApply}/>
 
                 </div>
 

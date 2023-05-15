@@ -32,7 +32,7 @@ height: auto;
 .backgroundpic{
   padding: 5px 10px;
   margin-top: 15px;
-  margin-left: 20px;
+  margin-left: 50px;
   background-color: dodgerblue;
   color:white;
   border-radius: 10px;
@@ -223,12 +223,18 @@ overflow: hidden;
 }
 .backgroundchose{
 
-  margin-left: 20px;
+  margin-left: 50px;
   color:white;
   margin-top: 10px;
 }
 .changeinput{
   color:white;
+}
+
+.changedes{
+  margin-left: 22px;
+
+
 }
 .changebackbutton{
 

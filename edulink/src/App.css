@@ -28,8 +28,11 @@ a{
 
     /* global 92%+ browsers support */
     background:radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
+    min-height: 100vh;
+
 
     min-height: 100vh;
+
   }
 
   .gradient_text{
@@ -111,7 +114,7 @@ a{
     background-color: grey;
     border: 1px solid black;
 
-   height: 700px; 
+   height: 700px;
     align-items: center;
 
 

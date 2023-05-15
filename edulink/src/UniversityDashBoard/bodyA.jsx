@@ -42,11 +42,16 @@ class BodyA extends React.Component{
         if (prevProps.update !== this.props.update) {
 
           this.fetchProgramsList();
+
+          this.setState({AdmissionsOpen:[]})
+          this.fetchAdmissionsOpen();
           this.fetchProgramsList();
+          this.fetchAdmissionsOpen();
         }
         if(prevProps.name !== this.props.name)
         {
             this.setState({name:this.props.name});
+
 
 
         }
@@ -85,9 +90,12 @@ class BodyA extends React.Component{
 
 
     fetchAdmissionsOpen() {
-        axios.get(`http://localhost:8000/university/admissions/${this.state.name}`)
+      const unnid=sessionStorage.getItem('uniid');
+        axios.get(`http://localhost:8000/SingleInstitutePage/getprograms/${unnid}`)
             .then((response) => {
+
                 this.setState({ AdmissionsOpen: response.data });
+                // console.log(this.state.AdmissionsOpen);
                 // alert(response.data[0].programName);
             })
             .catch((error) => {
@@ -107,7 +115,9 @@ class BodyA extends React.Component{
       addDomain =(temp) =>
       {
 
-        // alert(temp);
+        const sessionId = window.sessionStorage.getItem('uniid');
+
+
        this.props.onAddDomain(temp);
       }
 
@@ -124,8 +134,19 @@ class BodyA extends React.Component{
         }
         this.setState({showForm:0});
       }
+      onaddApply =() =>{
+
+        this.props.onaddApply();
 
 
+      }
+
+
+
+
+   closeDeadline = (admissionId) => {
+      this.props.closeDeadline(admissionId);
+  }
     render(){
 
         const { imageNames, currentImageIndex } = this.state;
@@ -185,21 +206,23 @@ class BodyA extends React.Component{
                     </div>
                 )}
 
-
+                <button className='programButon' onClick={() => this.onaddApply()}>Add New Admission</button>
                 {/* <div className='AdmissionNews'> */}
-                {this.state.AdmissionsOpen.map( (admission)=>
-
-                    <div className="AdmissionNews">
-                    <div className='center'>
-
-                    <h1>Admissions Open For {admission.programName}</h1>
-                    <p>Deadline : {admission.deadline}</p>
-                    <button className="ApplyBtn">Close Deadline</button>
-                    </div>
-                    </div>
-                )}
+                {this.state.AdmissionsOpen.map((admission) =>
+            <div className="AdmissionNews">
+              <div className='center'>
+                <h1>Admissions Open For {admission.program}</h1>
+                <p>Deadline : {admission.lastApplyDate}</p>
+                <p>Last Updated on  : {admission.updated}</p>
+                <button className="ApplyBtn" onClick={() => this.closeDeadline(admission.program)}>Close Deadline</button>
+              </div>
+            </div>
+          )}
 
                 {/* </div> */}
+
+                <br>
+                </br>
                 <button className='addanewimage'  onClick={this.toggleForm}>
                     Add a New Image
                 </button>

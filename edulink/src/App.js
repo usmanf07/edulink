@@ -27,10 +27,12 @@ const App = () => {
   return (
     <div className="App">
       <div className="gradient_bg">
-   
+
       <Routes>
+
           
           <Route path='/' element={<Home/>}/>
+
           <Route path='/:id/' element={<Home/>}/>
           <Route path='/login'  element={<Log />}/>
           <Route path="/Signup1" element={<Signup1 />}  />
@@ -40,7 +42,11 @@ const App = () => {
           <Route path='/Verify' element={<OtpPage/>}/>
 
           <Route path='/Payment' element={<PaymentPage/>}/>
+
+//           <Route path="/AllUniversityPage" element={<AllUniversityPage />}  />
+
           {/* <Route path="/AllUniversityPage" element={<AllUniversityPage />}  />  */}
+
           <Route path="/AllUniversityPage" element={<AllUniversity />}  />
           <Route path="/SingleInstitutePage/:name" element={<SingleInstitutePage />}  />
           <Route path="/OutsiderInstitute" element={<OutsiderInstitute />}  />

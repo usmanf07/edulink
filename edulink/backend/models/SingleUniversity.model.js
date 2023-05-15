@@ -31,7 +31,7 @@ const instituteSchema = new mongoose.Schema({
   images: [{ type: String }],
   reviews: [reviewSchema],
   programs: [{ type: programSchema, required: false }],
-  location: [{}],
+  location: { type: [String], default: ["no location added"] },
   inquiries: [inquirySchema],
   emails: [{type: String}],
   relatedInstitutes: [{ type: String}],

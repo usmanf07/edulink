@@ -12,7 +12,7 @@ import OutsiderInstitute from '../../outsiderInstitutePage/OutsiderInstitute';
 const Featuresecondary = () => {
 
   const sliderRef = useRef(null);
-  const [institutesData, setinstitutesData] = useState( []);
+  const [institutesData, setinstitutesData] = useState([sessionStorage.getItem('fetchedinstitutesData')]);
   const [showConfirmation, setConfirmation] = useState(false);
   const [email, setEmail] = useState('');
   const [userData, setuserData] = useState(null);
@@ -43,6 +43,7 @@ const Featuresecondary = () => {
   
 useEffect(() => {
   const fetchInstitutes = async () => {
+    if(sessionStorage.getItem('fetchedinstitutesData') && !queryParams.provinceID || !queryParams.cityID) {
     try {
       const response = await axios.get('http://localhost:8000/fetchinstitutes', {
         params: queryParams
@@ -53,11 +54,12 @@ useEffect(() => {
         uniName: institute.uniName.replace('Admissions', '').replace('2023', '').trim(),
         uniID: institute.uniID.replace('Admissions', '').replace('2023', '').trim()
       }));
-      sessionStorage.setItem('institutesData', JSON.stringify(modifiedData));
+      sessionStorage.setItem('fetchedinstitutesData', JSON.stringify(modifiedData));
       setinstitutesData(modifiedData);
     } catch (error) {
       console.error(error);
     }
+  }
   };
 
   fetchInstitutes();

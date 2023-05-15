@@ -9,7 +9,8 @@ function OutsiderInstitute()
     const institute = location.state.institute;
     const [imageUrl, setImageUrl] = useState(null);
     const [error, setError] = useState(null);
-    const [websiteLink, setWebsiteLink] = useState(null);
+    const [websiteLink, setWebsiteLink] = useState('');
+    const[desc , setDesc] = useState('');
     useEffect(() => {
         const imageUrlParam = institute.href;
         axios.get(`http://localhost:8000/fetchinstitutes/fetchImage?imageUrl=${imageUrlParam}`)
@@ -24,16 +25,20 @@ function OutsiderInstitute()
 
       useEffect(() => {
         
-        axios.get(`http://localhost:8000/fetchinstitutes/searchWebsite?q=${institute.uniName}`)
+        axios.get(`http://localhost:8000/fetchinstitutes/fetch-data?query=${institute.uniName}`)
         .then(response => {
-            const websiteLink = response.data.websiteLink;
-            setWebsiteLink(websiteLink);
+            console.log(response.data);
+            setDesc(response.data.snippet);
+            setWebsiteLink(response.data.link);
+          
         })
         .catch(error => {
             console.error(error);
             setError('An error occurred while retrieving the website link.');
         });
       }, []);
+
+      
   return (
     <div>
         <Navbar />
@@ -47,8 +52,18 @@ function OutsiderInstitute()
             <h2>Posted On: {institute.updated} Last Applying Date: {institute.lastApplyDate}</h2>
             </div>
             <div>
+                <p>Institute Description: {desc}</p>
+            </div>
+            <div>
            <img src={imageUrl} alt='outsiderInstitute' />
            </div>
+            <div className='editProfile__profile-info-editing'>
+            <button>
+                <a href={websiteLink} target="_blank" rel="noopener noreferrer">
+                Go to Institute Site
+                </a>
+            </button>
+            </div>
             </div>
         </div>
     </div>

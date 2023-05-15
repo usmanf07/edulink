@@ -1,0 +1,22 @@
+.outsiderInstitute{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #fff;
+}
+
+.outsiderInstitute__container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px;
+    margin: 2rem 5rem ;
+    padding: 3rem;
+ 
+}

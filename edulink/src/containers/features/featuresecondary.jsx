@@ -5,11 +5,14 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Featurethird from './featurethird';
+import { Link } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 
+import OutsiderInstitute from '../../outsiderInstitutePage/OutsiderInstitute';
 const Featuresecondary = () => {
 
   const sliderRef = useRef(null);
-  const [institutesData, setinstitutesData] = useState([]);
+  const [institutesData, setinstitutesData] = useState( []);
   const [showConfirmation, setConfirmation] = useState(false);
   const [email, setEmail] = useState('');
   const [userData, setuserData] = useState(null);
@@ -21,10 +24,44 @@ const Featuresecondary = () => {
     .then((response) => {
       console.log('Universities:', response.data);
       setinstitutesData(response.data);
-     
+      
     })
       .catch((error) => console.error('Failed to retrieve universities:', error));
   }, []);
+
+  const [queryParams, setQueryParams] = useState({});
+  const handleProvinceChange = (e) => {
+    const selectedProvince = e.target.value;
+    setQueryParams((prevState) => ({ ...prevState, provinceID: selectedProvince }));
+  };
+  
+  const handleCityChange = (e) => {
+    const selectedCity = e.target.value;
+    setQueryParams((prevState) => ({ ...prevState, cityID: selectedCity }));
+  };
+  
+  
+useEffect(() => {
+  const fetchInstitutes = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/fetchinstitutes', {
+        params: queryParams
+      });
+      const data = response.data;
+      const modifiedData = data.map(institute => ({
+        ...institute,
+        uniName: institute.uniName.replace('Admissions', '').replace('2023', '').trim(),
+        uniID: institute.uniID.replace('Admissions', '').replace('2023', '').trim()
+      }));
+      sessionStorage.setItem('institutesData', JSON.stringify(modifiedData));
+      setinstitutesData(modifiedData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchInstitutes();
+}, [queryParams]);
 
   const handleUpArrowClick = () => {
     sliderRef.current.slickPrev();
@@ -49,8 +86,9 @@ const Featuresecondary = () => {
 
   const handleApplyConfirm = async (index) => {
 
+    
     const selectedInstitute = institutesData[index];
-    console.log(selectedInstitute.program)
+    //console.log(selectedInstitute.program);
     
     try {
       const response = await axios.post('http://localhost:8000/application', {
@@ -71,24 +109,25 @@ const Featuresecondary = () => {
   };
 
   const sortByDeadline = () => {
-    const sortedData = institutesData.sort((a, b) => {
-      const dateA = new Date(a.lastDate);
-      const dateB = new Date(b.lastDate);
-      return dateA - dateB;
-    });
-    // Update the institutesData state with the sorted data
-   visibleData = sortedData;
-  };
-  const [elapsed, setElapsed] = useState('');
-  const sortByMostRecent = () => {
-    const sortedData = institutesData.sort((a, b) => {
-      const dateA = new Date(a.updated);
-      const dateB = new Date(b.updated);
+    const sortedData = [...institutesData].sort((a, b) => {
+      const dateA = new Date(a.lastApplyDate.split('/').reverse().join('-'));
+      const dateB = new Date(b.lastApplyDate.split('/').reverse().join('-'));
       return dateB - dateA;
     });
     // Update the institutesData state with the sorted data
     visibleData = sortedData;
   };
+
+  const sortByMostRecent = () => {
+    const sortedData = [...institutesData].sort((a, b) => {
+      const dateA = new Date(a.lastApplyDate.split('/').reverse().join('-'));
+      const dateB = new Date(b.lastApplyDate.split('/').reverse().join('-'));
+      return dateB - dateA;
+    });
+    // Update the institutesData state with the sorted data
+    visibleData = sortedData;
+  };
+  
 
   const sortByMostPopular = () => {
     // const sortedData = institutesData.sort((a, b) => b.id - a.id);
@@ -126,35 +165,7 @@ const Featuresecondary = () => {
     setFilterMenuOpen(!filterMenuOpen);
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date();
-      const newData = institutesData.map(institute => {
-        const updated = new Date(institute.updated);
-        const elapsedMs = now - updated;
-        let elapsed;
-        if (elapsedMs < 60 * 1000) {
-          elapsed = `${Math.floor(elapsedMs / 1000)} seconds`;
-        } else if (elapsedMs < 60 * 60 * 1000) {
-          elapsed = `${Math.floor(elapsedMs / (60 * 1000))} minutes`;
-        } else if (elapsedMs < 24 * 60 * 60 * 1000) {
-          elapsed = `${Math.floor(elapsedMs / (60 * 60 * 1000))} hours`;
-        } else {
-          elapsed = `${Math.floor(elapsedMs / (24 * 60 * 60 * 1000))} days`;
-        }
-        setElapsed(`Updated: ${elapsed} ago`);
-        return {
-          ...institute,
-          elapsed: `Updated: ${elapsed} ago`
-          
-        };
-      });
-      setinstitutesData(newData);
-    }, 1000);
-  
-    return () => clearInterval(interval);
-  }, [institutesData]);
-  
+
   return (
 
 
@@ -165,6 +176,35 @@ const Featuresecondary = () => {
               <div>
                 <h2>Recent Programs</h2>
               </div>
+              <div className='edulink__featuresecondary-filterfields'>
+              <h2>Filter &nbsp;</h2>
+                    <div>
+                    <select onChange={handleProvinceChange} >
+                   
+                      <option value=''>Province</option>
+                      <option value='10103'>Punjab</option>
+                      <option value='10104'>Sindh</option>
+                      <option value='10102'>KPK</option>
+                      <option value='10101'>Balochistan</option>
+                    </select>
+                    </div>
+                    <div>
+                    <select onChange={handleCityChange}>
+                    
+                      <option value=''>City</option>
+                      <option value='101030801'>Faislabad</option>
+                      <option value='101030901'>Gujranwala</option>
+                      <option value='101031001'>Gujrat</option>
+                      <option value='101070101'>Islamabad</option>
+                      <option value='101032201'>Multan</option>
+                      <option value='101031701'>Lahore</option>
+                      <option value='101033401'>Sialkot</option>
+                      <option value='101040701'>Karachi</option>
+                      
+                      
+                    </select>
+                    </div>
+                </div>
               <div className='edutemper' onClick={toggleFilterMenu}>
                   <h3>Sort By</h3>
                   <div  className='edutemper2'>
@@ -201,16 +241,21 @@ const Featuresecondary = () => {
 
             <Slider {...settings} ref={sliderRef}>
   {visibleData.map((institute, index) => (
-    <div key={institute.id} className="edulink__featuresecondary-instituteBox-info">
+    <div key={institute.uniID} className="edulink__featuresecondary-instituteBox-info">
       <div className="edulink__featuresecondary-instituteBox">
         <div className="edulink__featuresecondary-institute-details">
           <div>
-          <img src={"http://localhost:8000/images/"+institute.logo} alt={`${institute.name} logo`} />
+          {institute.logo ? (<img src={"http://localhost:8000/images/"+institute.logo} alt={`${institute.uniName} logo`} />)
+          :( <img src={`http://localhost:8000/images/pic1.jpeg`} alt={`${institute.uniName} logo`} />) }
           </div>
-          <div>
-            <h3>{institute.uniName}</h3>
-            <h4>{institute.program}</h4>
-          </div>
+
+          <Link to={`/OutSiderInstitute/`} state={{institute: institute}}>
+              <div>
+              <h3>{institute.uniName}</h3>
+              <h4>{institute.program}</h4>
+            </div>
+          </Link>
+        
         </div>
         <div className="edulink__featuresecondary-institute-apply">
           {!showConfirmation[index] ? (
@@ -220,7 +265,7 @@ const Featuresecondary = () => {
           ) : (
             <div>
               <p style={{ marginBottom: '10px' ,color:'green' }}>
-                Are you sure you want to apply to {institute.instituteName} for {institute.program} program?
+                Are you sure you want to apply to {institute.uniName} for {institute.program} program?
                
               </p>
               <button onClick={() => handleApplyConfirm(index)}>Confirm</button>
@@ -228,11 +273,11 @@ const Featuresecondary = () => {
             </div>
           )}
           <div>
-            <h3>Last Date to Apply: {new Date(institute.lastApplyDate).toLocaleDateString('en-GB')}</h3>
+            <h3>Last Date to Apply: {institute.lastApplyDate}</h3>
           </div>
         </div>
       </div>
-      <p>{institute.elapsed}</p>
+      <p>Posted On: {institute.updated}</p>
     </div>
   ))}
 </Slider>

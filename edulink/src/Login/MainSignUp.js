@@ -12,11 +12,17 @@ export default function MainSignUp() {
     navigate("/signup/university", { state:{id:"university"}}  );
 
   }
+  const OpenUser = () => {
+    navigate("/signup/user", { state:{id:"user"}}  );
+
+  }
+
   return (
+    
     <div className='myMain'>
       <div className='signUpHeading'><h1>Join as a Student Or Institute</h1></div>
       <div className='container'>
-      <div className=' le'>
+      <div className=' le'onClick={OpenUser}>
         <div className="imgset">
           <img src='graduate.png'/>
         </div>

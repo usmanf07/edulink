@@ -96,6 +96,7 @@
 .edulink__navbar-links_container {
     display: flex;
     flex-direction: row;
+    
 }
 
 .edulink__navbar-sign {
@@ -122,6 +123,7 @@
     color: #0085FF;
     font-weight: 700;
     font-size: 24px;
+    
   }
   .edulink__navbar.sticky .edulink__navbar-search {
     display: flex;
@@ -215,9 +217,11 @@
 }
 
 .edulink__navbar-menu {
+    float: right;
     margin-left: 1rem;
 
-    display: none;
+    
+    display: none ;
     position: relative;
 }
 
@@ -285,6 +289,7 @@
     }
 
     .edulink__navbar-menu_container {
+      
         top: 20px;
         z-index: 2;
     }

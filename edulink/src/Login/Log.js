@@ -1,10 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import './Log.css'
 import Signin from './Signin'
-import Signup1 from './Signup1'
-import Signup2 from './Signup2'
-import Signup3 from './Signup3'
-import Signup4 from './Signup4'
+
 import InstituteLocation from './InstituteLocation'
 import EducationInformationForm from './AddMore'
 import AdmissionsOpen from './AdmissionsOpen'
@@ -14,6 +11,7 @@ import ProgramOffered from './ProgramsOffered'
 import { useLocation } from 'react-router-dom'
 import UniversitySignUp from './UniversitySignUp'
 import UniversitySignIn from './UniversitySignIn'
+import UserSignUp from './UserSignUp'
 export default function Log() {
 
 
@@ -52,9 +50,13 @@ export default function Log() {
           </div>
         </div>
         <div className='righte'>
-        {!location.state &&
+        {!location.state &&(
           <Signin />
-        }
+        )}
+        {location.state && location.state.id === "user" && (
+            <UserSignUp />
+        )}
+       
           {/* {step===1 && <Signup1 onNext={handleNext}/>} */}
           {/* {step===2 && <Signup2  onNext={handleNext}/>}
           {step===3 && <Signup3  onNext={handleNext}/>}  */}

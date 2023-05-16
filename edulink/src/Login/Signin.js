@@ -1,18 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Log.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function Signin() {
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const history = useNavigate();
   const [phone, setPhone] = useState('');
+
+  useEffect(() => {
+    let reloadCount = sessionStorage.getItem('reloadCount2');
+    reloadCount = reloadCount ? Number(reloadCount) : 0;
+
+    if (reloadCount < 2) {
+      sessionStorage.setItem('reloadCount2', String(reloadCount + 1));
+      if (reloadCount === 0) {
+        setTimeout(() => {
+          window.location.reload();
+        }, 0);
+      }
+    } else {
+      sessionStorage.clear();
+      sessionStorage.removeItem('reloadCount2');
+    }
+  }, []);
+
   async function submit(e) {
     e.preventDefault();
-
+    
     try {
       setError('');
       const res = await axios.post('http://localhost:8000/login', { email, password });
@@ -86,14 +105,14 @@ function Signin() {
           <input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
           <label>Password:</label>
           <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-          <input type="submit" onClick={submit} />
+          <input type="submit" value="Login" onClick={submit} />
         </form>
         {error && <div className="error">{error}</div>}
         <br></br>
         <p>OR</p>
-        <Link to="/Signup1">
+        <Link to="/signup">
           {' '}
-          <button>Sign Up</button>
+          <input type="submit" value="Sign up"/>
         </Link>
       </div>
     </div>

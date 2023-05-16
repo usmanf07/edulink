@@ -50,7 +50,7 @@ useEffect(() => {
 
   return (
     <div>
-      <Navbar login={isLogin} name={email} />
+      {/* <Navbar login={isLogin} name={email} /> */}
       <div className='userApplications'>
   <h1>My Applications</h1>
   {applications === null ? (<h2 style={{marginTop: '0.7rem'}}>You did not submit any applications yet!</h2>) : (

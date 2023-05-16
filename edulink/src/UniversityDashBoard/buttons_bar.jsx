@@ -8,12 +8,18 @@ class University_Description extends React.Component {
         this.state={
           name : props.name,
         }
-          
-        
+
+
+
+    }
+
+    showmaketest = () =>
+    {
+      this.props.navigate(`/universitydash/${this.name}/maketest`);
 
     }
     showAppliedStudents = () =>{
-      
+
       this.props.navigate(`/SingleInstitutePage/${this.name}/AppliedStudents`);
     }
 
@@ -28,6 +34,7 @@ class University_Description extends React.Component {
             <button className="button_bar_btns" onClick={this.showAppliedStudents} >View Applied Students</button>
 
             <button className="button_bar_btns" onClick={this.addProgram}>Add A Program</button>
+            <button className="button_bar_btns" onClick={this.showmaketest}>Make a test</button>
 
           </div>
 

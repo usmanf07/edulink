@@ -21,15 +21,17 @@ import EntryTest from './EntryTest/EntryTest';
 import OutsiderInstitute from './outsiderInstitutePage/OutsiderInstitute';
 import AppliedStudents from './UniversityDashBoard/AppliedStudents'
 import { Navbar } from './components';
+import UniTest from './UniTest';
+import { Footer } from './containers';
 
 const App = () => {
 
   return (
     <div className="App">
       <div className="gradient_bg">
-      <Navbar />
+        <Navbar/>
       <Routes>
-          
+
           <Route path='/' element={<Home/>}/>
           <Route path='/:id/' element={<Home/>}/>
           <Route path='/login'  element={<Log />}/>
@@ -52,8 +54,9 @@ const App = () => {
           <Route path="/signup/university" element= {<Log/>} />
           <Route path="/signup/user" element= {<Log/>} />
           <Route path="/signin/university/" element= {<Log/>} />
+          <Route path="/universitydash/:name/maketest" element= { <UniTest/>} />
       </Routes>
-
+      <Footer/>
 
 
       </div>

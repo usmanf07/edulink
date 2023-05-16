@@ -37,6 +37,7 @@ import Confirmation from './Confirmation';
     const [deadline,setDeadline]=useState(0);
 
 
+
     const [pName,setpname]=useState("");
     // console.log({name});
 
@@ -424,7 +425,7 @@ import Confirmation from './Confirmation';
       )}
 
         <University_Description name={name} onChangeDescription= {changedis} des={descrip}/>
-        <ButtonBar name={name} onAddProgram={addProgram}/>
+        <ButtonBar name={name} onAddProgram={addProgram} navigate={navigate}/>
         <Body name={name} update={isBlue} onAddDomain={addDomain} onaddApply={addApply} closeDeadline={closeDeadline}/>
         {/* <Desc name={name}/>
         <ButtonBar name={name}/>

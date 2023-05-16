@@ -24,6 +24,8 @@ import AppliedStudents from './UniversityDashBoard/AppliedStudents'
 import UniTest from './UniTest';
 
 import { Navbar } from './components';
+import UniTest from './UniTest';
+import { Footer } from './containers';
 
 
 const App = () => {
@@ -31,9 +33,7 @@ const App = () => {
   return (
     <div className="App">
       <div className="gradient_bg">
-
       <Navbar />
-
       <Routes>
 
           <Route path='/' element={<Home/>}/>
@@ -58,9 +58,10 @@ const App = () => {
           <Route path="/signup/university" element= {<Log/>} />
           <Route path="/signup/user" element= {<Log/>} />
           <Route path="/signin/university/" element= {<Log/>} />
+          
           <Route path="/universitydash/:name/maketest" element= { <UniTest/>} />
       </Routes>
-
+      <Footer/>
 
 
       </div>

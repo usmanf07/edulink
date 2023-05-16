@@ -21,14 +21,14 @@ export default function MainSignUp() {
     
     <div className='myMain'>
       <div className='signUpHeading'><h1>Join as a Student Or Institute</h1></div>
-      <div className='container'>
+      <div className='signupcontainer'>
       <div className=' le'onClick={OpenUser}>
         <div className="imgset">
           <img src='graduate.png'/>
         </div>
         <div className='info_i'>
-        I am a student, want to
-        explore institutes
+        I am a Student, Want to
+        Explore Institutes
         </div>
       </div>
       <div className=' re' onClick={OpenInstitutes}>
@@ -36,8 +36,8 @@ export default function MainSignUp() {
           <img src='university.png'/>
         </div>
         <div className='info_i'>
-        I am an institute, want
-to add details.......?
+        I am an Institute, Want
+        to Receive Applications
         </div>
 
 

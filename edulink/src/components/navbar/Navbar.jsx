@@ -90,8 +90,7 @@ const Navbar = (props) => {
           <p><a href="#features">Contact</a></p> */}
           {!isLogin ? (
               <p>
-               
-                <a href="#institute">eduInstitute</a>
+               <Link to="/signup"><a href="#">eduInstitute</a></Link>
               </p>
             ) : (
               <p>

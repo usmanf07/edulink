@@ -58,6 +58,7 @@ const App = () => {
           <Route path="/signup/university" element= {<Log/>} />
           <Route path="/signup/user" element= {<Log/>} />
           <Route path="/signin/university/" element= {<Log/>} />
+          
           <Route path="/universitydash/:name/maketest" element= { <UniTest/>} />
       </Routes>
       <Footer/>

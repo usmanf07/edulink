@@ -12,7 +12,7 @@ import OutsiderInstitute from '../../outsiderInstitutePage/OutsiderInstitute';
 const Featuresecondary = () => {
 
   const sliderRef = useRef(null);
-
+  
   const [institutesData, setinstitutesData] = useState([]);
   const [showConfirmation, setConfirmation] = useState(false);
   const [email, setEmail] = useState('');
@@ -40,21 +40,6 @@ const Featuresecondary = () => {
   const handleCityChange = (e) => {
     const selectedCity = e.target.value;
     setQueryParams((prevState) => ({ ...prevState, cityID: selectedCity }));
-  };
-
-  const handleRegisteredChange = (e) => {
-    const option = e.target.value;
-    
-    if (option === 'all') {
-      const allData = [...fetchedinstitutesData, ...institutesData];
-      setVisibleData(allData);
-    } else if (option === 'reg') {
-      
-      setVisibleData(institutesData);
-    } else if (option === 'notreg') {
-    
-      setVisibleData(fetchedinstitutesData);
-    }
   };
 
 

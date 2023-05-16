@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import './Log.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import {auth,provider} from "./googleConfig";
+import {signInWithPopup} from "firebase/auth";
+import Home from '../Home';
 
 function Signin() {
   
@@ -11,6 +14,36 @@ function Signin() {
   const [error, setError] = useState('');
   const history = useNavigate();
   const [phone, setPhone] = useState('');
+
+  const [value,setValue] = useState('')
+
+  const handleGoogleClick = () => {
+    signInWithPopup(auth, provider)
+      .then((data) => {
+        setValue(data.user.email);
+        axios
+          .post('http://localhost:8000/signup', {
+            userName: data.user.email,
+            email: data.user.email,
+            password: '1234567',
+            phoneNumber: '',
+          })
+          .then((response) => {
+            sessionStorage.setItem('email', data.user.email);
+            console.log(data.user.email);
+            history('/home');
+          })
+          .catch((error) => {
+            setError(error.response.data.message);
+          });
+  
+        
+      })
+      .catch((error) => {
+        // Handle the error if needed
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
     let reloadCount = sessionStorage.getItem('reloadCount2');
@@ -105,14 +138,15 @@ function Signin() {
           <input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
           <label>Password:</label>
           <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-          <input type="submit" value="Login" onClick={submit} />
+          <input style={{cursor:'pointer'}}  type="submit" value="Login" onClick={submit} />
         </form>
         {error && <div className="error">{error}</div>}
         <br></br>
         <p>OR</p>
+        <img style={{cursor:'pointer'}} src="./btn_google_signin_dark_normal_web.png" alt="googlesignin" onClick={handleGoogleClick}/>
         <Link to="/signup">
           {' '}
-          <input type="submit" value="Sign up"/>
+          <input  style={{cursor:'pointer'}} type="submit" value="Sign up"/>
         </Link>
       </div>
     </div>

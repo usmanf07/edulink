@@ -34,6 +34,9 @@ const Navbar = (props) => {
     // Get sessionId and email from sessionStorage
     const sessionId = sessionStorage.getItem('sessionId');
     const email = sessionStorage.getItem('email');
+    const isGoogle = sessionStorage.getItem('isGoogle');
+    //alert(email)
+   
     console.log(email)
    
     if(email === null) {  
@@ -44,6 +47,7 @@ const Navbar = (props) => {
     else{
       axios.get(`http://localhost:8000/users/${email}`)
       .then(res => {
+        
         const userData = res.data;
         setName(userData.fullName);
         setEmail(email);

@@ -20,6 +20,7 @@ function Signin() {
   const handleGoogleClick = () => {
     signInWithPopup(auth, provider)
       .then((data) => {
+        const profileImage = data.user.photoURL;
         setValue(data.user.email);
         axios
           .post('http://localhost:8000/signup', {
@@ -27,6 +28,7 @@ function Signin() {
             email: data.user.email,
             password: '1234567',
             phoneNumber: '',
+            profileImage: profileImage,
           })
           .then((response) => {
             sessionStorage.setItem('email', data.user.email);

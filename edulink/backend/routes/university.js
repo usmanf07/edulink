@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let Uni = require('../models/university.model');
 let RecentProgram = require('../models/recentPrograms.model');
-
+const nodemailer = require("nodemailer");
 let UniLog =require('../models/InstituteLogin.model')
 let SingleUni = require('../models/SingleUniversity.model');
 const Admission = require('../models/admission.model');
@@ -44,7 +44,10 @@ const Admission = require('../models/admission.model');
 
       if (result) {
         // Institute exists with provided email and password
-        res.status(200).json({ message: result });
+        res.status(200).json({
+          message: "Signin successful",
+          id: result._id // Include the id of the institute in the response
+        });
       } else {
         // Institute doesn't exist with provided email and password
         res.status(401).json({ message: "Invalid name or password" });
@@ -114,6 +117,7 @@ router.route('/signup')
         const savedUniversity = await newUniversity.save();
 
         const newSingleUniversity = new SingleUni({
+          uniID:uniLogId,
           instituteName: instituteName,
           emails: [email]
         });
@@ -160,8 +164,8 @@ router.route('/signup')
       const results = [];
       for (const program of recentPrograms) {
         const university = await Uni.findOne({uniID: program.uniID});
-        if(university == null) continue;  
-        
+        if(university == null) continue;
+
         const programWithUniversity = {
           uniID: university.uniID,
           uniName: university.name,
@@ -178,22 +182,22 @@ router.route('/signup')
       res.status(500).json({ error: 'Failed to retrieve recent programs' });
     }
   });
-  
+
   router.route('/updateDisplay').put(async (req, res) => {
     console.log("update");
     const updatedUniversities = req.body;
-  
+
     try {
 
       console.log("updat2");
       for (const updatedUniversity of updatedUniversities) {
-        
+
         const { name, display } = updatedUniversity;
         console.log(name + "," + display);
         await Uni.updateOne({ name: name }, { Namedisplay: display })
         // await Uni.findByIdAndUpdate(name, { display });
       }
-  
+
       res.send(200);
     } catch (error) {
       console.error("Failed to update universities:", error);
@@ -204,17 +208,17 @@ router.route('/signup')
 
   router.route('/updateLocationDisplay').put(async (req, res) => {
     const updatedUniversities = req.body;
-  
+
     try {
 
       for (const updatedUniversity of updatedUniversities) {
-        
+
         const { name, display } = updatedUniversity;
         console.log("kjhgfgh      " + name + "," + display);
         await Uni.updateOne({ address: name }, { Locationdisplay: display })
         // await Uni.findByIdAndUpdate(name, { display });
       }
-  
+
       res.send(200);
     } catch (error) {
       console.error("Failed to update universities:", error);
@@ -222,8 +226,44 @@ router.route('/signup')
     }
   });
 
-  
 
+
+
+  router.route('/sendmail').post((req, res) => {
+    const { receiver, subject, message } = req.body;
+
+    console.log(message);
+    let smtpTransport = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        type: "OAuth2",
+        user: "orthoimplantsgu@gmail.com",
+        clientId: "420068824513-6cgvcp1360kvs9e6egpmeveqec43pjea.apps.googleusercontent.com",
+        clientSecret: "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",
+        refreshToken: "1//04AkSObuHvOfjCgYIARAAGAQSNwF-L9IrQzFrpRjJZVUIk1DEMKylV8qWO0ciwOypxMc5waYdPbBHHChEMUrvui8F3sPvAE55vHM"
+      }
+    });
+
+    let messageTemplate = {
+      to: receiver,
+      subject: subject,
+      text: message
+    };
+
+    smtpTransport.sendMail(messageTemplate, (err, info) => {
+      if (err) {
+        res.send(err);
+      } else {
+        smtpTransport.close();
+        return res.json({
+          status: "ok",
+          msg: "Email sent"
+        });
+      }
+    });
+  });
 module.exports = router;
 
 

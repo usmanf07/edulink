@@ -4,6 +4,7 @@ let university = require('../models/university.model');
 const Admission = require('../models/admission.model');
 let UniLog =require('../models/InstituteLogin.model');
 let Programs=require('../models/recentPrograms.model');
+let Test =require ('../models/Test.model.js')
 
 router.route('/').get((req, res) => {
     Uni.find()
@@ -282,6 +283,21 @@ router.route('/:name/programs/:programName/domains/:newDomain').get( (req, res) 
       .catch(err => res.status(400).json('Error: ' + err));
   });
 
+  router.route('/addtest/addnewtest').post(async (req, res) => {
+    const { uniid, questions } = req.body;
+
+    try {
+      const test = new Test({ uniid, questions });
+      const savedTest = await test.save();
+
+      res.json(savedTest);
+    } catch (error) {
+      console.error('Failed to add test:', error);
+      res.status(400).json({ message: 'Error adding test', error: error });
+    }
+  });
+
+
   router.route('/add').post((req, res) => {
     const { instituteType,instituteName, bigPicture, description, admissionsOpen, images, reviews, programs ,location,inquiries,emails,relatedInstitutes, googlemap} = req.body;
     const institute = new Uni({
@@ -322,6 +338,10 @@ router.route('/:name/programs/:programName/domains/:newDomain').get( (req, res) 
 
 
   });
+
+
+
+
 
 module.exports = router;
 

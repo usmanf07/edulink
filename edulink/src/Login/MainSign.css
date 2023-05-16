@@ -19,7 +19,7 @@
 
 
 }
-.myMain .container{
+.myMain .signupcontainer{
   margin-top: 50px;
   width: 90%;
   background: #01050B;
@@ -75,10 +75,9 @@
   margin-left: 20px;
   margin-bottom: 20px;
   font-family: 'Manrope';
-font-style: normal;
-font-weight: 400;
-font-size: 40px;
-line-height: 45px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
 /* or 90% */
 
 
@@ -103,7 +102,7 @@ color: #FFFFFF;
 }
 @media screen and (max-width: 700px)
 {
-  .myMain .container{
+  .myMain .signupcontainer{
     flex-direction: column;
 
   }

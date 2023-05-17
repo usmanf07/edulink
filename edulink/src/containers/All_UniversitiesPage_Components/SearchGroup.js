@@ -43,7 +43,7 @@ export default function SearchGroup(){
     // setValue(query);
     setInstitute(e.target.value);
 
-    if (query.length > 0) {
+    if (query.length > 3) {
       const filterSuggestions = data.filter(
         (suggestion) =>
           suggestion.toLowerCase().indexOf(query) > -1
@@ -109,52 +109,67 @@ export default function SearchGroup(){
   };
 
   const handleKeyDown = (e) => {
+
+    var topSuggestions;
+    if(suggestions.length > 4){
+      topSuggestions = suggestions.slice(0, 4);
+    }
+    else{
+      topSuggestions = suggestions.slice(0,suggestions.length );
+    }
+    
+    // alert(topSuggestions.length);
     // UP ARROW
     if (e.keyCode === 38) {
       if (suggestionIndex === 0) {
         return;
       }
-      setSuggestionIndex(suggestionIndex - 1);
+      setSuggestionIndex(suggestionIndex-1);
+
     }
     // DOWN ARROW
     else if (e.keyCode === 40) {
-      if (suggestionIndex - 1 === suggestions.length) {
+      if (suggestionIndex + 1 === topSuggestions.length) {
         return;
       }
-      setSuggestionIndex(suggestionIndex + 1);
+      setSuggestionIndex(suggestionIndex+1);
     }
     // ENTER
-    else if (e.keyCode === 13) {
+    // else if (e.keyCode === 13) {
       
-      if(suggestionIndex == -1){
-        setInstitute(e.target.value);
+    //   if(suggestionIndex == -1){
+    //     setInstitute(e.target.value);
 
-      }
-      else{
-        setInstitute(suggestions[suggestionIndex]);
-        setSuggestionIndex(0);
-      }
+    //   }
+    //   else{
+    //     setInstitute(suggestions[suggestionIndex]);
+    //     setSuggestionIndex(0);
+    //   }
       
-      setSuggestionsActive(false);
-
-      updateDisplay("show");
+    //   setSuggestionsActive(false);
 
      
-    }
-    // console.log("handlecclick" + suggestions);
-   
+    // }
+    else if (e.keyCode === 13) {
 
+      setInstitute(topSuggestions[suggestionIndex]);
+      // setSuggestionIndex(0);
+      setSuggestionsActive(false);
+    }
+    else if(e.target.innerText == "Search" ){
+      setSuggestionsActive(false);
+
+    }
 
   };
-
   const Suggestions = () => {
-    
+    const topSuggestions = suggestions.slice(0, 4);
     return (
       <ul className="suggestions">
-        {suggestions.map((suggestion, index) => {
+        {topSuggestions.map((suggestion, index) => {
           return (
             <li
-              className={index === suggestionIndex ? "active" : ""}
+              className={index === suggestionIndex ? 'active' : ''}
               key={index}
               onClick={handleClick}
             >
@@ -165,7 +180,6 @@ export default function SearchGroup(){
       </ul>
     );
   };
-
 
     return (
 
@@ -179,6 +193,7 @@ export default function SearchGroup(){
 
 
         <div className="Searchbar">
+          <div>
           <input  
             type="text" 
             className="searchInstitutes" 
@@ -189,7 +204,9 @@ export default function SearchGroup(){
             onKeyDown={handleKeyDown}> 
           </input>
           {suggestionsActive && <Suggestions />}
-          <button className="search_Btn" > Search </button>
+          </div>
+         
+          <button onClick={handleKeyDown} className="search_Btn" > Search </button>
         </div>
   
       </div>

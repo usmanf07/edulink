@@ -386,7 +386,7 @@ import Confirmation from './Confirmation';
       <div className={`mainpage ${isBlue ? 'blue' : ''}`}>
 
       <div className='upper_layer'>
-        <Nav/>
+        {/* <Nav/> */}
 
         <div className="picturebox" id="picture" picture>
 

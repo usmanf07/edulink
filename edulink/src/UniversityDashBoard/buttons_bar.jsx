@@ -1,15 +1,18 @@
 import React from 'react';
 import "./buttons_bar.css";
 
-class University_Description extends React.Component {
+class buttons_bar extends React.Component {
 
     constructor(props){
         super(props);
-        this.state={
+       this.state={
           name : props.name,
         }
 
-
+    }
+    showAppliedStudents = () =>{
+      
+      this.props.navigate(`/universitydash/${this.props.name}/AppliedStudents`);
 
     }
 
@@ -18,10 +21,10 @@ class University_Description extends React.Component {
       this.props.navigate(`/universitydash/${this.name}/maketest`);
 
     }
-    showAppliedStudents = () =>{
+//     showAppliedStudents = () =>{
 
-      this.props.navigate(`/SingleInstitutePage/${this.name}/AppliedStudents`);
-    }
+//       this.props.navigate(`/SingleInstitutePage/${this.name}/AppliedStudents`);
+//     }
 
     addProgram = () => {
       this.props.onAddProgram();
@@ -42,4 +45,4 @@ class University_Description extends React.Component {
     }
 }
 
-export default University_Description;
+export default buttons_bar;

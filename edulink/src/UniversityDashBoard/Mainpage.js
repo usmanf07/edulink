@@ -427,12 +427,7 @@ import Confirmation from './Confirmation';
         <University_Description name={name} onChangeDescription= {changedis} des={descrip}/>
         <ButtonBar name={name} onAddProgram={addProgram} navigate={navigate}/>
         <Body name={name} update={isBlue} onAddDomain={addDomain} onaddApply={addApply} closeDeadline={closeDeadline}/>
-        {/* <Desc name={name}/>
-        <ButtonBar name={name}/>
-        <Body name={name}/>  */}
-
-        {/* <SearchGroup />
-        <Body /> */}
+       
 
 
       </div>

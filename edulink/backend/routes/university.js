@@ -5,6 +5,7 @@ const nodemailer = require("nodemailer");
 let UniLog =require('../models/InstituteLogin.model')
 let SingleUni = require('../models/SingleUniversity.model');
 const Admission = require('../models/admission.model');
+const { Identity } = require('twilio/lib/twiml/VoiceResponse');
 
   router.route('/').get((req, res) => {
 
@@ -223,6 +224,21 @@ router.route('/signup')
     } catch (error) {
       console.error("Failed to update universities:", error);
       res.send(500);
+    }
+  });
+
+
+  router.route('/getUniId/:name').get(async (req, res) => {
+    try {
+      const name1 = req.params.name;
+      const id = await Uni.findOne({ name: name1 });
+
+      console.log(id.uniID);
+
+      
+      return res.json(id.uniID);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal server error' });
     }
   });
 

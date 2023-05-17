@@ -9,7 +9,8 @@ export default function AllUniversity(props) {
 
   return (
     <div>
-      <AllUniversityPage navigate={navigate}/>
+         {/* <Next Page navigate={navigate}/>*/}
+        <AllUniversityPage navigate={navigate}/> 
     </div>
   )
 

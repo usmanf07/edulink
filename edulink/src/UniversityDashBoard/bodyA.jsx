@@ -91,7 +91,7 @@ class BodyA extends React.Component{
 
     fetchAdmissionsOpen() {
       const unnid=sessionStorage.getItem('uniid');
-      console.log(unnid);
+
         axios.get(`http://localhost:8000/SingleInstitutePage/getprograms/${unnid}`)
             .then((response) => {
 

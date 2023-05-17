@@ -48,7 +48,8 @@ order: 4;
 }
 .RelatedInstitutes{
 order: 5;
-margin-top: 30%;
+margin-top: 10px;
+margin-bottom: 50px;
 }
 
 .addpicturebutton{
@@ -164,4 +165,7 @@ width:15rem;
 height: 12rem;
 }
 
+}
+.colr{
+    color:white;
 }

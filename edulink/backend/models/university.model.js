@@ -21,6 +21,10 @@ const universitySchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  scope:{
+
+    type: String,
+  },
   Namedisplay:{
     type: String,
     default: 'show'
@@ -29,7 +33,11 @@ const universitySchema = new mongoose.Schema({
     type: String,
     default: 'show'
   },
- 
+  premium:{
+    type: String,
+    default: 'false'
+  },
+
 });
 
 const University = mongoose.model('University', universitySchema);

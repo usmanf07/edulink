@@ -13,7 +13,7 @@ import { useLocation } from 'react-router-dom';
 
 // class MainPage extends React.Component{
   function MainPage(props){
-  
+
     const [InstituteName1, setInstituteName] = useState();
     const { name } = useParams();
     const [BigPicture, setBigPicture] = useState();
@@ -23,16 +23,18 @@ import { useLocation } from 'react-router-dom';
 
       console.log({name});
 
-      axios.get(`http://localhost:8000/SingleInstitutePage/${name.uniName}`)
+
+      axios.get(`http://localhost:8000/SingleInstitutePage/${name}`)
         .then((response) => {
           console.log(response.data);
           setInstituteName(response.data.instituteName);
           setBigPicture(response.data.bigPicture);
+          // alert(response.data.bigPicture);
         })
         .catch((error) => console.error('Failed to retrieve universities:', error));
 
 
-       
+
 
     }, []);
 
@@ -44,7 +46,7 @@ import { useLocation } from 'react-router-dom';
       <div className='mainpage'>
 
       <div className='upper_layer'>
-        <Nav/>
+
 
         <div className="picturebox" id="picture" picture>
           <div className="studentsInAStudyGroup008Wrapper" id="Pic_Container">
@@ -59,7 +61,7 @@ import { useLocation } from 'react-router-dom';
 
         <Desc name={name}/>
         <ButtonBar name={name}/>
-        <Body name={name}/> 
+        <Body name={name}/>
 
         {/* <SearchGroup />
         <Body /> */}

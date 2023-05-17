@@ -40,7 +40,7 @@ class BodyA extends React.Component{
         axios.get(`http://localhost:8000/SingleInstitutePage/${this.state.name}`)
             .then((response) => {
 
-                this.setState({ ProgramsList: response.data.programs, AdmissionsOpen:response.data.admissionsOpen ,imageNames:response.data.images}
+                this.setState({ ProgramsList: response.data.programs,imageNames:response.data.images}
                     );
                     // console.log("imageehbhebgevg    " + this.state.imageNames);
             })

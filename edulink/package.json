@@ -16,6 +16,7 @@
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "file-saver": "^2.0.5",
+    "filesaver": "^0.0.13",
     "firebase": "^9.22.0",
     "formidable": "^2.1.1",
     "googleapis": "^118.0.0",

@@ -18,7 +18,7 @@ const Featuresecondary = () => {
   const [userData, setuserData] = useState(null);
  
   const [fetchedinstitutesData, setfetchedinstitutesData] = useState([]);
-
+  
   useEffect(() => {
     axios.get('http://localhost:8000/university/recent-programs')
     .then((response) => {
@@ -165,7 +165,7 @@ useEffect(() => {
     vertical: true,
     autoplay: true,
     autoplaySpeed: 3000,
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
     arrows: false,
     dots: false,
@@ -198,8 +198,9 @@ useEffect(() => {
     const filteredData = [...institutesData, ...fetchedinstitutesData].filter((data) =>
       data.uniName.toLowerCase().includes(query.toLowerCase())
     );
+  
     
-    setVisibleData(filteredData);
+    setVisibleData(() => [...filteredData]);
   };
 
   return (
@@ -279,6 +280,7 @@ useEffect(() => {
 
 
             <Slider {...settings} ref={sliderRef}>
+              
   {visibleData.map((institute, index) => (
     <div key={institute.uniID} className="edulink__featuresecondary-instituteBox-info">
       <div className="edulink__featuresecondary-instituteBox">
@@ -312,11 +314,11 @@ useEffect(() => {
             </div>
           )}
           <div>
-            <h3>Last Date to Apply: {institute.lastApplyDate}</h3>
+            <h3>Last Date to Apply: {institute.lastApplyDate.slice(0, 10).replace(/-/g, "/")}</h3>
           </div>
         </div>
       </div>
-      <p>Posted On: {institute.updated}</p>
+      <p>Posted On: {institute.updated.slice(0, 10).replace(/-/g, "/")}</p>
     </div>
   ))}
 </Slider>

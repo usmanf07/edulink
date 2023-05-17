@@ -46,7 +46,6 @@ import { useLocation } from 'react-router-dom';
       <div className='mainpage'>
 
       <div className='upper_layer'>
-        
 
         <div className="picturebox" id="picture" picture>
           <div className="studentsInAStudyGroup008Wrapper" id="Pic_Container">

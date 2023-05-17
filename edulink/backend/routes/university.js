@@ -99,15 +99,22 @@ router.route('/admissions/:name').get((req, res) => {
     },
   });
 
-  // Create a multer instance for logo uploads
+
   const logoUpload = multer({ storage: logoStorage });
 
   router.route('/signup').post(logoUpload.single('logoFile'), async (req, res) => {
+
+
+
+router.route('/signup')
+  .post(async (req, res) => {
+
     const instituteName = req.body.instituteName;
     const email = req.body.email;
     const password = req.body.password;
     const scope = req.body.scope;
     const type = req.body.type;
+
     const logoFile = req.file; // Get the uploaded logo file
     
     try {
@@ -127,27 +134,34 @@ router.route('/admissions/:name').get((req, res) => {
         const uniLogId = savedUniLog._id;
   
         const name = instituteName;
+
         const address = 'default';
         const imageName = 'default'; // Store the filename in the database
        // console.log(logoFile.filename);
+
+
         // Create a new University document and set the uniID, scope, and type fields
         const newUniversity = new Uni({
           name,
           address,
           imageName,
+
           logo: logoFile.filename,
           uniID: uniLogId,
           scope,
           type,
         });
-          //console.log(newUniversity);
+
+
         const savedUniversity = await newUniversity.save();
   
         const newSingleUniversity = new SingleUni({
           uniID: uniLogId,
           instituteName: instituteName,
           emails: [email],
+
           googlemap: instituteName,
+
         });
   
         await newSingleUniversity.save();

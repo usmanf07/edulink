@@ -40,9 +40,12 @@
     margin-top: 20px;
     margin-left: 100px;
     display: flex;
+    color:white;
+    height:auto;
 
   }
   .mysearch{
+    
     background: url("../../assets/search-logo.svg") no-repeat;
     background-position: 20px ;
     background-color: #fff;
@@ -226,4 +229,20 @@ background-color: red;
 
   }
 
+}
+
+
+.suggestions {
+  list-style-type: none;
+  padding-top: 15px;
+}
+
+.suggestions li {
+  padding: 10px;
+}
+
+.suggestions li.active {
+  background-color: #2a444a;
+  border-radius: 10px;
+  /* border-color: white; */
 }

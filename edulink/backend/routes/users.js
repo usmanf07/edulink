@@ -43,6 +43,7 @@ router.route('/:email').get((req, res) => {
     .catch(err => res.status(400).json({ message: err.message }));
 });
 
+
 const stripe = require('stripe')('sk_test_51N7U7lFSLiunkCElv0MyvHgjcHswti7hoWahORPG6UEQHmKovVNI9RnJxlCyEmyqO9JufdWThyVwTlYzIcVNYl7800gfpBdT2x');
 
 router.route('/charge').post( async (req, res) => {

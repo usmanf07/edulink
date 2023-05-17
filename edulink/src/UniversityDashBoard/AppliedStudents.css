@@ -1,0 +1,56 @@
+.appliedStudentsTable{
+    background-color: rgb(219, 228, 250);
+    color: black;
+    width:90%;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    margin: 85px;
+    margin-top:0px ;
+
+}
+th{
+    font-size: 25px;
+    height: 60px;
+    justify-content: center;
+    /* text-align: center;  */
+    padding-top: 20px;
+}
+
+.UniNameAndButton{
+    width:100%;
+    padding: 85px;
+    padding-top: 40px;
+    display: flex;
+}
+.UniNameAndButton p{
+    order: 1;
+    flex: 80%;
+    font-size: 40px;
+    font-weight: 700;
+}
+.downloadReport{
+    order:2;
+    flex: 20%;
+}
+.buttons_{
+    display:flex;
+    gap: 20px;
+    justify-content: center;
+    padding: 5px;
+    padding-top: 10px;
+}
+.accept{
+    order:1;
+}
+.reject{
+    order:2;
+}
+ .appliedStudentsTable,td,tr,th {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  .appliedStudentsTable {
+    border: 10px solid rgb(255, 255, 255);
+  } 

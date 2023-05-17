@@ -51,8 +51,8 @@ class Body_Part1_AllUniPage extends React.Component{
 
         const placesArray = this.state.Universities_src.map((item, index) => {
           if (
-            item.Locationdisplay === 'show' 
-          &&
+            // item.Locationdisplay === 'show' 
+          // &&
           item.Namedisplay === 'show' &&
           
           (item.type == sharedVariable || sharedVariable == '')

@@ -26,6 +26,7 @@ const ApplicationSchema = new mongoose.Schema({
   additionalRequirements: {
     type: String
   },
+  
   appliedFor: {
     type: String,
     required: true

@@ -5,6 +5,7 @@ let RecentProgram = require('../models/recentPrograms.model');
 let UniLog =require('../models/InstituteLogin.model')
 let SingleUni = require('../models/SingleUniversity.model');
 const Admission = require('../models/admission.model');
+const { Identity } = require('twilio/lib/twiml/VoiceResponse');
 
   router.route('/').get((req, res) => {
 
@@ -44,7 +45,10 @@ const Admission = require('../models/admission.model');
 
       if (result) {
         // Institute exists with provided email and password
-        res.status(200).json({ message: result });
+        res.status(200).json({
+          message: "Signin successful",
+          id: result._id // Include the id of the institute in the response
+        });
       } else {
         // Institute doesn't exist with provided email and password
         res.status(401).json({ message: "Invalid name or password" });
@@ -222,7 +226,21 @@ router.route('/signup')
     }
   });
 
-  
+
+  router.route('/getUniId/:name').get(async (req, res) => {
+    try {
+      const name1 = req.params.name;
+      const id = await Uni.findOne({ name: name1 });
+
+      console.log(id.uniID);
+
+      
+      return res.json(id.uniID);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
 
 module.exports = router;
 

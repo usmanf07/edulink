@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const Features = () => {
   const totalInstitutesDisplay = 6;
-  const [activeCategory, setActiveCategory] = useState('University');
+  const [activeCategory, setActiveCategory] = useState('university');
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(totalInstitutesDisplay - 1);
   const [slideTransition, setSlideTransition] = useState(0);
@@ -12,15 +12,16 @@ const Features = () => {
   const [institutesData, setinstitutesData] = useState([]);
   // let filteredData = institutesData.filter(institute => institute.scope.toLowerCase() === activeCategory.toLowerCase());
   let filteredData = institutesData;
-  let visibleData = filteredData.slice(startIndex, endIndex + 1);
+  const [visibleData, setVisibleData] = useState(filteredData.slice(startIndex, endIndex + 1));
+ 
   
   useEffect(() => {
     axios.get('http://localhost:8000/university')
       .then((response) => {
-        console.log('Universities:', response.data);
+       // console.log('Universities:', response.data);
         
         const filteredInstitutes = response.data.filter(institute => institute.premium === 'false');
-        console.log('Premium Institutes:', filteredInstitutes);
+       // console.log('Premium Institutes:', filteredInstitutes);
   
         setinstitutesData(filteredInstitutes);
       })
@@ -30,7 +31,7 @@ const Features = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (endIndex === filteredData.length - 1) {
-        const categories = ['university', 'college', 'school'];
+        const categories = ['University', 'College', 'School'];
         const index = categories.indexOf(activeCategory);
         if (index === categories.length - 1) {
           setActiveCategory(categories[0]);
@@ -47,17 +48,29 @@ const Features = () => {
     return () => clearInterval(interval);
   }, [startIndex, endIndex, activeCategory]);
 
+  useEffect(() => {
+    filteredData = institutesData.filter(institute => institute.scope.toLowerCase() === activeCategory.toLowerCase());
+    console.log('Filter Institutes:', filteredData);
+    setVisibleData(filteredData.slice(startIndex, endIndex + 1));
+  }, [institutesData, activeCategory, startIndex, endIndex]);
 
 
   const handleCategoryClick = (category) => {
-
     setActiveCategory(category);
     setStartIndex(0);
     setEndIndex(totalInstitutesDisplay - 1);
-    filteredData = institutesData.filter(institute => institute.scope.toLowerCase() === activeCategory.toLowerCase());
-    visibleData = filteredData.slice(startIndex, endIndex + 1);
-
   };
+
+  // const handleCategoryClick = (category) => {
+
+  //   setActiveCategory(category);
+  //   setStartIndex(0);
+  //   setEndIndex(totalInstitutesDisplay - 1);
+  //   filteredData = institutesData.filter(institute => institute.scope.toLowerCase() === activeCategory.toLowerCase());
+  //   console.log('Filter Institutes:', filteredData);
+  //   visibleData = filteredData.slice(startIndex, endIndex + 1);
+
+  // };
 
   const handleLeftArrowClick = () => {
     setStartIndex(Math.max(0, startIndex - totalInstitutesDisplay));
@@ -83,9 +96,9 @@ const Features = () => {
     <div className="feature-box">
       <h2>Quick Apply to Our Premium Institutes</h2>
       <div className="category-buttons">
-        <button className={activeCategory === 'university' ? 'active' : ''} onClick={() => handleCategoryClick('university')}>Universities</button>
-        <button className={activeCategory === 'college' ? 'active' : ''} onClick={() => handleCategoryClick('college')}>Colleges</button>
-        <button className={activeCategory === 'school' ? 'active' : ''} onClick={() => handleCategoryClick('school')}>Schools</button>
+        <button className={activeCategory === 'University' ? 'active' : ''} onClick={() => handleCategoryClick('University')}>Universities</button>
+        <button className={activeCategory === 'College' ? 'active' : ''} onClick={() => handleCategoryClick('College')}>Colleges</button>
+        <button className={activeCategory === 'School' ? 'active' : ''} onClick={() => handleCategoryClick('School')}>Schools</button>
       </div>
       <hr />
       <div className={`institute-list ${slideTransition ? 'slide' : ''}`}>

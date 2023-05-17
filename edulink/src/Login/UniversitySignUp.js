@@ -15,7 +15,7 @@ export default function UniversitySignUp() {
   const [error, setError] = useState(null)
   const [scope, setScope] = useState('');
   const [type, setType] = useState('');
-
+  const [logoFile, setLogoFile] = useState(null);
 
 
   const navigate =useNavigate ();
@@ -45,6 +45,13 @@ export default function UniversitySignUp() {
       errorMessage = 'Please select a scope';
     } else if (!type) {
       errorMessage = 'Please select a type';
+    }
+    if (!logoFile) {
+      errorMessage = 'Logo is required';
+    } else if (logoFile.size > 300 * 1024) {
+      errorMessage = 'Logo size should be less than 300KB';
+    } else if (!logoFile.type.includes('image')) {
+      errorMessage = 'Logo should be in image format (JPG, JPEG, PNG)';
     }
     setError(errorMessage)
 
@@ -154,6 +161,15 @@ export default function UniversitySignUp() {
             <option value='public'>Public</option>
             <option value='private'>Private</option>
           </select>
+          <label htmlFor="logo">Logo</label>
+          <input
+            type="file"
+            id="logo"
+            accept=".jpg, .jpeg, .png"
+            onChange={(event) => setLogoFile(event.target.files[0])}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+          />
 
           <div className='error'>{error}</div>
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './header.css'
 import SimpleSlider from './SimpleSlider';
-
-
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const data = ["FAST National University","FAST NUCES Islamabad","FAST-NUCES | Karachi","Comsats", "Lahore University","NUST Islamabad", "LUMS","UET Lahore"];
 
 
@@ -33,34 +33,41 @@ const Header = (props) => {
   const [suggestions, setSuggestions] = useState([]);
   const [suggestionIndex, setSuggestionIndex] = useState(0);
   const [suggestionsActive, setSuggestionsActive] = useState(false);
+  const history = useNavigate();
 
 
-  const handleChange = (e) => {
-    
-      const query = e.target.value.toLowerCase();
-      // setValue(query);
-      setInstitute(e.target.value);
+  const handleChange = async (e) => {
+    const query = e.target.value.toLowerCase();
+    setInstitute(e.target.value);
   
-      if (query.length >= 4) {
-        const filterSuggestions = data.filter(
-          (suggestion) =>
-            suggestion.toLowerCase().indexOf(query) > -1
-        );
-        setSuggestions(filterSuggestions);
+    if (query.length >= 4) {
+      try {
+        const response = await axios.get('http://localhost:8000/fetchInstitutes/auto-suggest', {
+          params: {
+            query: query,
+          },
+        });
+  
+        const suggestions = response.data.suggestions;
+        setSuggestions(suggestions);
         setSuggestionsActive(true);
-      } else {
-        setSuggestionsActive(false);
+      } catch (error) {
+        console.error(error);
+        // Handle error
       }
-    
-    
+    } else {
+      setSuggestionsActive(false);
+    }
   };
 
-  const handleClick = (e) => {
-    setSuggestions([]);
-    // setValue(e.target.innerText);
-    setInstitute(e.target.innerText);
-    setSuggestionsActive(false);
+  const handleClick = (suggestion) => {
+    if (suggestion.isRegistered) {
+      window.open(`http://localhost:3000/SingleInstitutePage/${suggestion.url}`, '_blank');
+    } else {
+      window.open(suggestion.url, '_blank');
+    }
   };
+  
 
   const handleKeyDown = (e) => {
 
@@ -108,16 +115,18 @@ const Header = (props) => {
         {topSuggestions.map((suggestion, index) => {
           return (
             <li
+              style={{ cursor: 'pointer' }}
               className={index === suggestionIndex ? 'active' : ''}
               key={index}
-              onClick={handleClick}
+              onClick={() => handleClick(suggestion)}
             >
-              {suggestion}
+              {suggestion.title}
             </li>
           );
         })}
       </ul>
     );
+    
   };
 
 
@@ -142,7 +151,9 @@ const Header = (props) => {
             onKeyDown={handleKeyDown}
             > 
           </input>
+       
           {suggestionsActive && <Suggestions />}
+          
         </div>
 
 

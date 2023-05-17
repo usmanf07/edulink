@@ -4,7 +4,6 @@ import "./MainPage.css";
 import University_Description from '../UniversityDashBoard/University_Description';
 import ButtonBar from '../UniversityDashBoard/buttons_bar';
 import Body from '../UniversityDashBoard/Body';
-import Nav  from '../components/navbar/Navbar';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import NameChange from './NameChange';

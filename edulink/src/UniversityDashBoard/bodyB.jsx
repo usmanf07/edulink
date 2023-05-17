@@ -14,12 +14,17 @@ class BodyB extends React.Component{
             [],
             RelatedInstitutes:
             [],
+            type:"",
             GoogleMap:"",
             name: props.name,
             newlocation:"",
             isEditing:"",
             editingEmail: "",
-            emailchange:""
+            emailchange:"",
+            scope:"",
+            isScopeEditing: false,
+
+
         }
     }
 
@@ -43,28 +48,45 @@ class BodyB extends React.Component{
         }
       }
 
-      handleEdit = () => {
+      handleIsEdit = () => {
         this.setState({ isEditing: true });
       }
+
 
       handleCancel = () => {
         this.setState({ isEditing: false });
       }
+      async componentDidMount() {
 
-    componentDidMount() {
+
+
+
+        const uniid = sessionStorage.getItem("uniid");
+
+        axios.get(`http://localhost:8000/SingleInstitutePage/getType/getscope/${uniid}`)
+          .then((response) => {
+            // this.setState({ scope: response.data.scope, type: response.data.type });
+            this.setState({type:response.data.type});
+            this.setState({scope:response.data.scope});
+
+          })
+          .catch((error) => console.error('there is an error', error));
 
         axios.get(`http://localhost:8000/SingleInstitutePage/${this.state.name}`)
-            .then((response) => {
+          .then((response) => {
+            this.setState({
+              Location: response.data.location[0],
+              Email: response.data.emails,
+              Inquiry: response.data.inquiries,
+              RelatedInstitutes: response.data.relatedInstitutes,
+              GoogleMap: response.data.googlemap,
 
-                this.setState({ Location: response.data.location[0], Email:response.data.emails ,Inquiry:response.data.inquiries,RelatedInstitutes:response.data.relatedInstitutes
-                    ,GoogleMap: response.data.googlemap}
-                    );
-                    // console.log("imageehbhebgevg    " + this.state.imageNames);
-            })
-            .catch((error) => console.error('Failed to retrieve universities:', error));
+            });
+          })
+          .catch((error) => console.error('Failed to retrieve universities:', error));
+
+
       }
-
-
 
     handleEdit = (email) => {
         this.setState({ emailchange: email });
@@ -80,6 +102,14 @@ class BodyB extends React.Component{
 
 
     }
+    handleScopeCancel = () => {
+        this.setState({ isScopeEditing: false });
+      };
+
+      handleScopeCancel = () => {
+        this.setState({ isScopeEditing: false });
+      };
+
 
     handleEmailConfirm = async (temp) => {
         try {
@@ -99,20 +129,44 @@ class BodyB extends React.Component{
         this.setState({ editingEmail: index });
       }
 
+
+
+      handleScopeConfirm = async () => {
+        alert("ok");
+        this.setState({ isScopeEditing: false });
+
+      }
+
+
+
+      handleScopeChange = (event) => {
+        this.setState({ scope: event.target.value });
+      }
+      handleIsScopeEdit = () => {
+        this.setState({ isScopeEditing: true });
+      };
+
+
+
+
     render(){
         const isEditing = this.state.isEditing;
         const Location = this.state.Location;
         const editingEmail = this.state.editingEmail;
+        const temp = this.state.scope;
+
+        const  isScopeEditing = this.state.isScopeEditing;
+        const scope=this.state.scope;
         return(
             <div className='bodyB'>
-            {/* <ButtonBar /> */}
+
 
 
 
             <div className='AdmissionOffice'>
                 <h>Admission Office</h>
                 <iframe className="gmap_iframe" src={`https://maps.google.com/maps?q=${this.state.GoogleMap}&output=embed`} ></iframe>
-                {/* <img src={Map}></img> */}
+
             </div>
 
             <div className='Location'>
@@ -136,8 +190,8 @@ class BodyB extends React.Component{
         <div className='editSymbolwhite' >
             <p>{this.state.Location}</p>
 
-            <div className='editPicture' onClick={this.handleEdit}>
-              <img src="/edit-16.png" alt="My Image" />
+            <div className='editPicture' onClick={this.handleIsEdit}>
+              <img src="/edit-icon-16.png" alt="My Image" />
             </div>
           </div>
 
@@ -164,7 +218,7 @@ class BodyB extends React.Component{
                                 <div className='myemailflex'>
                                     <p>{email}</p>
                                     <div className='editPicture' onClick={() => this.handleEmailEdit(index)}>
-                                        <img src="/edit-16.png" alt="My Image" />
+                                        <img src="/edit-icon-16.png" alt="My Image" />
                                     </div>
                                 </div>
                             }
@@ -173,39 +227,33 @@ class BodyB extends React.Component{
                 </ul>
             </div>
 
-            <div className='Inquiries'>
-                <h>Inquiries</h>
-                <ul>
-                {this.state.Inquiry.map( (inq)=>
+            {/* <div className='Inquiries'>
+                <h> Scope</h>
+                <div className='myemailflex'>
+                 <p >{this.state.type}</p>
 
-                (inq.helpline &&
-                <li>Helpline : {inq.helpline}</li>)
-
-                ||
-
-                (inq.officialWebsite &&
-                <li>Official Website : {inq.officialWebsite}</li>)
-
-                ||
-
-                (inq.Facebook &&
-                <li>Facebook : {inq.Facebook}</li>  )
+                    <div className='editPicture'>
+                        <img src="/edit-icon-16.png" alt="My Image" />
+                    </div>
+                 </div>
+            </div> */}
 
 
 
-                )}
 
-                </ul>
+            <div className="Inquiries">
+              <h>Scope</h>
+
+              <p>{scope}</p>
+
             </div>
 
-            <div className='RelatedInstitutes'>
-                <h>RelatedInstitutes</h>
-                <ul>
-                {this.state.RelatedInstitutes.map( (rel_Ins)=>
 
-                <li>{rel_Ins}</li>
-                )}
-                </ul>
+
+
+            <div className='RelatedInstitutes'>
+            <h> Type</h>
+             <p>{this.state.type}</p>
             </div>
 
             </div>

@@ -21,6 +21,10 @@ const universitySchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  scope:{
+
+    type: String,
+  },
   Namedisplay:{
     type: String,
     default: 'show'

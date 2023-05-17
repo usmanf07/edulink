@@ -27,6 +27,12 @@ class University_Description extends React.Component {
     addProgram = () => {
       this.props.onAddProgram();
     }
+    showalltest =() =>
+    {
+      this.props.navigate(`/universitydash/${this.name}/showtest`);
+
+
+    }
 
     render(){
         return (
@@ -36,7 +42,7 @@ class University_Description extends React.Component {
 
             <button className="button_bar_btns" onClick={this.addProgram}>Add A Program</button>
             <button className="button_bar_btns" onClick={this.showmaketest}>Make a test</button>
-
+            <button className="button_bar_btns" onClick={this.showalltest}>show all texts</button>
           </div>
 
         )

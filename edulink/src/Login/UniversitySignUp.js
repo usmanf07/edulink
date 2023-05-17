@@ -13,7 +13,8 @@ export default function UniversitySignUp() {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState(null)
-
+  const [scope, setScope] = useState('');
+  const [type, setType] = useState('');
 
 
 
@@ -40,6 +41,11 @@ export default function UniversitySignUp() {
     } else if (password !== confirmPassword) {
       errorMessage = 'Passwords do not match'
     }
+    else if (!scope) {
+      errorMessage = 'Please select a scope';
+    } else if (!type) {
+      errorMessage = 'Please select a type';
+    }
     setError(errorMessage)
 
     if (errorMessage === null) {
@@ -53,19 +59,22 @@ export default function UniversitySignUp() {
     event.target.style.backgroundColor = 'yellow'
   }
   const verifyUniversitySignUp = (instituteName, email, password) => {
+    axios
+      .post('http://localhost:8000/university/signup', {
+        instituteName: instituteName,
+        email: email,
+        password: password,
+        scope: scope,
+        type: type,
+      })
+      .then((response) => {
+        setError(response.data.message);
+      })
+      .catch((error) => {
+        setError(error.response.data.message);
+      });
+  };
 
-
-
-    axios.post('http://localhost:8000/university/signup', {
-      instituteName: instituteName,
-      email: email,
-      password: password
-    }).then(response => {
-      setError(response.data.message);
-    }).catch(error => {
-     setError(error.response.data.message);
-    });
-  }
 
   const handleBlur = (event) => {
     event.target.style.backgroundColor = 'white'
@@ -111,26 +120,52 @@ export default function UniversitySignUp() {
           <label htmlFor='confirmPassword'>Confirm Password</label>
           <input
             type='password'
+            id='confirmPassword'
             onFocus={handleFocus}
             onBlur={handleBlur}
-            id='confirmPassword'
             value={confirmPassword}
             onChange={(event) => setConfirmPassword(event.target.value)}
           />
+
+          <label htmlFor='scope'>Scope</label>
+          <select
+            id='scope'
+            value={scope}
+            onChange={(event) => setScope(event.target.value)}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+          >
+            <option value=''>Select a scope</option>
+            <option value='college'>College</option>
+            <option value='university'>University</option>
+            <option value='school'>School</option>
+          </select>
+
+          <label htmlFor='type'>Type</label>
+          <select
+            id='type'
+            value={type}
+            onChange={(event) => setType(event.target.value)}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+          >
+            <option value=''>Select a type</option>
+            <option value='overseas'>Overseas</option>
+            <option value='public'>Public</option>
+            <option value='private'>Private</option>
+          </select>
 
           <div className='error'>{error}</div>
 
           <button className='next' type='submit'>
             Submit
-          </button><br>
-          </br>
-
-
-        </form>
-        <button className='next' onClick={OpenInstitutes} >
-            Login
           </button>
+        </form>
+        <button className='next' onClick={OpenInstitutes}>
+          Login
+        </button>
       </div>
     </div>
-  )
+  );
+
 }

@@ -46,10 +46,8 @@ export default function UniversitySignIn() {
         // console.log(response.data);
         const { message, id } = response.data;
         setError(message);
+
         sessionStorage.setItem('uniid', id);
-
-
-
 
 
 
@@ -59,6 +57,7 @@ export default function UniversitySignIn() {
         setError(error.response.data.message);
         // handle sign in error here
       });
+
   };
 
 

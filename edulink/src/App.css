@@ -111,7 +111,7 @@ a{
     background-color: grey;
     border: 1px solid black;
 
-   height: 700px; 
+   height: 700px;
     align-items: center;
 
 
@@ -120,9 +120,58 @@ a{
 
   border: 1px solid black;
 
+ }
 
 
+ .unitest{
+  margin-top: 100px;
+  color:black;
+  background-color: white;
+  width: 80%;
+  padding: 40px 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  border-radius:100px;
+ }
 
-
+ .universitytest{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
  }
+
+.setpara{
+  font-weight: bold;
+  margin-top: 5px;
+  font-family: 'manrope';
+
+
+}
+.unitest button{
+  padding: 5px 5px;
+  border-radius: 10px;
+  color: white;
+  border-color: dodgerblue;
+  background-color: dodgerblue;
+
+
+}
+.unitest input{
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+}
+.setbutn{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  justify-content: space-around;
+
+}
+.mysubmit{
+  margin-top: 10px;
+}

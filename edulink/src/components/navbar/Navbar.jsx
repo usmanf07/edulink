@@ -30,6 +30,10 @@ const Navbar = (props) => {
   }, []);
   
   const [email, setEmail] = useState('');
+
+  
+  
+
   useEffect(() => {
     // Get sessionId and email from sessionStorage
     const sessionId = sessionStorage.getItem('sessionId');

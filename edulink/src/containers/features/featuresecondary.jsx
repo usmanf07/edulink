@@ -12,7 +12,6 @@ import OutsiderInstitute from '../../outsiderInstitutePage/OutsiderInstitute';
 const Featuresecondary = () => {
 
   const sliderRef = useRef(null);
-
   
   const [institutesData, setinstitutesData] = useState([]);
   const [showConfirmation, setConfirmation] = useState(false);
@@ -44,6 +43,7 @@ const Featuresecondary = () => {
   };
 
 
+
   const handleRegisteredChange = (e) => {
     const option = e.target.value;
     
@@ -58,7 +58,6 @@ const Featuresecondary = () => {
       setVisibleData(fetchedinstitutesData);
     }
   };
-
 
 
 useEffect(() => {
@@ -145,6 +144,21 @@ useEffect(() => {
     }
   };
 
+  const handleRegisteredChange = (e) => {
+    const option = e.target.value;
+    
+    if (option === 'all') {
+      const allData = [...fetchedinstitutesData, ...institutesData];
+      setVisibleData(allData);
+    } else if (option === 'reg') {
+      
+      setVisibleData(institutesData);
+    } else if (option === 'notreg') {
+    
+      setVisibleData(fetchedinstitutesData);
+    }
+  };
+  
   const sortByDeadline = () => {
     const sortedData = [...institutesData].sort((a, b) => {
       const dateA = new Date(a.lastApplyDate.split('/').reverse().join('-'));

@@ -175,3 +175,47 @@ a{
 .mysubmit{
   margin-top: 10px;
 }
+.showtest{
+  display: flex;
+  justify-content: center;
+
+
+}
+.showtest1{
+  color:black;
+  background-color: white;
+  width: 80%;
+
+  padding: 20px 50px;
+}
+
+.showtest1 h2{
+  margin-top: 10px;
+
+}
+.listdec{
+
+  list-style-type: none;
+  margin-top: 20px;
+
+
+}
+.setmargin{
+  margin-left: 0px;
+
+}
+.testlis{
+  width: 90%;
+  background-color: dodgerblue;
+  margin-top: 3px;
+  border-radius: 5px;
+  padding: 15px 10px;
+  text-align: center;
+  color:white;
+  box-shadow: inset 6px 6px 6px white, inset -6px -6px 6px white;
+  transition: transform 0.3s ease;
+}
+.testlis:hover {
+  transform: scale(1.1);
+  box-shadow: inset 6px 6px 6px dodgerblue, inset -6px -6px 6px dodgerblue;
+}

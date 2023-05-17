@@ -13,7 +13,33 @@ router.route('/').get((req, res) => {
   });
 
 
+
+
+
+router.route('/getType/getscope/:uniId').get(async (req, res) => {
+  const { uniId } = req.params;
+
+  try {
+    // Assuming you have a database model for universities
+    const University = await university.findOne({ uniID:uniId });
+
+    if (!University) {
+      return res.status(404).json({ message: 'University not found' });
+    }
+
+    // Extract the type and scope from the university object
+    const { type, scope } = University;
+
+    res.json({ type, scope });
+  } catch (error) {
+    console.error('Failed to get type and scope:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 //add apply program
+
+
 
 
   router.route('/insertprogram/addnewprogram')
@@ -296,6 +322,21 @@ router.route('/:name/programs/:programName/domains/:newDomain').get( (req, res) 
       res.status(400).json({ message: 'Error adding test', error: error });
     }
   });
+
+
+  router.route('/tests/total/:uniid').get(async (req, res) => {
+    const uniid = req.params.uniid; // Extract the university ID from the route parameter
+
+    try {
+      const totalTests = await Test.countDocuments({ uniid });
+
+      res.json({ totalTests });
+    } catch (error) {
+      console.error('Failed to get total tests:', error);
+      res.status(400).json({ message: 'Error getting total tests', error: error });
+    }
+  });
+
 
 
   router.route('/add').post((req, res) => {

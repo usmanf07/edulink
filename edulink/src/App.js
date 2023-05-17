@@ -24,6 +24,7 @@ import AppliedStudents from './UniversityDashBoard/AppliedStudents'
 import UniTest from './UniTest';
 
 import { Navbar } from './components';
+import TestList from './TestList';
 
 import { Footer } from './containers';
 
@@ -39,7 +40,7 @@ const App = () => {
           <Route path='/' element={<Home/>}/>
           <Route path='/:id/' element={<Home/>}/>
           <Route path='/login'  element={<Log />}/>
-          
+
           <Route path='/UserApplications' element={<UserApplications/>}/>
           <Route path='/EditProfile' element={<EditProfile/>}/>
           <Route path="/EntryTest" element={<EntryTest />}  />
@@ -50,7 +51,7 @@ const App = () => {
           <Route path="/AllUniversityPage" element={<AllUniversity />}  />
           <Route path="/SingleInstitutePage/:name" element={<SingleInstitutePage />}  />
           <Route path="/OutsiderInstitute" element={<OutsiderInstitute />}  />
-         
+
           {/* <Route path="/SignUp" element={<Log />}  /> */}
           <Route path="/signup" element= {<MainSignUp/>} />
           <Route path="/universitydash/:name" element= {<Mainpage/>} />
@@ -60,6 +61,8 @@ const App = () => {
           <Route path="/signin/university/" element= {<Log/>} />
           
           <Route path="/universitydash/:name/maketest" element= { <UniTest/>} />
+
+          <Route path="/universitydash/:name/showtest" element={<TestList/>} />
       </Routes>
       <Footer/>
 

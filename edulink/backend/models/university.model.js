@@ -29,6 +29,10 @@ const universitySchema = new mongoose.Schema({
     type: String,
     default: 'show'
   },
+  premium:{
+    type: String,
+    default: 'false'
+  },
  
 });
 

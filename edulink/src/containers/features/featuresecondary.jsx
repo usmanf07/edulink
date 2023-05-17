@@ -12,15 +12,13 @@ import OutsiderInstitute from '../../outsiderInstitutePage/OutsiderInstitute';
 const Featuresecondary = () => {
 
   const sliderRef = useRef(null);
-  
   const [institutesData, setinstitutesData] = useState([]);
   const [showConfirmation, setConfirmation] = useState(false);
   const [email, setEmail] = useState('');
   const [userData, setuserData] = useState(null);
  
   const [fetchedinstitutesData, setfetchedinstitutesData] = useState([]);
-  const [error, setError] = useState(null);
- 
+
   useEffect(() => {
     axios.get('http://localhost:8000/university/recent-programs')
     .then((response) => {
@@ -89,9 +87,15 @@ useEffect(() => {
     setEmail(email);
   }, []);
 
+  const [error, setError] = useState('');
   const handleApplyConfirm = async (index) => {
 
-    
+    if(email === '' || email === null) {
+      setConfirmation(false);
+      setError('Please Login to Apply'); // Log error message
+      return;
+    }
+
     const selectedInstitute = institutesData[index];
     //console.log(selectedInstitute.program);
     
@@ -106,6 +110,7 @@ useEffect(() => {
         uniID: selectedInstitute.uniID,
         
       });
+      setError('Applied Successfully');
       setConfirmation(false);
       console.log(response.data); // Log success message
     } catch (error) {
@@ -261,7 +266,9 @@ useEffect(() => {
           </div>
 
           <hr></hr>
+         
           <div className='edulink__featuresecondary-institutes'>
+          <p style={{color:'red'}}>{error}</p>
             <div onClick={handleUpArrowClick}>
                <svg fill="#000000" version="1.1" id="up-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 330">
                 <path id="XMLID_224_" d="M325.606,229.393l-150.004-150C172.79,76.58,168.974,75,164.996,75c-3.979,0-7.794,1.581-10.607,4.394
@@ -292,7 +299,7 @@ useEffect(() => {
         <div className="edulink__featuresecondary-institute-apply">
           {!showConfirmation[index] ? (
             <div>
-              <button onClick={() => setConfirmation(prevState => ({ ...prevState, [index]: true }))}>Apply Now!</button>
+              <button onClick={() => setConfirmation(prevState => ({ ...prevState, [index]: true }))}>Apply Now</button>
             </div>
           ) : (
             <div>

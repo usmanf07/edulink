@@ -297,7 +297,7 @@ useEffect(() => {
             </div>
           </Link>
         
-        </div>
+        </div>  
         <div className="edulink__featuresecondary-institute-apply">
           {!showConfirmation[index] ? (
             <div>

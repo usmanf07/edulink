@@ -20,16 +20,20 @@ import OtpPage from './Login/otpPage';
 import EntryTest from './EntryTest/EntryTest';
 import OutsiderInstitute from './outsiderInstitutePage/OutsiderInstitute';
 import AppliedStudents from './UniversityDashBoard/AppliedStudents'
+
+import UniTest from './UniTest';
+
 import { Navbar } from './components';
 import UniTest from './UniTest';
 import { Footer } from './containers';
+
 
 const App = () => {
 
   return (
     <div className="App">
       <div className="gradient_bg">
-        <Navbar/>
+      <Navbar />
       <Routes>
 
           <Route path='/' element={<Home/>}/>

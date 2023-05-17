@@ -26,7 +26,7 @@ const Featuresecondary = () => {
     .then((response) => {
       console.log('Universities:', response.data);
       setinstitutesData(response.data);
-      
+
     })
       .catch((error) => console.error('Failed to retrieve universities:', error));
   }, []);
@@ -57,8 +57,7 @@ const Featuresecondary = () => {
     }
   };
 
- 
-  
+
 useEffect(() => {
   const fetchInstitutes = async () => {
   

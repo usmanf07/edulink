@@ -23,12 +23,16 @@ router.route('/').get((req, res) => {
             const href = 'https://mycareers.pk' + cols.eq(2).find('a').attr('href');
             const lastApplyDate = cols.eq(3).text().trim();
             const updated = cols.eq(1).text().trim();
-            const logo = "http://localhost:8000/images/pic1.jpeg"
+            const filenames = ["pic1.jpeg", "pic2.jpeg", "pic3.jpeg", "pic4.jpeg", "pic5.jpeg"];
+            const randomIndex = Math.floor(Math.random() * filenames.length);
+            const randomFilename = filenames[randomIndex];
+            const logo = `${randomFilename}`;
             jobs.push({
               uniID,
               uniName,
               href,
               lastApplyDate,
+              logo: logo,
               program: "all programs",
               updated
             });

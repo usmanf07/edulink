@@ -13,7 +13,7 @@ const MainPage = (props) => {
   return (
     <div className='mainpage'>
       {/* {alert(props.mycolor)} */}
-    <Nav/>
+    {/* <Nav/> */}
     <div className='upper_layer'>
 
       <div className="picturebox" id="picture" picture>

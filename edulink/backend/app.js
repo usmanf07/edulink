@@ -43,6 +43,9 @@ app.use('/university', usersRouter);
 const signin = require('./routes/signin');
 app.use('/login',signin);
 
+const signup = require('./routes/signup');
+app.use('/signup',signup);
+
 const SingleInstitute = require('./routes/SingleUniversity');
 app.use('/SingleInstitutePage',SingleInstitute);
 

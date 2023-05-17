@@ -34,6 +34,9 @@ const Navbar = (props) => {
     // Get sessionId and email from sessionStorage
     const sessionId = sessionStorage.getItem('sessionId');
     const email = sessionStorage.getItem('email');
+    const isGoogle = sessionStorage.getItem('isGoogle');
+    //alert(email)
+   
     console.log(email)
    
     if(email === null) {  
@@ -44,18 +47,19 @@ const Navbar = (props) => {
     else{
       axios.get(`http://localhost:8000/users/${email}`)
       .then(res => {
+        
         const userData = res.data;
         setName(userData.fullName);
-        
-   
+        setEmail(email);
+        setIsLogin(true);
       })
       .catch(err => {
         console.log(err);
       });
   
-      setIsLogin(true);
+      
     }
-    setEmail(email);
+    
   }, []);
 
   const navigate = useNavigate();
@@ -68,12 +72,9 @@ const Navbar = (props) => {
   const searchClassNames = `edulink__navbar-search ${showSearchBar ? 'visible' : ''}`;
 
   const handleLogout = () => {
-  localStorage.setItem("email", "");
-  localStorage.setItem("phone", "");
-  localStorage.setItem("loggedin", false);
-  history('/home', { replace: true } ); // use replace instead of push to prevent going back to the previous page
-  window.location.reload(); // refresh the page
-
+  
+  history('/login', { replace: true } ); // use replace instead of push to prevent going back to the previous page
+ 
 };
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleDropdown = () => {
@@ -93,7 +94,7 @@ const Navbar = (props) => {
           <p><a href="#features">Contact</a></p> */}
           {!isLogin ? (
               <p>
-                <a href="#institute">eduInstitute</a>
+               <Link to="/signup"><a href="#">eduInstitute</a></Link>
               </p>
             ) : (
               <p>

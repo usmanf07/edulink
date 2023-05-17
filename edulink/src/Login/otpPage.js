@@ -45,7 +45,7 @@ function OtpPage(props) {
   
     return (
         <div>
-             <Navbar login={false} />
+             {/* <Navbar login={false} /> */}
              
       <div className="otp_container">
         <div>

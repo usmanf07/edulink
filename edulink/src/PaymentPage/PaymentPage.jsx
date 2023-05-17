@@ -52,7 +52,7 @@ export default function PaymentPage() {
   return (
 
     <div>
-        <Navbar login={isLogin} name={email} />
+        {/* <Navbar login={isLogin} name={email} /> */}
         <div className='paymentPage'>
        
         <CreditCard handleCreditCardInfo={handleCreditCardInfo} setWaitPayment={setWaitPayment} message={message}/>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import "./AppliedStudents.css";
-import Nav  from '../components/navbar/Navbar';
 import ExcelDownloadButton from './ExcelDownloadButton';
 
 function AppliedStudents(props){

@@ -258,7 +258,7 @@ export default function EditProfile() {
 
   return (
     <div>
-      <Navbar login={isLogin} name={fullName} />
+      {/* <Navbar login={isLogin} name={fullName} /> */}
       <div className="editProfile">
         <div className="editProfile__header">
           

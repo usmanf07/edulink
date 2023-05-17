@@ -31,7 +31,7 @@ const EntryTest = () => {
 
     return (
         <div>
-          <Navbar />
+          {/* <Navbar /> */}
           <div className='entryTest'>
             
                 <h1>Sample Entry Test Prep</h1>

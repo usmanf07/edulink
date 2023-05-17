@@ -43,6 +43,9 @@ app.use('/university', usersRouter);
 const signin = require('./routes/signin');
 app.use('/login',signin);
 
+const signup = require('./routes/signup');
+app.use('/signup',signup);
+
 const SingleInstitute = require('./routes/SingleUniversity');
 app.use('/SingleInstitutePage',SingleInstitute);
 
@@ -87,13 +90,13 @@ app.use('/fetchinstitutes', fetchinstitutesRouter);
 //         if(check)
 //         {
 
-           
-              
+
+
 //             // True condition to be logged in
 //             req.session.userId = check.email;
 //             console.log(req.session.userId);
 
-            
+
 
 //             // var c = res.cookie('userId', check._id, { maxAge: 30 * 24 * 60 * 60 }); // Set a cookie that expires in 30 days
 //             // console.log(c);

@@ -42,7 +42,7 @@ function OutsiderInstitute()
       
   return (
     <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <div className='outsiderInstitute'>
             <p>*This institute is currently not a member of our website!</p>
             <div className='outsiderInstitute__container'>

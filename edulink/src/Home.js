@@ -7,10 +7,25 @@ import { useLocation, useParams } from 'react-router-dom';
 
 
 export default function Home() {
-
+  
   const [isLogin, setIsLogin] = useState(sessionStorage.getItem('email'));
   const [email, setEmail] = useState('');
+
+ 
+  
+  
   useEffect(() => {
+    let reloadCount = sessionStorage.getItem('reloadCount');
+  reloadCount = reloadCount ? Number(reloadCount) : 0;
+
+  if (reloadCount < 2) {
+    sessionStorage.setItem('reloadCount', String(reloadCount + 1));
+    if (reloadCount === 0) {
+      window.location.reload();
+    }
+  } else {
+    sessionStorage.removeItem('reloadCount');
+  }
     // Get sessionId and email from sessionStorage
     const sessionId = sessionStorage.getItem('sessionId');
     const email = sessionStorage.getItem('email');
@@ -31,7 +46,7 @@ export default function Home() {
   return (
     <div>
 
-      <Navbar login={isLogin} name={email} />
+      {/* <Navbar login={isLogin} name={email} /> */}
       <Header />
       <Features />
       <Featuresecondary />

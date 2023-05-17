@@ -23,6 +23,7 @@ const inquirySchema = new mongoose.Schema({
 });
 
 const instituteSchema = new mongoose.Schema({
+  uniID:{type:String},
   instituteType: {type:String },
   instituteName: { type: String, required: true },
   bigPicture: { type: String ,default:null},

@@ -13,6 +13,7 @@ const Featuresecondary = () => {
 
   const sliderRef = useRef(null);
 
+  
   const [institutesData, setinstitutesData] = useState([]);
   const [showConfirmation, setConfirmation] = useState(false);
   const [email, setEmail] = useState('');
@@ -42,6 +43,7 @@ const Featuresecondary = () => {
     setQueryParams((prevState) => ({ ...prevState, cityID: selectedCity }));
   };
 
+
   const handleRegisteredChange = (e) => {
     const option = e.target.value;
     
@@ -56,6 +58,7 @@ const Featuresecondary = () => {
       setVisibleData(fetchedinstitutesData);
     }
   };
+
 
 
 useEffect(() => {
@@ -91,6 +94,20 @@ useEffect(() => {
     sliderRef.current.slickNext();
   };
 
+  const handleRegisteredChange = (e) => {
+    const option = e.target.value;
+    
+    if (option === 'all') {
+      const allData = [...fetchedinstitutesData, ...institutesData];
+      setVisibleData(allData);
+    } else if (option === 'reg') {
+      
+      setVisibleData(institutesData);
+    } else if (option === 'notreg') {
+    
+      setVisibleData(fetchedinstitutesData);
+    }
+  };
   useEffect(() => {
     // Get sessionId and email from sessionStorage
     const sessionId = sessionStorage.getItem('sessionId');

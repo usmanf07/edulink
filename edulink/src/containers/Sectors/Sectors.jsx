@@ -1,6 +1,22 @@
 import React from 'react'
 import './sectors.css'
+import { useHistory } from 'react-router-dom';
+import { sharedVariable, setSharedVariable } from '../All_UniversitiesPage_Components/sharedFile';
+import { useNavigate } from 'react-router-dom';
+
 const Sectors = () => {
+
+  const history = useNavigate();
+
+  const updateCategory = (c) => {
+    console.log(c);
+    setSharedVariable(c);
+
+    history('/AllUniversityPage');
+    // history.push('/AllUniversityPage');
+
+  }
+
   return (
     <div className='edulink__sectors'>
         <div className='text2'>
@@ -10,7 +26,9 @@ const Sectors = () => {
 
       <div className='allSectors'>
 
-        <div className='sectors'>
+
+
+        <div onClick={() => updateCategory("private")} className='sectors'>
           <div className='group1'>
             <img src="frame.svg" />
           </div>
@@ -21,18 +39,18 @@ const Sectors = () => {
               <div className='pa'>
                   <p>Choose from the best private sector institutions for your future in Pakistan</p>
               </div>
-
           </div>
           <div className='mycenbutton'>
             <button className='buttons'>Go!</button>
           </div>
         </div>
 
-        <div className='sectors'>
+
+
+        <div onClick={() => updateCategory("public")} className='sectors'>
         <div className='group2'>
             <img src="frame1.svg" />
           </div>
-
           <div className='info'>
               <h1>
               Public Sector
@@ -40,20 +58,17 @@ const Sectors = () => {
               <div className='pa'>
                   <p>Take the first step towards your dream career with our public sector institute recommendations</p>
               </div>
-
           </div>
           <div className='mycenbutton'>
             <button className='buttons1'>Go!</button>
           </div>
-
-
         </div>
-        <div className='sectors'>
-        <div className='group3'>
+
+        
+        <div onClick={() => updateCategory("overseas")} className='sectors'>
+        <div  className='group3'>
             <img src="aeroplane.png" />
-          </div>
-
-
+        </div>
           <div className='info'>
               <h1>
               Over Seas
@@ -65,7 +80,6 @@ const Sectors = () => {
           <div className='mycenbutton'>
             <button className='buttons2'>Go!</button>
           </div>
-
         </div>
 
       </div>

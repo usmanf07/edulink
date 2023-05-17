@@ -26,15 +26,15 @@ import UniTest from './UniTest';
 import { Navbar } from './components';
 import TestList from './TestList';
 
+import { Footer } from './containers';
+
 
 const App = () => {
 
   return (
     <div className="App">
       <div className="gradient_bg">
-
       <Navbar />
-
       <Routes>
 
           <Route path='/' element={<Home/>}/>
@@ -55,15 +55,16 @@ const App = () => {
           {/* <Route path="/SignUp" element={<Log />}  /> */}
           <Route path="/signup" element= {<MainSignUp/>} />
           <Route path="/universitydash/:name" element= {<Mainpage/>} />
-          <Route path="/SingleInstitutePage/:name/AppliedStudents" element= {<AppliedStudents/>} />
+          <Route path="/universitydash/:name/AppliedStudents" element= {<AppliedStudents/>} />
           <Route path="/signup/university" element= {<Log/>} />
           <Route path="/signup/user" element= {<Log/>} />
           <Route path="/signin/university/" element= {<Log/>} />
+          
           <Route path="/universitydash/:name/maketest" element= { <UniTest/>} />
 
           <Route path="/universitydash/:name/showtest" element={<TestList/>} />
       </Routes>
-
+      <Footer/>
 
 
       </div>

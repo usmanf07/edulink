@@ -37,6 +37,28 @@ router.route('/').post(async (req, res) => {
     }
   });
   
+  
+  router.route('/updateStatus/:email/:status/:uniID').post(async (req, res) => {
+    try {
+      const { email, status, uniID } = req.params;
+  
+      // Check if uniID and email match
+      const application = await Application.findOne({ studentEmail: email, uniID: uniID });
+      if (!application) {
+        return res.status(404).json({ message: 'Application not found' });
+      }
+  
+      // Update the application status for the given email and uniID
+      await Application.updateOne({ studentEmail: email, uniID: uniID }, { $set: { applicationStatus: status } });
+  
+      // Return a success response
+      return res.status(200).json({ message: 'Application status updated successfully' });
+    } catch (error) {
+      console.error('Error updating application status:', error);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
   router.route('/:id').delete( (req, res) => {
     const id = req.params.id;
   console.log(id);
@@ -89,6 +111,52 @@ router.route('/').post(async (req, res) => {
       }
       
       return res.status(200).json(results);
+    } catch (error) {
+      console.error('Error getting applications:', error);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
+
+
+  router.route('/FetchStudents/:id').get(async (req, res) => {
+    try {
+    
+      const uniid = req.params.id;
+      
+      // const university = await Uni.findOne({uniID: app.uniID});
+      
+      console.log(uniid);
+      const applications = await Application.find({ uniID: uniid });
+      
+      // Check if any applications were found
+      if (applications.length === 0) {
+        return res.json('No applications found for this user');
+      }
+     
+      console.log(applications);
+      return res.json(applications);
+    } catch (error) {
+      console.error('Error getting applications:', error);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
+
+
+
+
+  router.route('/').get(async (req, res) => {
+    try {
+      const applications = await Application.find();
+      
+      // Check if any applications were found
+      if (applications.length === 0) {
+        return res.status(404).json({ message: 'No applications found for this user' });
+      }
+    
+      
+      return res.status(200).json(applications);
     } catch (error) {
       console.error('Error getting applications:', error);
       return res.status(500).json({ message: 'Internal server error' });

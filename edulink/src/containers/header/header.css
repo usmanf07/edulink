@@ -1,193 +1,196 @@
 .edulink__header {
-    font-family: var(--font-family);
+  font-family: var(--font-family);
 
 }
 
 .edulink__header-svg
 {
-  position: absolute;
-  right: 0px;
-  top:0px;
-  z-index: 0;
+position: absolute;
+right: 0px;
+top:0px;
+z-index: 0;
 }
 
 .edulink__header-content{
 
-  background-color: transparent;
-  display: flex;
+background-color: transparent;
+display: flex;
 
-  align-items: center;
+align-items: center;
 
-  flex-direction: column;
+flex-direction: column;
 }
 
 .edulink__header-content h1
 {
-    font-style: normal;
-    font-weight: 800;
-    font-size: 50px;
-    line-height: 75px;
-    letter-spacing: -0.04em;
-    background: linear-gradient(89.97deg, #41BDD8 1.84%, #8C67F4 105.37%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    z-index: 1;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 50px;
+  line-height: 75px;
+  letter-spacing: -0.04em;
+  background: linear-gradient(89.97deg, #41BDD8 1.84%, #8C67F4 105.37%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  z-index: 1;
 }
 
 .searchbar{
 
-    margin-top: 20px;
-    margin-left: 100px;
-    display: flex;
+  margin-top: 20px;
+  margin-left: 100px;
+  display: flex;
+  color:white;
+  height:auto;
 
-  }
-  .mysearch{
-    background: url("../../assets/search-logo.svg") no-repeat;
-    background-position: 20px ;
-    background-color: #fff;
-    font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 22px;
-  line-height: 75px;
+}
+.mysearch{
+  
+  background: url("../../assets/search-logo.svg") no-repeat;
+  background-position: 20px ;
+  background-color: #fff;
+  font-family: 'Manrope';
+font-style: normal;
+font-weight: 400;
+font-size: 22px;
+line-height: 75px;
 /* identical to box height, or 341% */
 
 letter-spacing: -0.04em;
 
 color: #808080;
 
-    height: 64px;
-    padding: 20px;
-    padding-left: 70px;
-    padding-right: 200px;
-    width: 740px;
-    border-radius: 20px;
+  height: 64px;
+  padding: 20px;
+  padding-left: 70px;
+  padding-right: 200px;
+  width: 740px;
+  border-radius: 20px;
 
-  }
+}
 
-  .search{
-    position: relative;
+.search{
+  position: relative;
 
-    background: #27A6F4;
-    border-radius: 20px;
-    padding: 5px 22px;
-    height: 64px;
-    left: -124px;
-    color: white;
+  background: #27A6F4;
+  border-radius: 20px;
+  padding: 5px 22px;
+  height: 64px;
+  left: -124px;
+  color: white;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  top:10px;
+
+  color: #FFFFFF;
+}
+
+.explore{
+
+
+  margin-top: 40px;
     font-family: 'Manrope';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 22px;
-    top:10px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 30px;
+  /* identical to box height */
 
-    color: #FFFFFF;
+  text-align: center;
+
+  color: #C8C8C8;
+
   }
 
-  .explore{
+  .temp{
 
 
-    margin-top: 40px;
-      font-family: 'Manrope';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 22px;
-    line-height: 30px;
-    /* identical to box height */
+    margin-top: 50px;
+    width: 60%;
 
-    text-align: center;
+  }
+  .sliderimage{
 
-    color: #C8C8C8;
-
-    }
-
-    .temp{
-
-
-      margin-top: 50px;
-      width: 60%;
-
-    }
-    .sliderimage{
-
-    height: 50%;
+  height: 50%;
 
 
 
-    }
+  }
 
-    .slick-track {
-      margin:auto;
-    }
+  .slick-track {
+    margin:auto;
+  }
 
-    .slick-slide img {
+  .slick-slide img {
 
-      align-self: center;
-      display: block; /* Ensure images are treated as block elements */
-      width: auto;
-      margin: 0 auto;
-      height: 90px;
+    align-self: center;
+    display: block; /* Ensure images are treated as block elements */
+    width: auto;
+    margin: 0 auto;
+    height: 90px;
 
-    }
+  }
 
-    .slick-slide {
-      padding : 0px 15px;
-    }
+  .slick-slide {
+    padding : 0px 15px;
+  }
 
-    .myimage img{
-      height: 80px;
-      overflow: hidden;
-    }
-    .myimage{
+  .myimage img{
+    height: 80px;
+    overflow: hidden;
+  }
+  .myimage{
 
-      height: 100px;
+    height: 100px;
 
-      overflow: hidden;
+    overflow: hidden;
 
-    }
+  }
 
-    .leftarrow{
-      background-color: transparent;
-      border: none;
-      margin-right: 10px;
-      position:relative;
-      left:-40px;
-      top: -80px;
-      cursor: pointer;
-    }
-    .leftarrow:hover{
-      background-color: darkgray;
-    }
-    .rightarrow:hover{
-      background-color: darkgray;
-    }
+  .leftarrow{
+    background-color: transparent;
+    border: none;
+    margin-right: 10px;
+    position:relative;
+    left:-40px;
+    top: -80px;
+    cursor: pointer;
+  }
+  .leftarrow:hover{
+    background-color: darkgray;
+  }
+  .rightarrow:hover{
+    background-color: darkgray;
+  }
 
-    .rightarrow{
-      background-color: transparent;
-      border: none;
-      margin-left: 10px;
-      float: right;
-      position: relative;
-      right:-40px;
-      top:-80px;
-      cursor: pointer;
+  .rightarrow{
+    background-color: transparent;
+    border: none;
+    margin-left: 10px;
+    float: right;
+    position: relative;
+    right:-40px;
+    top:-80px;
+    cursor: pointer;
 
 
-    }
-    .slick-track{
+  }
+  .slick-track{
 
-      display: inline-block;
-    }
-    .left{
-      float:left;
-      margin-right: 32px;
-      margin-top: 50px;
-    }
-    .right {
-      margin-top: 50px;
-      float: left;
+    display: inline-block;
+  }
+  .left{
+    float:left;
+    margin-right: 32px;
+    margin-top: 50px;
+  }
+  .right {
+    margin-top: 50px;
+    float: left;
 
-    }
+  }
 
 .myte{
 width: 100%;
@@ -200,30 +203,46 @@ background-color: red;
 
 @media only screen and (max-width: 400px) {
 
-  .mysearch{
-    width: 400px;
-    margin-left: 50px;
+.mysearch{
+  width: 400px;
+  margin-left: 50px;
 
-  }
+}
 
 
 }
 
 @media only screen and (max-width: 700px) {
 
-  .searchbar{
-    margin-left: 10px;
+.searchbar{
+  margin-left: 10px;
 
-  }
-  .mysearch{
-    width: 400px;
-    margin-left: 50px;
+}
+.mysearch{
+  width: 400px;
+  margin-left: 50px;
 
-  }
-  .edulink__header-content{
-    align-items: center;
+}
+.edulink__header-content{
+  align-items: center;
 
 
-  }
+}
 
+}
+
+
+.suggestions {
+list-style-type: none;
+padding-top: 15px;
+}
+
+.suggestions li {
+padding: 10px;
+}
+
+.suggestions li.active {
+background-color: #2a444a;
+border-radius: 10px;
+/* border-color: white; */
 }

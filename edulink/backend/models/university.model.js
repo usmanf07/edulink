@@ -37,6 +37,10 @@ const universitySchema = new mongoose.Schema({
     type: String,
     default: 'false'
   },
+  logo:{
+    type: String,
+    default: 'default'
+  },
  
 });
 

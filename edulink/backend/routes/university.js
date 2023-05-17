@@ -85,54 +85,82 @@ router.route('/admissions/:name').get((req, res) => {
 });
 
 
+  const multer = require('multer');
 
-router.route('/signup')
-  .post(async (req, res) => {
+  // Set up multer storage for logo uploads
+  const logoStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'logos/'); // Specify the destination folder for logo uploads
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+      const extension = file.originalname.split('.').pop(); // Get the file extension
+      cb(null, file.fieldname + '-' + uniqueSuffix + '.' + extension); // Generate a unique filename with the original extension
+    },
+  });
+
+  // Create a multer instance for logo uploads
+  const logoUpload = multer({ storage: logoStorage });
+
+  router.route('/signup').post(logoUpload.single('logoFile'), async (req, res) => {
     const instituteName = req.body.instituteName;
     const email = req.body.email;
     const password = req.body.password;
-
+    const scope = req.body.scope;
+    const type = req.body.type;
+    const logoFile = req.file; // Get the uploaded logo file
+    
     try {
       // Check if institute already exists
       const result = await UniLog.findOne({ instituteName: instituteName });
-
+  
       if (!result) {
         // Institute doesn't exist, so create new institute and add name to university and single university models
         const newInstitute = new UniLog({
           instituteName: instituteName,
           email: email,
-          password: password
+          password: password,
         });
-
+  
         // Save the new UniLog and get its id
         const savedUniLog = await newInstitute.save();
         const uniLogId = savedUniLog._id;
-
+  
         const name = instituteName;
-        const address = "default";
-        const imageName = "default";
-
-        // Create a new University document and set the uniID field to uniLogId
-        const newUniversity = new Uni({ name, address, imageName, uniID: uniLogId });
-        const savedUniversity = await newUniversity.save();
-
-        const newSingleUniversity = new SingleUni({
-          uniID:uniLogId,
-          instituteName: instituteName,
-          emails: [email]
+        const address = 'default';
+        const imageName = 'default'; // Store the filename in the database
+       // console.log(logoFile.filename);
+        // Create a new University document and set the uniID, scope, and type fields
+        const newUniversity = new Uni({
+          name,
+          address,
+          imageName,
+          logo: logoFile.filename,
+          uniID: uniLogId,
+          scope,
+          type,
         });
-
+          //console.log(newUniversity);
+        const savedUniversity = await newUniversity.save();
+  
+        const newSingleUniversity = new SingleUni({
+          uniID: uniLogId,
+          instituteName: instituteName,
+          emails: [email],
+          googlemap: instituteName,
+        });
+  
         await newSingleUniversity.save();
-        res.status(200).json({ message: "Signed Up Successfully" });
+        res.status(200).json({ message: 'Signed Up Successfully' });
       } else {
-        res.status(500).json({ message: "Data already exists" });
+        res.status(500).json({ message: 'Data already exists' });
       }
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: err });
     }
   });
-
+  
 
 
 
@@ -169,7 +197,7 @@ router.route('/signup')
         const programWithUniversity = {
           uniID: university.uniID,
           uniName: university.name,
-          logo: university.imageName,
+          logo: university.logo,
           program: program.program,
           lastApplyDate: program.lastApplyDate,
           updated: program.updated
@@ -226,6 +254,21 @@ router.route('/signup')
     }
   });
 
+
+  
+  router.route('/getUniId/:name').get(async (req, res) => {
+    try {
+      const name1 = req.params.name;
+      const id = await Uni.findOne({ name: name1 });
+
+      console.log(id.uniID);
+
+      
+      return res.json(id.uniID);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  });
 
 
 

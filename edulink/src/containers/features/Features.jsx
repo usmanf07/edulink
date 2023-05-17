@@ -20,7 +20,7 @@ const Features = () => {
       .then((response) => {
        // console.log('Universities:', response.data);
         
-        const filteredInstitutes = response.data.filter(institute => institute.premium === 'false');
+        const filteredInstitutes = response.data.filter(institute => institute.premium === 'true');
        // console.log('Premium Institutes:', filteredInstitutes);
   
         setinstitutesData(filteredInstitutes);
@@ -104,8 +104,8 @@ const Features = () => {
       <div className={`institute-list ${slideTransition ? 'slide' : ''}`}>
         {visibleData.map(institute => (
           <div key={institute.id} className="institute-box">
-            
-            <img src={institute.logo} alt={`${institute.name} logo`} />
+            {/* {alert(institute.name + institute.logo)} */}
+            <img style={{height:'100px', width:'100px'}} src={`http://localhost:8000/logos/${institute.logo}`} alt={`${institute.name} logo`} />
             <div className="institute-details">
               <h3>{institute.name}</h3>
               <p>{institute.address}</p>

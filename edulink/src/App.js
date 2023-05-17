@@ -27,9 +27,6 @@ import { Navbar } from './components';
 
 import { Footer } from './containers';
 
-import { Footer } from './containers';
-
-
 
 const App = () => {
 

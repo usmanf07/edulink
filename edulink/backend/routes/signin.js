@@ -22,17 +22,24 @@ router.use(session({
 
   });
 
-  router.route('/').post(async(req, res) => {
+  const bcrypt = require('bcrypt');
+
+  router.route('/').post(async (req, res) => {
     const { email, password } = req.body;
   
     try {
-      const check = await signin.findOne({ email: email, password: password });
-      if (check._id) {
-        req.session.id = check.email;
-        console.log(req.session.id);
-        console.log(check.email);
-        const responseObj = { sessionId: req.session.id, email: check.email };
-        res.json(responseObj);
+      const user = await signin.findOne({ email: email });
+      if (user) {
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+        if (isPasswordMatch) {
+          req.session.id = user.email;
+          console.log(req.session.id);
+          console.log(user.email);
+          const responseObj = { sessionId: req.session.id, email: user.email };
+          res.json(responseObj);
+        } else {
+          res.json("notexists");
+        }
       } else {
         res.json("notexists");
       }

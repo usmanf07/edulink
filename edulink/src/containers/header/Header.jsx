@@ -3,29 +3,7 @@ import './header.css'
 import SimpleSlider from './SimpleSlider';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-const data = ["FAST National University","FAST NUCES Islamabad","FAST-NUCES | Karachi","Comsats", "Lahore University","NUST Islamabad", "LUMS","UET Lahore"];
 
-
-const institutes = [
-  {
-      "title": "FAST National University",
-      "link": "https://www.nu.edu.pk/",
-      "snippet": "Premier University of Pakistan ... Why FAST? ... The university has five modern campuses at Karachi, Lahore, Islamabad, Peshawar and Chiniot-Faisalabad.",
-      "logo": "https://www.nu.edu.pk/Content/images/Slider/background.jpg"
-  },
-  {
-      "title": "FAST NUCES Islamabad",
-      "link": "http://isb.nu.edu.pk/",
-      "snippet": "Campus Life · Recent News · Recent Events.",
-      "logo": "http://isb.nu.edu.pk/assets/Images/Services/OneStop.png"
-  },
-  {
-      "title": "FAST-NUCES | Karachi",
-      "link": "https://khi.nu.edu.pk/",
-      "snippet": "The students who come to university on their car or motorcycles can park their vehicles in the Main Campus parking area just outside the main gate of FAST NUCES ...",
-      "logo": "https://khi.nu.edu.pk/wp-content/uploads/slider/cache/eeceb9177b46bbdf56a3c6423ee9a1fc/Image-37_-scaled.jpg"
-  }
-]
 
 const Header = (props) => {
   const imageNames = ["uni7", "uni2", "uni3", "uni4", "uni5", "uni6"]
@@ -35,11 +13,16 @@ const Header = (props) => {
   const [suggestionsActive, setSuggestionsActive] = useState(false);
   const history = useNavigate();
 
+  useEffect(() => {
+    const delayTimer = setTimeout(() => {
+      fetchData();
+    }, 2000);
 
-  const handleChange = async (e) => {
-    const query = e.target.value.toLowerCase();
-    setInstitute(e.target.value);
-  
+    return () => clearTimeout(delayTimer);
+  }, [Institute]);
+
+  const fetchData = async () => {
+    const query = Institute.toLowerCase();
     if (query.length >= 4) {
       try {
         const response = await axios.get('http://localhost:8000/fetchInstitutes/auto-suggest', {
@@ -47,18 +30,30 @@ const Header = (props) => {
             query: query,
           },
         });
-  
+
         const suggestions = response.data.suggestions;
-        setSuggestions(suggestions);
+
+        if (response.status === 500 || suggestions.length === 0) {
+          setSuggestions([{ title: 'No results found', url: '', isRegistered: true }]);
+        } else {
+          setSuggestions(suggestions);
+        }
         setSuggestionsActive(true);
       } catch (error) {
         console.error(error);
+        setSuggestions([{ title: 'No results found', url: '', isRegistered: true }]);
         // Handle error
       }
     } else {
       setSuggestionsActive(false);
     }
   };
+
+  const handleChange = (e) => {
+    setInstitute(e.target.value);
+  };
+
+  
 
   const handleClick = (suggestion) => {
     if (suggestion.isRegistered) {
@@ -70,7 +65,7 @@ const Header = (props) => {
   
 
   const handleKeyDown = (e) => {
-
+     
     var topSuggestions;
     if(suggestions.length > 4){
       topSuggestions = suggestions.slice(0, 4);

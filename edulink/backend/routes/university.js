@@ -103,12 +103,6 @@ router.route('/admissions/:name').get((req, res) => {
   const logoUpload = multer({ storage: logoStorage });
 
   router.route('/signup').post(logoUpload.single('logoFile'), async (req, res) => {
-
-
-
-router.route('/signup')
-  .post(async (req, res) => {
-
     const instituteName = req.body.instituteName;
     const email = req.body.email;
     const password = req.body.password;
@@ -322,6 +316,3 @@ router.route('/signup')
     });
   });
 module.exports = router;
-
-
-

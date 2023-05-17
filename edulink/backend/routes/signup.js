@@ -4,7 +4,7 @@ let UserProfile = require('../models/userProfile.model');
 const axios = require('axios');
 const multer = require('multer');
 const path = require('path');
-
+const bcrypt = require('bcrypt');
 const fs = require('fs');
 
 const storage = multer.diskStorage({
@@ -26,10 +26,11 @@ router.route('/').post(upload.single('profileImage'), async (req, res) => {
     if (check) {
       return res.json("exists");
     } else {
+      const hashedPassword = await bcrypt.hash(password, 10);
       const newUser = new User({
         username: userName,
         email: email,
-        password: password,
+        password: hashedPassword,
       });
 
       const newUserProfile = new UserProfile({

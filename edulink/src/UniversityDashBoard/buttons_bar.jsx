@@ -20,7 +20,8 @@ class University_Description extends React.Component {
     }
     showAppliedStudents = () =>{
 
-      this.props.navigate(`/SingleInstitutePage/${this.name}/AppliedStudents`);
+       
+      this.props.navigate(`/universitydash/${this.props.name}/AppliedStudents`);
     }
 
     addProgram = () => {

@@ -24,7 +24,7 @@ import AppliedStudents from './UniversityDashBoard/AppliedStudents'
 import UniTest from './UniTest';
 
 import { Navbar } from './components';
-import UniTest from './UniTest';
+
 import { Footer } from './containers';
 
 

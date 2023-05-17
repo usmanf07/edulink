@@ -227,6 +227,21 @@ router.route('/signup')
   });
 
 
+  
+  router.route('/getUniId/:name').get(async (req, res) => {
+    try {
+      const name1 = req.params.name;
+      const id = await Uni.findOne({ name: name1 });
+
+      console.log(id.uniID);
+
+      
+      return res.json(id.uniID);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
 
 
   router.route('/sendmail').post((req, res) => {

@@ -26,7 +26,7 @@ const Featuresecondary = () => {
     .then((response) => {
       console.log('Universities:', response.data);
       setinstitutesData(response.data);
-
+      
     })
       .catch((error) => console.error('Failed to retrieve universities:', error));
   }, []);
@@ -36,15 +36,11 @@ const Featuresecondary = () => {
     const selectedProvince = e.target.value;
     setQueryParams((prevState) => ({ ...prevState, provinceID: selectedProvince }));
   };
-
+  
   const handleCityChange = (e) => {
     const selectedCity = e.target.value;
     setQueryParams((prevState) => ({ ...prevState, cityID: selectedCity }));
   };
-
-
-
-  
 
 useEffect(() => {
   const fetchInstitutes = async () => {
@@ -85,8 +81,8 @@ useEffect(() => {
     const sessionId = sessionStorage.getItem('sessionId');
     const email = sessionStorage.getItem('email');
     console.log(email)
-
-    if(email === null) {
+   
+    if(email === null) {  
       console.error('User is not logged in.'); // Log error message
       return;
     }
@@ -95,10 +91,10 @@ useEffect(() => {
 
   const handleApplyConfirm = async (index) => {
 
-
+    
     const selectedInstitute = institutesData[index];
     //console.log(selectedInstitute.program);
-
+    
     try {
       const response = await axios.post('http://localhost:8000/application', {
         email: email,
@@ -108,7 +104,7 @@ useEffect(() => {
         appliedFor: selectedInstitute.program,
         otherInfo: '',
         uniID: selectedInstitute.uniID,
-
+        
       });
       setConfirmation(false);
       console.log(response.data); // Log success message
@@ -151,7 +147,7 @@ useEffect(() => {
     // Update the institutesData state with the sorted data
     visibleData = sortedData;
   };
-
+  
 
   const sortByMostPopular = () => {
     // const sortedData = institutesData.sort((a, b) => b.id - a.id);
@@ -215,7 +211,7 @@ useEffect(() => {
             
                     <div>
                     <select onChange={handleProvinceChange} >
-
+                   
                       <option value=''>Province</option>
                       <option value='10103'>Punjab</option>
                       <option value='10104'>Sindh</option>
@@ -225,7 +221,7 @@ useEffect(() => {
                     </div>
                     <div>
                     <select onChange={handleCityChange}>
-
+                    
                       <option value=''>City</option>
                       <option value='101030801'>Faislabad</option>
                       <option value='101030901'>Gujranwala</option>
@@ -235,8 +231,8 @@ useEffect(() => {
                       <option value='101031701'>Lahore</option>
                       <option value='101033401'>Sialkot</option>
                       <option value='101040701'>Karachi</option>
-
-
+                      
+                      
                     </select>
                     </div>
                     <div>
@@ -291,7 +287,7 @@ useEffect(() => {
               <h4>{institute.program}</h4>
             </div>
           </Link>
-
+        
         </div>
         <div className="edulink__featuresecondary-institute-apply">
           {!showConfirmation[index] ? (
@@ -302,7 +298,7 @@ useEffect(() => {
             <div>
               <p style={{ marginBottom: '10px' ,color:'green' }}>
                 Are you sure you want to apply to {institute.uniName} for {institute.program} program?
-
+               
               </p>
               <button onClick={() => handleApplyConfirm(index)}>Confirm</button>
               <button style={{ border: '0px', marginLeft: '10px', backgroundColor: 'red' }} onClick={() => setConfirmation(prevState => ({ ...prevState, [index]: false }))}>Cancel</button>

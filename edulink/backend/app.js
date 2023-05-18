@@ -6,6 +6,9 @@ const cors=require('cors');
 const fs = require('fs');
 const formidable = require('formidable');
 const mv = require('mv');
+const pdfkit = require('pdfkit');
+const { promisify } = require('util');
+const path = require('path');
 
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true
 }).then(() => {
@@ -67,6 +70,34 @@ app.use('/entrytest', entryTestRouter);
 const fetchinstitutesRouter = require('./routes/fetchinstitutes');
 app.use('/fetchinstitutes', fetchinstitutesRouter);
 
+
+const mvAsync = promisify(mv);
+
+app.post('/generate-pdf', async (req, res) => {
+  const { questions } = req.body;
+
+  const doc = new pdfkit();
+  const filePath = path.join(__dirname, '/images/questions.pdf');
+
+  doc.pipe(fs.createWriteStream(filePath));
+
+  questions.forEach((question, index) => {
+    doc.text(`Question ${index + 1}`, { bold: true });
+    doc.text(question.statement);
+    question.options.forEach((option) => {
+      doc.text(option.statement);
+    });
+    doc.moveDown();
+  });
+
+  doc.end();
+
+  console.log(filePath);
+  // await mvAsync(filePath, path.join(__dirname, 'questions.pdf'));
+
+  const downloadUrl = 'http://localhost:8000/images/questions.pdf';
+  res.json({ downloadUrl });
+});
 app.post('/upload', (req, res) => {
 
     var form = new formidable.IncomingForm();

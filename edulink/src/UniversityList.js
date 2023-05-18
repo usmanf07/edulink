@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function UniversityList() {
   const [universities, setUniversities] = useState([]);
-
+  const navigate= useNavigate();
   useEffect(() => {
     axios.get('http://localhost:8000/university')
       .then((response) => {

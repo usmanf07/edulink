@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const TestList = () => {
   const [tests, setTests] = useState([]);
 
+
+  const navigate=useNavigate();
   useEffect(() => {
     const uniid = sessionStorage.getItem("uniid"); // Replace with the actual university ID
 
@@ -21,6 +24,14 @@ const TestList = () => {
     fetchTests();
   }, []);
 
+  const moveTopage = (index) =>
+  {
+    const uniid = sessionStorage.getItem("uniid");
+    navigate(`/universitydash/${uniid}/showtest/${index}`);
+
+  }
+
+
   return (
     <div className='showtest'>
       <div className='showtest1'>
@@ -28,7 +39,7 @@ const TestList = () => {
       <h2>Total Number of tests {tests.length}</h2>
       <ul className='listdec'>
         {tests.map((test, index) => (
-         <div className='testlis'> <li className='setmargin' key={index}>{test}</li></div>
+         <div className='testlis' onClick={() => moveTopage(index)}> <li className='setmargin' key={index}>{test}</li></div>
         ))}
       </ul>
     </div>

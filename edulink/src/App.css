@@ -28,7 +28,7 @@ a{
 
     /* global 92%+ browsers support */
     background:radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
-    
+
     min-height: 100vh;
   }
 
@@ -218,4 +218,41 @@ a{
 .testlis:hover {
   transform: scale(1.1);
   box-shadow: inset 6px 6px 6px dodgerblue, inset -6px -6px 6px dodgerblue;
+}
+.mainques{
+  display: flex;
+  justify-content: center;
+
+
+
+}
+
+
+.allques{
+  padding: 50px 50px;
+  width: 90%;
+  border-radius: 20px;
+  background-color: white;
+
+
+}
+.listset{
+
+  list-style-type: upper-alpha;
+}
+
+.setmargin{
+  margin-top: 15px;
+
+}
+.myli{
+  margin-left: 20px;
+}
+.pdfbutton{
+  margin-top: 10px;
+  padding: 5px 5px;
+  border-radius: 10px;
+  color: white;
+  border-color: dodgerblue;
+  background-color: dodgerblue;
 }

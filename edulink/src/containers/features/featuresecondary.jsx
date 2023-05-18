@@ -207,7 +207,7 @@ useEffect(() => {
 
 
 
-    <div className='edulink__featuresecondary'>
+    <div className='edulink__featuresecondary' id="fsecond">
         <div className="edulink__featuresecondary-box1">
         <div className='edulink__featuresecondary-box1-header'>
               <div>

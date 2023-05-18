@@ -30,6 +30,10 @@ const Navbar = (props) => {
   }, []);
   
   const [email, setEmail] = useState('');
+
+  
+  
+
   useEffect(() => {
     // Get sessionId and email from sessionStorage
     const sessionId = sessionStorage.getItem('sessionId');
@@ -160,9 +164,9 @@ const Navbar = (props) => {
               <p><a href="#institute">Top Ranked</a></p>
               <p><a href="#institute">Scholarships</a></p>
               <p><a href="#institute">Sample Entry Tests</a></p>
-              <p><a href="#institute">Registration Form</a></p>
-              <p><a href="#institute">Recent Admissions</a></p>
-              <p><a href="#institute">Blog</a></p>
+              
+              <p><a href="#fsecond">Recent Programs</a></p>
+              
           </div>
         </div>
       )}
@@ -180,8 +184,8 @@ const Navbar = (props) => {
             <p><a href="#blog">eduInstitute</a></p>
           </div>
           <div className="edulink__navbar-menu_container-links-sign">
-            <p>Sign in</p>
-            <button type="button">Sign up</button>
+          <Link to="/login"><p>Sign in</p></Link>
+        <button type="button" onClick={moveToSignUp}>Sign up</button>
           </div>
         </div>
         )}

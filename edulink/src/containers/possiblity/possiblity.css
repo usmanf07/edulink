@@ -62,8 +62,11 @@ background-clip: text;
         flex-direction: column;
     }
 
+    .edulink__possibility-container{
+        margin: 0 3rem 2rem 3rem;
+    }
     .edulink__possibility-heading {
-        margin: 0 0 2rem 0;
+        margin: 0 3rem 1rem 3rem;
     }
 }
 

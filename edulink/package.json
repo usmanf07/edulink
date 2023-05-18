@@ -7,6 +7,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@react-pdf/renderer": "^3.1.9",
+    "@react-google-maps/api": "^2.18.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -31,6 +32,7 @@
     "react-phone-number-input": "^3.2.23",
     "react-router-dom": "^6.11.1",
     "react-scripts": "^5.0.1",
+    "react-speech-recognition": "^3.10.0",
     "react-toastify": "^9.1.2",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"

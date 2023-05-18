@@ -44,6 +44,11 @@ flex-direction: column;
   height:auto;
 
 }
+.mic_icon {
+  position: relative;
+  top: 24px;
+  right: 18rem;
+}
 .mysearch{
   
   background: url("../../assets/search-logo.svg") no-repeat;
@@ -71,12 +76,12 @@ color: #808080;
 
 .search{
   position: relative;
-
+  border: none;
   background: #27A6F4;
   border-radius: 20px;
   padding: 5px 22px;
   height: 64px;
-  left: -124px;
+  left: -119px;
   color: white;
   font-family: 'Manrope';
   font-style: normal;
@@ -85,6 +90,42 @@ color: #808080;
   top:10px;
 
   color: #FFFFFF;
+}
+
+.edulink-mainhead h1 {
+  font-size: 3.5rem;
+  text-align: center;
+  font-weight: 1000;
+  color: #484848;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-right: 3rem;
+}
+
+.edulink-mainhead h1 span span {
+  background: linear-gradient(180.97deg, #41BDD8 1.84%, #8C67F4 105.37%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  bottom: -1em;
+  opacity: 0;
+  animation: move-text 1.2s forwards;
+}
+
+@keyframes move-text {
+    0% {
+        bottom: -0.2em;
+        opacity: 1;
+    }
+    
+    50% {
+        bottom: 0.2em;
+    }
+
+    100% {
+        bottom: 0;
+        opacity: 1;
+    }
 }
 
 .explore{

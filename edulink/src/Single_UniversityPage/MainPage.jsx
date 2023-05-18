@@ -3,7 +3,7 @@ import axios from 'axios';
 import "./MainPage.css";
 import image from './Vector.png';
 import picture from '../assets/th (3).jpeg';
-import Nav  from '../components/navbar/Navbar';
+
 import Desc from '../containers/Single_UniversityPage/University_Description';
 import ButtonBar from '../containers/Single_UniversityPage/buttons_bar';
 import Body from '../containers/Single_UniversityPage/Body';
@@ -46,7 +46,6 @@ import { useLocation } from 'react-router-dom';
       <div className='mainpage'>
 
       <div className='upper_layer'>
-
 
         <div className="picturebox" id="picture" picture>
           <div className="studentsInAStudyGroup008Wrapper" id="Pic_Container">

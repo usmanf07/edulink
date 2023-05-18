@@ -38,7 +38,7 @@ app.use(bodyParser.json());
 
 app.use('/images', express.static('images'));
 
-
+app.use('/logos', express.static('logos'));
 
 const usersRouter = require('./routes/university');
 app.use('/university', usersRouter);
@@ -70,6 +70,7 @@ app.use('/entrytest', entryTestRouter);
 const fetchinstitutesRouter = require('./routes/fetchinstitutes');
 app.use('/fetchinstitutes', fetchinstitutesRouter);
 
+
 const mvAsync = promisify(mv);
 
 app.post('/generate-pdf', async (req, res) => {
@@ -97,8 +98,6 @@ app.post('/generate-pdf', async (req, res) => {
   const downloadUrl = 'http://localhost:8000/images/questions.pdf';
   res.json({ downloadUrl });
 });
-
-
 app.post('/upload', (req, res) => {
 
     var form = new formidable.IncomingForm();
@@ -117,6 +116,7 @@ app.post('/upload', (req, res) => {
     });
 
   });
+
 app.listen(8000, () => {
     console.log("Server is running on port 8000");
 })

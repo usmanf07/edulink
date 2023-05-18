@@ -2,6 +2,7 @@ const router = require('express').Router();
 const axios = require('axios');
 const cheerio = require('cheerio');
 const google = require('google');
+let Uni = require('../models/university.model');
 
 router.route('/').get((req, res) => {
     const provinceID = req.query.provinceID || '';
@@ -75,7 +76,7 @@ router.route('/').get((req, res) => {
   
     const url = 'https://www.googleapis.com/customsearch/v1';
     const params = {
-      key: 'AIzaSyDuh1nSDLI1OarsGy_hmWfL9eTfEXryEBI',
+      key: 'AIzaSyAD4EitZQW3LhE6Kp1u8-N4oJ5B1pPSiBo',
       cx: 'd747bd398b1884125',
       q: query,
       num: 1, // Limit to the first 3 results
@@ -105,73 +106,52 @@ router.route('/').get((req, res) => {
     }
   });
 
-  router.get('/fetch-dataa', async (req, res) => {
-    const { query, apiKey, searchEngineId } = req.query;
-  
-    const url = 'https://www.googleapis.com/customsearch/v1';
-    const params = {
-      key: 'AIzaSyDuh1nSDLI1OarsGy_hmWfL9eTfEXryEBI',
-      cx: 'd747bd398b1884125',
-      q: query,
-      num: 3, 
-      siteSearch: 'edu.pk',
-    };
-  
-    try {
-      const response = await axios.get(url, { params });
-      const items = response.data.items.slice(0, params.num); 
-      const results = items.map(item => {
-        const result = {
-          title: item.title,
-          link: item.link,
-          snippet: item.snippet,
-          logo: null, 
-        };
-  
-        if (item.pagemap && item.pagemap.cse_image && item.pagemap.cse_image.length > 0) {
-         
-          result.logo = item.pagemap.cse_image[0].src;
-        }
-  
-        return result;
-      });
-  
-      
-      res.json(results);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'An error occurred while fetching data.' });
-    }
-  });
-  
-
   router.get('/auto-suggest', async (req, res) => {
-    const { query, apiKey, searchEngineId } = req.query;
-  
-    const url = 'https://www.googleapis.com/customsearch/v1/siterestrict';
-    const params = {
-      key: 'AIzaSyDuh1nSDLI1OarsGy_hmWfL9eTfEXryEBI',
-      cx: 'd747bd398b1884125',
-      q: query,
-      num: 10,
-      siteSearch: 'edu.pk',
-    };
+    let { query } = req.query;
+  let googlequery = query + ' institute';
   
     try {
-      const response = await axios.get(url, { params });
-      const items = response.data.items;
+      console.log('Query:', query);
+      const universities = await Uni.find({ name: { $regex: new RegExp(query, 'i') } })
+        .limit(5)
+        .select('name');
+      
+      console.log('Universities:', universities);
+
+      console.log(universities);
+      const universitySuggestions = universities.map(university => ({
+        title: university.name,
+        url: university.name, 
+        isRegistered: true, 
+      }));
   
-      if (items && Array.isArray(items)) {
-        const suggestions = items.map(item => item.title);
-        res.json(suggestions);
-      } else {
-        res.json([]);
-      }
+      const url = 'https://www.googleapis.com/customsearch/v1';
+      const params = {
+        key: 'AIzaSyAD4EitZQW3LhE6Kp1u8-N4oJ5B1pPSiBo',
+        cx: 'd747bd398b1884125',
+        q: googlequery,
+        num: 2,
+        siteSearch: 'edu.pk',
+      };
+  
+      const response = await axios.get(url, { params });
+  
+      const googleSuggestions = response.data.items.map(item => ({
+        title: item.title,
+        url: item.link,
+        isRegistered: false, // Add a flag to indicate it's not a university suggestion
+      }));
+  
+      const suggestions = [...universitySuggestions, ...googleSuggestions];
+  
+      res.json({ suggestions });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'An error occurred while fetching suggestions.' });
     }
   });
+  
+  
   
 
 module.exports = router;

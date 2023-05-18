@@ -1,43 +1,77 @@
-import React, { useState, useRef,useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './featurethird.css';
-
+import { useLoadScript } from '@react-google-maps/api';
 
 const Featurethird = () => {
+  const sliderRef = useRef(null);
+  const [universities, setUniversities] = useState([]);
+  const [currentLocation, setCurrentLocation] = useState(null);
+  const [locationName, setLocationName] = useState('');
 
-    const sliderRef = useRef(null);
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: 'AIzaSyAD4EitZQW3LhE6Kp1u8-N4oJ5B1pPSiBo',
+    libraries: ['places'],
+  });
 
-    const [universities, setUniversities] = useState([]);
-
-
-    useEffect(() => {
-      axios.get('http://localhost:8000/university/')
+  useEffect(() => {
+    // Fetch universities data
+    axios.get('http://localhost:8000/university/')
       .then((response) => {
         console.log('Universities:', response.data);
         setUniversities(response.data);
       })
-        .catch((error) => console.error('Failed to retrieve universities:', error));
-    }, []);
+      .catch((error) => console.error('Failed to retrieve universities:', error));
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded && !loadError) {
+      // Get the current location coordinates using browser geolocation
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          const currentLocation = { lat: latitude, lng: longitude };
+          // Perform geocoding to get the location name
+          const geocoder = new window.google.maps.Geocoder();
+          geocoder.geocode({ location: currentLocation }, (results, status) => {
+            if (status === 'OK' && results && results.length > 0) {
+              const formattedAddress = results[0].formatted_address;
+              const locationParts = formattedAddress.split(',');
+              let locationName = '';
+              if (locationParts.length >= 2) {
+                locationName = locationParts[1].trim();
+              }
+              setLocationName(locationName);
+            }
+          });
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
+  }, [isLoaded, loadError]);
+  
 
 
-    const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-    const handleLeftArrowClick = () => {
-      sliderRef.current.slickPrev();
-    };
+  const handleLeftArrowClick = () => {
+    sliderRef.current.slickPrev();
+  };
 
-    const handleRightArrowClick = () => {
-      sliderRef.current.slickNext();
-    };
+  const handleRightArrowClick = () => {
+    sliderRef.current.slickNext();
+  };
 
-    const settings = {
-        rows: 2,
-        slidesToShow: 2,
-        slidesToScroll: 4,
-          autoplay: true,
+  const settings = {
+    rows: 2,
+    slidesToShow: 2,
+    slidesToScroll: 4,
+    autoplay: true,
     autoplaySpeed: 3000,
     slidesToShow: 2,
     slidesToScroll: 1,
@@ -56,14 +90,20 @@ const Featurethird = () => {
         },
       },
     ],
-    };
-
+  };
 
   return (
     <div className='edulink__featurethird'>
     <div className='edulink__featuresecondary-box1-header'>
         <h2>Nearby Institutes</h2>
-        <h3>Johar Town</h3>
+        <div>
+      {locationName ? (
+        <h4> {locationName}</h4>
+      ) : (
+        <div>Loading...</div>
+      )}
+    </div>
+       
         <div>
         <svg  id="filter-options" data-name="Group 35" xmlns="http://www.w3.org/2000/svg" width="66.58" height="57.184" viewBox="0 0 66.58 57.184">
         <path id="Path_16" data-name="Path 16" d="M-170.816-274.868q7.167,0,14.334,0c1.011,0,2.023.02,3.032-.024.527-.023,1.044.071,1.571.034.56-.04,1.125-.009,1.688-.009h5.025c.667,0,.647-.008.877-.624a8.861,8.861,0,0,1,7.527-6.133,9,9,0,0,1,9.806,6.368.461.461,0,0,0,.519.393c1.524-.011,3.048.006,4.572-.011.387,0,.536.109.529.512q-.031,1.771,0,3.542c.007.409-.151.512-.532.508-1.455-.016-2.911.009-4.366-.014a.683.683,0,0,0-.79.553,9.08,9.08,0,0,1-8.732,6.294,9.07,9.07,0,0,1-8.531-6.292.687.687,0,0,0-.785-.557q-20.966.016-41.932.009a3.9,3.9,0,0,0-.412,0c-.349.037-.48-.083-.473-.459.024-1.235.019-2.471,0-3.707,0-.309.076-.394.39-.393Q-179.158-274.861-170.816-274.868Zm39.725,2.284a4.573,4.573,0,0,0-4.529-4.585,4.615,4.615,0,0,0-4.608,4.551,4.578,4.578,0,0,0,4.533,4.589A4.563,4.563,0,0,0-131.091-272.583Z" transform="translate(187.916 301.197)"/>
@@ -84,18 +124,22 @@ const Featurethird = () => {
 
         <div className="featurethird__institutes">
           <div className='featurethird__institutes_newdiv'>
-        <Slider {...settings} ref={sliderRef}>
-        {universities.map(institute => (
-              <div key={institute._id} className="featurethird__institutebox">
-                    <img src={"http://localhost:8000/images/"+institute.imageName} alt={`${institute.name} logo`} />
-                    <div>
-                      <h3>{institute.name}</h3>
-                      <h4>{institute.address}</h4>
-                      <p>{"9km"}</p>
-                    </div>
-              </div>
-            ))}
-           </Slider>
+          <Slider {...settings} ref={sliderRef}>
+  {universities.map((institute) => {
+    const randomValue = Math.floor(Math.random() * 10) + 1; // Generate a random value between 1-10
+
+    return (
+      <div key={institute._id} className="featurethird__institutebox">
+        <img src={`http://localhost:8000/logos/${institute.logo}`} alt={`${institute.name} logo`} />
+        <div>
+          <h3>{institute.name}</h3>
+          <h4>{institute.address}</h4>
+          <p>{randomValue + "km"}</p>
+        </div>
+      </div>
+    );
+  })}
+</Slider>
            </div>
         </div>
 

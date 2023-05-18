@@ -1,84 +1,86 @@
-import React, { useState } from 'react'
-import './Log.css'
+import React, { useState } from 'react';
+import './Log.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-
-
-
-
 export default function UniversitySignUp() {
-  const [universityName, setUniversityName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [error, setError] = useState(null)
+  const [universityName, setUniversityName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  // const [error, setError] = useState('');
   const [scope, setScope] = useState('');
   const [type, setType] = useState('');
+  const [logoFile, setLogoFile] = useState(null);
 
-
-
-  const navigate =useNavigate ();
+  const navigate = useNavigate();
 
   const OpenInstitutes = () => {
-    navigate("/signin/university", { state:{id:"universitylogin"}}  );
-
-  }
+    navigate('/signin/university', { state: { id: 'universitylogin' } });
+  };
 
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     // Perform form validation and submission logic here
-    let errorMessage = null
+    let errorMessage = null;
     if (universityName.length < 4) {
-      errorMessage = 'University name must be at least 4 characters long'
+      errorMessage = 'University name must be at least 4 characters long';
     } else if (!email.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)) {
-      errorMessage = 'Please enter a valid email address'
+      errorMessage = 'Please enter a valid email address';
     } else if (password.length < 6) {
-      errorMessage = 'Password must be at least 6 characters long'
+      errorMessage = 'Password must be at least 6 characters long';
     } else if (!confirmPassword) {
-      errorMessage = 'Confirm password is required'
+      errorMessage = 'Confirm password is required';
     } else if (password !== confirmPassword) {
-      errorMessage = 'Passwords do not match'
-    }
-    else if (!scope) {
+      errorMessage = 'Passwords do not match';
+    } else if (!scope) {
       errorMessage = 'Please select a scope';
     } else if (!type) {
       errorMessage = 'Please select a type';
     }
-    setError(errorMessage)
+    if (!logoFile) {
+      errorMessage = 'Logo is required';
+    } else if (logoFile.size > 300 * 1024) {
+      errorMessage = 'Logo size should be less than 300KB';
+    } else if (!logoFile.type.includes('image')) {
+      errorMessage = 'Logo should be in image format (JPG, JPEG, PNG)';
+    }
+    // setError(errorMessage);
 
     if (errorMessage === null) {
-      verifyUniversitySignUp(universityName, email, password)
+      verifyUniversitySignUp(universityName, email, password);
     }
-
-
-  }
+  };
 
   const handleFocus = (event) => {
-    event.target.style.backgroundColor = 'yellow'
-  }
+    event.target.style.backgroundColor = 'yellow';
+  };
+
   const verifyUniversitySignUp = (instituteName, email, password) => {
+    const formData = new FormData();
+    formData.append('instituteName', instituteName);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('scope', scope);
+    formData.append('type', type);
+    formData.append('logoFile', logoFile);
+
     axios
-      .post('http://localhost:8000/university/signup', {
-        instituteName: instituteName,
-        email: email,
-        password: password,
-        scope: scope,
-        type: type,
-      })
+      .post('http://localhost:8000/university/signup', formData)
       .then((response) => {
-        setError(response.data.message);
+        const errorMessage = response.data.message;
+        // setError(errorMessage);
       })
       .catch((error) => {
-        setError(error.response.data.message);
+        const errorMessage = error.response.data.message;
+       
       });
   };
 
-
   const handleBlur = (event) => {
-    event.target.style.backgroundColor = 'white'
-  }
+    event.target.style.backgroundColor = 'white';
+  };
 
   return (
     <div className='sign'>
@@ -87,8 +89,9 @@ export default function UniversitySignUp() {
       </div>
       <div className='information'>
         <form onSubmit={handleSubmit}>
-          <label htmlFor='universityName'>University Name</label>
+          <label htmlFor='universityName'>Institute Name</label>
           <input
+           
             type='text'
             id='universityName'
             value={universityName}
@@ -154,8 +157,17 @@ export default function UniversitySignUp() {
             <option value='public'>Public</option>
             <option value='private'>Private</option>
           </select>
+          <label htmlFor="logo">Logo</label>
+          <input
+            type="file"
+            id="logo"
+            accept=".jpg, .jpeg, .png"
+            onChange={(event) => setLogoFile(event.target.files[0])}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+          />
 
-          <div className='error'>{error}</div>
+          {/* <div className='error'>{error}</div> */}
 
           <button className='next' type='submit'>
             Submit

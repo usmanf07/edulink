@@ -28,14 +28,14 @@
 
 .edulink__cta-content p {
     font-family: var(--font-family);
-    font-size: 12px;
+    font-size: 10px;
     line-height: 30px;
     font-weight: 500;
 }
 
 .edulink__cta-content h3 {
     font-family: var(--font-family);
-    font-size: 24px;
+    font-size: 25px;
     line-height: 45px;
     font-weight: 800;
 }
@@ -68,9 +68,14 @@
     .edulink__cta {
         flex-direction: column;
     }
+    .edulink__cta-content h3 {
+        font-size: 22px;
+        line-height: 32px;
+        margin-bottom: 1rem;
+    }
 
     .edulink__cta-btn {
-        margin: 2rem 0 0;
+        margin: 0rem 0 2rem 0rem;
     }
 }
 
@@ -80,13 +85,10 @@
         margin: 4rem 2rem;
     }
 
-    .edulink__cta-content h3 {
-        font-size: 18px;
-        line-height: 32px;
-    }
+    
 
     .edulink__cta-btn button {
-        font-size: 14px;
+        font-size: 12px;
         line-height: 28px;
     }
 }

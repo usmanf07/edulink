@@ -27,6 +27,7 @@ import { Navbar } from './components';
 import TestList from './TestList';
 
 import { Footer } from './containers';
+import SingleText from './SingleText';
 
 
 const App = () => {
@@ -59,10 +60,11 @@ const App = () => {
           <Route path="/signup/university" element= {<Log/>} />
           <Route path="/signup/user" element= {<Log/>} />
           <Route path="/signin/university/" element= {<Log/>} />
-          
+
           <Route path="/universitydash/:name/maketest" element= { <UniTest/>} />
 
           <Route path="/universitydash/:name/showtest" element={<TestList/>} />
+          <Route path="/universitydash/:name/showtest/:id" element={<SingleText/>} />
       </Routes>
       <Footer/>
 

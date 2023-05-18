@@ -6,6 +6,9 @@ const cors=require('cors');
 const fs = require('fs');
 const formidable = require('formidable');
 const mv = require('mv');
+const pdfkit = require('pdfkit');
+const { promisify } = require('util');
+const path = require('path');
 
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true
 }).then(() => {
@@ -67,112 +70,33 @@ app.use('/entrytest', entryTestRouter);
 const fetchinstitutesRouter = require('./routes/fetchinstitutes');
 app.use('/fetchinstitutes', fetchinstitutesRouter);
 
-// app.use(cookieParser());
-// app.use(session({
-//     secret: 'secret-key',
-//     resave: false,
-//     saveUninitialized: false,
-//   }));
+const mvAsync = promisify(mv);
 
-// app.get('/', cors(), (req, res) => {
-// })
+app.post('/generate-pdf', async (req, res) => {
+  const { questions } = req.body;
 
-// app.post("/login", async(req,res)=>{
-//     const{email, password}=req.body
-//     // console.log("ygygt")
+  const doc = new pdfkit();
+  const filePath = path.join(__dirname, '/images/questions.pdf');
 
+  doc.pipe(fs.createWriteStream(filePath));
 
-//     try{
-//         // const check = await User.findOne({email:email, password:password})
-//         const check = await User.findOne({ $or: [{ email }, { password }] });
-//         // console.log(email)
-//         // console.log(check)
-//         if(check)
-//         {
+  questions.forEach((question, index) => {
+    doc.text(`Question ${index + 1}`, { bold: true });
+    doc.text(question.statement);
+    question.options.forEach((option) => {
+      doc.text(option.statement);
+    });
+    doc.moveDown();
+  });
 
+  doc.end();
 
+  console.log(filePath);
+  // await mvAsync(filePath, path.join(__dirname, 'questions.pdf'));
 
-//             // True condition to be logged in
-//             req.session.userId = check.email;
-//             console.log(req.session.userId);
-
-
-
-//             // var c = res.cookie('userId', check._id, { maxAge: 30 * 24 * 60 * 60 }); // Set a cookie that expires in 30 days
-//             // console.log(c);
-//             // res.json({ check });
-//             res.json( req.session.userId)
-
-
-//             // app.get('/my-route', (req, res) => {
-//             //     req.session.myData = 'some data';
-//             //     res.json({ myData: req.session.myData });
-//             //   });
-
-
-//         }
-//         else{
-//             res.json("notexists")
-//         }
-//     }
-//     catch(e){
-//         res.json("notexists")
-//         console.log(e);
-//     }
-// })
-
-// // app.get('/SignUp1', cors(), (req, res) => {
-// // })
-
-// app.post("/SignUp1", async(req,res)=>{
-//     const{username,email, password}=req.body
-
-//     const data = {
-//         username:username,
-//         email:email,
-//         password:password
-//     }
-
-//     try{
-//         const check = await User.findOne({email:email, password:password})
-
-//         if(check)
-//         {
-//             res.json("exists")
-//             // console.log(check)
-//         }
-//         else{
-//             res.json("notexists")
-
-//            try
-//            {
-//             const result =  await User.insertMany([data]);
-//             // console.log(result);
-//             // res.status(200).send("Data inserted successfully");
-//             }
-//             catch (error)
-//             {
-//                 // if (error.message.includes("User Validation Failed"))
-//                 // {
-//                 //     // Handle the validation error
-//                 //     res.json("Uservalidationfailed.");
-
-//                 // }
-//                 // else
-//                 // {
-//                 //     res.json("password_error")
-//                 //     // console.log("An error occurred while inserting data.");
-//                 // }
-//             }
-
-//         }
-//     }
-//     catch(e){
-//         res.json("error")
-//         console.log(e);
-//     }
-// })
-
+  const downloadUrl = 'http://localhost:8000/images/questions.pdf';
+  res.json({ downloadUrl });
+});
 
 
 app.post('/upload', (req, res) => {

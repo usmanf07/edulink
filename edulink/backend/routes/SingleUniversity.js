@@ -324,6 +324,29 @@ router.route('/:name/programs/:programName/domains/:newDomain').get( (req, res) 
   });
 
 
+
+  ///show test
+
+  router.route('/gettext').post(async (req, res) => {
+    const { uniid, index } = req.body;
+
+    try {
+      const tests = await Test.find({ uniid });
+
+      if (index >= 0 && index < tests.length) {
+        const test = tests[index];
+        const questions = test.questions;
+        res.json({ questions });
+      } else {
+        res.status(404).json({ message: 'Test not found' });
+      }
+    } catch (error) {
+      console.error('Failed to retrieve test:', error);
+      res.status(400).json({ message: 'Error retrieving test', error: error });
+    }
+  });
+
+
   router.route('/tests/total/:uniid').get(async (req, res) => {
     const uniid = req.params.uniid; // Extract the university ID from the route parameter
 

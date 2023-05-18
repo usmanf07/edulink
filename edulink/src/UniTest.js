@@ -8,6 +8,8 @@ export default function UniTest() {
   const [questions, setQuestions] = useState([]);
   const [statement, setStatement] = useState('');
   const [options, setOptions] = useState(['', '', '', '']);
+  const [submitError, setSubmitError] = useState('');
+  const [submitSuccess, setSubmitSuccess] = useState('');
 
   const handleBack = () => {
     if (currentQuestion > 0) {
@@ -53,20 +55,25 @@ export default function UniTest() {
   };
 
 
-  const handleSubmit =  async() => {
+  const handleSubmit = async () => {
     try {
-
-      const unnid=  sessionStorage.getItem('uniid');
+      const unnid = sessionStorage.getItem('uniid');
       console.log('Session ID:', unnid);
       const response = await axios.post('http://localhost:8000/SingleInstitutePage/addtest/addnewtest', {
-        uniid:unnid,
-        questions:questions
+        uniid: unnid,
+        questions: questions,
       });
-       // console.log(response.data);
-      // Reset the form or show a success message
+      if (response.status === 200) {
+        setSubmitSuccess('Success');
+        setSubmitError('');
+      } else {
+        setSubmitSuccess('');
+        setSubmitError('Error');
+      }
     } catch (error) {
       console.error('Failed to add questions:', error);
-      // Show an error message to the user
+      setSubmitSuccess('');
+      setSubmitError('Error');
     }
   };
 
@@ -132,6 +139,8 @@ export default function UniTest() {
         <button className='mysubmit' onClick={handleSubmit}>Submit</button>
       </div>
     }
+    {submitSuccess && <p style={{ color: 'green' }}>Success</p>}
+      {submitError && <p style={{ color: 'red' }}>{submitError}</p>}
     </div>
 
 

@@ -85,6 +85,16 @@ router.route('/admissions/:name').get((req, res) => {
 });
 
 
+
+router.route('/logo/:name').get((req, res) => {
+  const universityName = req.params.name;
+  //console.log(universityName);
+  Admission.find({ universityName })
+    .then(admissions => res.json(admissions))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
   const multer = require('multer');
 
   // Set up multer storage for logo uploads
@@ -98,6 +108,7 @@ router.route('/admissions/:name').get((req, res) => {
       cb(null, file.fieldname + '-' + uniqueSuffix + '.' + extension); // Generate a unique filename with the original extension
     },
   });
+
 
 
   const logoUpload = multer({ storage: logoStorage });
@@ -173,6 +184,7 @@ router.route('/admissions/:name').get((req, res) => {
 
 
 
+
   router.route('/add').post((req, res) => {
 
     if (!req.body) {
@@ -219,17 +231,30 @@ router.route('/admissions/:name').get((req, res) => {
     }
   });
 
+
+  router.route('/recent-programs/:id').get(async (req, res) => {
+
+    const id = req.params.id;
+
+    try {
+      const recentPrograms = await RecentProgram.find({ uniID:id });
+   
+      console.log(recentPrograms);
+      res.json(recentPrograms);
+    } catch (error) {
+      console.error('Failed to retrieve recent programs:', error);
+      res.status(500).json({ error: 'Failed to retrieve recent programs' });
+    }
+  });
+
+
   router.route('/updateDisplay').put(async (req, res) => {
-    console.log("update");
     const updatedUniversities = req.body;
 
     try {
-
-      console.log("updat2");
       for (const updatedUniversity of updatedUniversities) {
 
         const { name, display } = updatedUniversity;
-        console.log(name + "," + display);
         await Uni.updateOne({ name: name }, { Namedisplay: display })
         // await Uni.findByIdAndUpdate(name, { display });
       }
@@ -250,7 +275,6 @@ router.route('/admissions/:name').get((req, res) => {
       for (const updatedUniversity of updatedUniversities) {
 
         const { name, display } = updatedUniversity;
-        console.log("kjhgfgh      " + name + "," + display);
         await Uni.updateOne({ address: name }, { Locationdisplay: display })
         // await Uni.findByIdAndUpdate(name, { display });
       }
@@ -268,8 +292,6 @@ router.route('/admissions/:name').get((req, res) => {
     try {
       const name1 = req.params.name;
       const id = await Uni.findOne({ name: name1 });
-
-      console.log(id.uniID);
 
       
       return res.json(id.uniID);

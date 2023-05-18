@@ -59,6 +59,24 @@ router.route('/').post(async (req, res) => {
     }
   });
 
+  router.route('/:email').delete( (req, res) => {
+    const email = req.params.email;
+  console.log(email);
+    // Perform a database query to delete the application with the given ID
+    Application.deleteMany({studentEmail:email})
+    .then((deletedApplication) => {
+      if (!deletedApplication) {
+        res.status(404).json({ error: 'Application not found' });
+      } else {
+        res.json({ message: 'Application deleted successfully' });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: 'Failed to delete the application' });
+    });
+  });
+
   router.route('/:id').delete( (req, res) => {
     const id = req.params.id;
   console.log(id);

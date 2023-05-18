@@ -88,6 +88,7 @@ useEffect(() => {
   }, []);
 
   const [error, setError] = useState('');
+  
   const handleApplyConfirm = async (index) => {
 
     if(email === '' || email === null) {

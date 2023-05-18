@@ -73,7 +73,8 @@ useEffect(() => {
     sliderRef.current.slickNext();
   };
 
- 
+  const [visibleData, setVisibleData] = useState([...fetchedinstitutesData, ...institutesData]);
+
   useEffect(() => {
     // Get sessionId and email from sessionStorage
     const sessionId = sessionStorage.getItem('sessionId');
@@ -96,8 +97,8 @@ useEffect(() => {
       return;
     }
 
-    const selectedInstitute = institutesData[index];
-    //console.log(selectedInstitute.program);
+    const selectedInstitute = visibleData[index];
+    console.log(selectedInstitute);
     
     try {
       const response = await axios.post('http://localhost:8000/application', {
@@ -189,8 +190,7 @@ useEffect(() => {
   const toggleFilterMenu = () => {
     setFilterMenuOpen(!filterMenuOpen);
   };
-  const [visibleData, setVisibleData] = useState([...fetchedinstitutesData, ...institutesData]);
-
+ 
   const handleSearch = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
@@ -309,6 +309,7 @@ useEffect(() => {
                 Are you sure you want to apply to {institute.uniName} for {institute.program} program?
                
               </p>
+              {console.log(index)}
               <button onClick={() => handleApplyConfirm(index)}>Confirm</button>
               <button style={{ border: '0px', marginLeft: '10px', backgroundColor: 'red' }} onClick={() => setConfirmation(prevState => ({ ...prevState, [index]: false }))}>Cancel</button>
             </div>

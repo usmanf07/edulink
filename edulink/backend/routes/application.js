@@ -98,7 +98,7 @@ router.route('/').post(async (req, res) => {
         
         const uniDetails = {
           uniName: university.name,
-          logo: university.imageName,
+          logo: university.logo,
         };
         
         const applicationWithDetails = {

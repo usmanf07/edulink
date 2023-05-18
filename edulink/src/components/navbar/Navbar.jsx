@@ -157,7 +157,7 @@ const Navbar = (props) => {
         <div className="edulink__navbar-categories">
           <hr></hr>
           <div className='edulink__navbar-categories_links'>
-              <p><a href="#institute">Latest News</a></p>
+          <Link to="/Payment"><a href="#allinstitutes" >All Institutes</a></Link>
               <p><a href="#wedulink">Private Sector</a></p>
               <p><a href="#possibility">Public Sector</a></p>
               <p><a href="#features">Overseas</a></p>

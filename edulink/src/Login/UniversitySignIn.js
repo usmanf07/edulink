@@ -48,8 +48,7 @@ export default function UniversitySignIn() {
         setError(message);
 
         sessionStorage.setItem('uniid', id);
-
-
+        sessionStorage.setItem('uniname',name);
 
         navigate(`/universitydash/${name}`);
       })

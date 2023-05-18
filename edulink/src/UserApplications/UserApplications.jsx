@@ -59,7 +59,8 @@ useEffect(() => {
       <div key={application.id} className='userApplications__container__card'>
         <div className='userApplications__container__card-head'>
           <div className='userApplications__container__card-head-info'>
-            <img src={`http://localhost:8000/images/${application.logo}`} alt={application.uniName} />
+            {console.log(application.logo)}
+            <img src={`http://localhost:8000/logos/${application.logo}`} alt={application.uniName} />
             <div>
               <h2>{application.uniName}</h2>
               <p>Applied For: {application.appliedFor}</p>

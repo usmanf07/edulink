@@ -5,6 +5,7 @@
     align-items: center;
     background: var(--color-footer);
     padding: 2rem;
+    margin-top: 5rem;
 }
 
 .edulink__footer-heading h1 {

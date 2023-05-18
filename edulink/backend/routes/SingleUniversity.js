@@ -14,6 +14,26 @@ router.route('/').get((req, res) => {
 
 
 
+  router.route('/getuniID/:name').get(async (req, res) => {
+
+    const name = req.params.name;
+
+     try {
+    // Assuming you have a database model for universities
+    const University_id = await Uni.findOne({ instituteName:name });
+
+    if (!University_id) {
+      return res.status(404).json({ message: 'University id not found' });
+    }
+
+
+    res.json(University_id.uniID);
+  } catch (error) {
+    console.error('Failed to get uniID:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+  });
+
 
 
 router.route('/getType/getscope/:uniId').get(async (req, res) => {

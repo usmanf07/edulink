@@ -132,6 +132,7 @@ font-size: 76px;
 .information label,input{
   display: block;
   margin-top: 10px;
+  font-weight: 900;
 }
 .information label{
 

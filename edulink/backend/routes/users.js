@@ -43,8 +43,8 @@ router.route('/:email').get((req, res) => {
     .catch(err => res.status(400).json({ message: err.message }));
 });
 
- const stripe = require('stripe')('sk_test_51N7U7lFSLiunkCElv0MyvHgjcHswti7hoWahORPG6UEQHmKovVNI9RnJxlCyEmyqO9JufdWThyVwTlYzIcVNYl7800gfpBdT2x');
-
+ //const stripe = require('stripe')('sk_test_51N7U7lFSLiunkCElv0MyvHgjcHswti7hoWahORPG6UEQHmKovVNI9RnJxlCyEmyqO9JufdWThyVwTlYzIcVNYl7800gfpBdT2x');
+ const stripe = require('stripe')('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');
 router.route('/charge').post( async (req, res) => {
   const { email, amount, cardNumber, cvv, expMonth, expYear } = req.body;
 

@@ -286,7 +286,7 @@ useEffect(() => {
       <div className="edulink__featuresecondary-instituteBox">
         <div className="edulink__featuresecondary-institute-details">
           <div>
-          {institute.logo ? (<img src={"http://localhost:8000/images/"+institute.logo} alt={`${institute.uniName} logo`} />)
+          {institute.logo ? (<img src={"http://localhost:8000/logos/"+institute.logo} alt={`${institute.uniName} logo`} />)
           :( <img src={`http://localhost:8000/images/pic1.jpeg`} alt={`${institute.uniName} logo`} />) }
           </div>
 

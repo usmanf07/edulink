@@ -89,8 +89,9 @@ export default function UniversitySignUp() {
       </div>
       <div className='information'>
         <form onSubmit={handleSubmit}>
-          <label htmlFor='universityName'>University Name</label>
+          <label htmlFor='universityName'>Institute Name</label>
           <input
+           
             type='text'
             id='universityName'
             value={universityName}

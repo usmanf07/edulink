@@ -164,9 +164,9 @@ const Navbar = (props) => {
               <p><a href="#institute">Top Ranked</a></p>
               <p><a href="#institute">Scholarships</a></p>
               <p><a href="#institute">Sample Entry Tests</a></p>
-              <p><a href="#institute">Registration Form</a></p>
-              <p><a href="#institute">Recent Admissions</a></p>
-              <p><a href="#institute">Blog</a></p>
+              
+              <p><a href="#fsecond">Recent Programs</a></p>
+              
           </div>
         </div>
       )}

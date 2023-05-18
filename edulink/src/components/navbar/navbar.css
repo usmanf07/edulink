@@ -149,6 +149,7 @@
   .edulink__navbar.sticky .edulink__navbar-search_icon{
     background-color: #000;
     text-align: center;
+    margin-top: 10px;
     height: 40px;
     width: 50px;
     align-items: center;

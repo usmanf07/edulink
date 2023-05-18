@@ -184,8 +184,8 @@ const Navbar = (props) => {
             <p><a href="#blog">eduInstitute</a></p>
           </div>
           <div className="edulink__navbar-menu_container-links-sign">
-            <p>Sign in</p>
-            <button type="button">Sign up</button>
+          <Link to="/login"><p>Sign in</p></Link>
+        <button type="button" onClick={moveToSignUp}>Sign up</button>
           </div>
         </div>
         )}

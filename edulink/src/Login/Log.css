@@ -314,3 +314,30 @@ font-size: 76px;
   color:red;
 
 }
+
+@media only screen and (max-width: 700px) {
+
+  .signin{
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+   
+  }
+  
+  .outside{
+    flex-direction: column;
+    height: 1000px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .sign{
+    width: 400px;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 7rem;
+    padding: 2rem;
+  }
+}

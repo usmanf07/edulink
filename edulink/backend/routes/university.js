@@ -30,7 +30,30 @@ const Admission = require('../models/admission.model');
       .catch(err => res.status(400).json('Error: ' + err));
   });
 
+  router.route('/recent-programs/:id').get(async (req, res) => {
 
+    const id = req.params.id;
+
+    try {
+      const recentPrograms = await RecentProgram.find({ uniID:id });
+   
+      console.log(recentPrograms);
+      res.json(recentPrograms);
+    } catch (error) {
+      console.error('Failed to retrieve recent programs:', error);
+      res.status(500).json({ error: 'Failed to retrieve recent programs' });
+    }
+  });
+
+
+  router.route('/logo/:name').get((req, res) => {
+    const universityName = req.params.name;
+    //console.log(universityName);
+    Admission.find({ universityName })
+      .then(admissions => res.json(admissions))
+      .catch(err => res.status(400).json('Error: ' + err));
+  });
+  
 
 
   router.route('/signin')

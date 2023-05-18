@@ -28,6 +28,7 @@ import { useLocation } from 'react-router-dom';
         .then((response) => {
           console.log(response.data);
           setInstituteName(response.data.instituteName);
+
           setBigPicture(response.data.bigPicture);
           // alert(response.data.bigPicture);
         })
@@ -59,7 +60,7 @@ import { useLocation } from 'react-router-dom';
 
 
         <Desc name={name}/>
-        <ButtonBar name={name}/>
+        {/* <ButtonBar name={name}/> */}
         <Body name={name}/>
 
         {/* <SearchGroup />

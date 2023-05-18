@@ -26,6 +26,9 @@ class BodyA extends React.Component{
             // img :pi,
             currentImageIndex: 0,
             name: props.name,
+            uniID: "",
+            email:"",
+            error: "",
 
         }
     }
@@ -33,6 +36,17 @@ class BodyA extends React.Component{
 
 
     componentDidMount() {
+
+        const sessionId = sessionStorage.getItem('sessionId');
+        const email = sessionStorage.getItem('email');
+        console.log(email)
+    
+        if(email === null) {  
+        console.error('User is not logged in.'); // Log error message
+        }
+
+        this.setState({email:email});
+  
 
         // alert(name);
         this.intervalId = setInterval(this.nextImage, 2000);
@@ -45,6 +59,30 @@ class BodyA extends React.Component{
                     // console.log("imageehbhebgevg    " + this.state.imageNames);
             })
             .catch((error) => console.error('Failed to retrieve universities:', error));
+
+        axios.get(`http://localhost:8000/SingleInstitutePage/getuniID/${this.state.name}`)
+        .then((response) => {
+            console.log(response.data);
+
+            axios.get(`http://localhost:8000/university/recent-programs/${response.data}`)
+            .then((res) => {
+    
+                console.log("addmm" + res.data);
+                this.setState({AdmissionsOpen: res.data});
+                
+            })
+            .catch((error) => console.error('Failed to retrieve universities:', error))
+
+            this.setState({ uniID: response.data},
+
+               
+
+            );
+        })
+        .catch((error) => console.error('Failed to retrieve universities:', error));
+
+       
+
       }
 
       componentWillUnmount() {
@@ -57,10 +95,37 @@ class BodyA extends React.Component{
         this.setState({ currentImageIndex: nextIndex });
       }
 
+
+
+    handleApplyConfirm=(e)=> {
+
+    
+        alert("Successfully submitted");
+    try {
+        const response = axios.post('http://localhost:8000/application', {
+        email: this.state.email,
+        status: 'Pending',
+        appliedDate: new Date(),
+        additionalRequirements: [],
+        appliedFor: e,
+        otherInfo: '',
+        uniID: this.state.uniID,
+        
+        });
+        // setError('Applied Successfully');
+        // setConfirmation(false);
+        console.log(response.data); // Log success message
+        } catch (error) {
+            console.error('Error adding application:', error);
+        }
+        }
+
+
     render(){
 
         const { imageNames, currentImageIndex } = this.state;
         const imageUrl = imageNames[currentImageIndex];
+        console.log("UNI ID " + this.state.uniID);
 
         return(
             <div className='bodyA'>
@@ -74,11 +139,11 @@ class BodyA extends React.Component{
 
                         <p className="ProgramName"> {programlist.name}</p>
                         <div className="ProgramDomain">
-                            <table>
+                            <table >
                             {programlist.domains[0]!= null && programlist.domains[0].map((domain,index,next) =>
                                 index%3 === 0 &&
                                 (
-                                    <tr className='tr' key={index}>
+                                    <tr className='programNamesTable' key={index}>
                                     {
                                         index < next.length &&
                                         <td> {next[index]} </td>
@@ -86,12 +151,12 @@ class BodyA extends React.Component{
 
                                     {
                                         (index+1) < next.length &&
-                                        <td className='td2'> {(next[index +1])} </td>
+                                        <td className='td2 programNamesTable'> {(next[index +1])} </td>
                                     }
 
                                     {
                                         (index+2) < next.length &&
-                                        <td className='td3'> {(next[index +2])} </td>
+                                        <td className='td3 programNamesTable'> {(next[index +2])} </td>
                                     }
                                     </tr>
                                 )
@@ -110,14 +175,14 @@ class BodyA extends React.Component{
                     <div className="AdmissionNews">
                     <div className='center'>
 
-                    <h1>Admissions Open For {admission.name}</h1>
-                    <p>Deadline : {admission.deadline}</p>
-                    <button className="ApplyBtn">Apply Now</button>
+                    <h1>Admissions Open For {admission.program}</h1>
+                    <p>Deadline : {admission.lastApplyDate}</p>
+                    <button className="ApplyBtn" onClick={()=>this.handleApplyConfirm(admission.program)}>Apply Now</button>
                     </div>
                     </div>
-                )}
+                )} 
 
-                {/* </div> */}
+                 {/* </div> */}
 
 
                 {/* {this.state.imageNames.map( (image)=> */}

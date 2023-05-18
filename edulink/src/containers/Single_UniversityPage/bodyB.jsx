@@ -16,20 +16,48 @@ class BodyB extends React.Component{
             [],
             GoogleMap:"",
             name: props.name,
+            uniID: "",
+            scope: "",
+            type:"",
+
         }
     }
 
     componentDidMount() {
 
         axios.get(`http://localhost:8000/SingleInstitutePage/${this.state.name}`)
-            .then((response) => {
+        .then((response) => {
 
-                this.setState({ Location: response.data.location[0], Email:response.data.emails ,Inquiry:response.data.inquiries,RelatedInstitutes:response.data.relatedInstitutes
-                    ,GoogleMap: response.data.googlemap}
-                    );
-                    // console.log("imageehbhebgevg    " + this.state.imageNames);
+            this.setState({ Location: response.data.location[0], Email:response.data.emails ,Inquiry:response.data.inquiries,RelatedInstitutes:response.data.relatedInstitutes
+                ,GoogleMap: response.data.googlemap}
+                );
+                // console.log("imageehbhebgevg    " + this.state.imageNames);
+        })
+        .catch((error) => console.error('Failed to retrieve universities:', error));
+
+        
+        axios.get(`http://localhost:8000/SingleInstitutePage/getuniID/${this.state.name}`)
+        .then((response) => {
+
+            console.log("nhgcd" + response.data);
+            axios.get(`http://localhost:8000/SingleInstitutePage/getType/getscope/${response.data}`)
+            .then((res) => {
+    
+                console.log("juhgy" + res.data);
+                this.setState({scope: res.data.scope ,type: res.data.type});
+                
             })
-            .catch((error) => console.error('Failed to retrieve universities:', error));
+            .catch((error) => console.error('Failed to retrieve universities:', error))
+
+            this.setState({ uniID: response.data},
+
+               
+
+            );
+        })
+        .catch((error) => console.error('Failed to retrieve universities:', error));
+
+
       }
 
     render(){
@@ -46,7 +74,7 @@ class BodyB extends React.Component{
             <div className='Location'>
                 <h>Location</h>
 
-                {/* <p>{this.state.Location}</p> */}
+                <p>{this.state.Location}</p>
             </div>
 
             <div className='Email'>
@@ -60,31 +88,18 @@ class BodyB extends React.Component{
             </div>
 
             <div className='Inquiries'>
-                <h>Inquiries</h>
-                <ul>
-                {this.state.Inquiry.map( (inq)=>
+                <h>Scope</h>
+                <p>{this.state.scope}</p>
 
-                (inq.helpline &&
-                <li>Helpline : {inq.helpline}</li>)
-
-                ||
-
-                (inq.officialWebsite &&
-                <li>Official Website : {inq.officialWebsite}</li>)
-
-                ||
-
-                (inq.Facebook &&
-                <li>Facebook : {inq.Facebook}</li>  )
-
-
-
-                )}
-
-                </ul>
             </div>
 
-            <div className='RelatedInstitutes'>
+            <div className='Inquiries'>
+                <h>Type</h>
+                <p>{this.state.type}</p>
+
+            </div>
+
+            {/* <div className='RelatedInstitutes'>
                 <h>RelatedInstitutes</h>
                 <ul>
                 {this.state.RelatedInstitutes.map( (rel_Ins)=>
@@ -92,7 +107,7 @@ class BodyB extends React.Component{
                 <li>{rel_Ins}</li>
                 )}
                 </ul>
-            </div>
+            </div> */}
 
             </div>
         )

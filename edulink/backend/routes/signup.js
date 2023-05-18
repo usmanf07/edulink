@@ -26,11 +26,11 @@ router.route('/').post(upload.single('profileImage'), async (req, res) => {
     if (check) {
       return res.json("exists");
     } else {
-      const hashedPassword = await bcrypt.hash(password, 10);
+      
       const newUser = new User({
         username: userName,
         email: email,
-        password: hashedPassword,
+        password: password,
       });
 
       const newUserProfile = new UserProfile({

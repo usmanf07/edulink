@@ -30,11 +30,8 @@ router.use(session({
     try {
       const user = await signin.findOne({ email: email });
       if (user) {
-        const isPasswordMatch = await bcrypt.compare(password, user.password);
-        if (isPasswordMatch) {
+        if (password === user.password) {
           req.session.id = user.email;
-          console.log(req.session.id);
-          console.log(user.email);
           const responseObj = { sessionId: req.session.id, email: user.email };
           res.json(responseObj);
         } else {
@@ -48,6 +45,7 @@ router.use(session({
       console.log(e);
     }
   });
+  
   
 
 

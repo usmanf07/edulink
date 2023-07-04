@@ -1,7 +1,7 @@
 # Edulink a MERN Stack Project for Institutes & Students
 - What is Edulink?
 Edulink is a MERN stack based dynamic platform that connects students and institutes from all corners of the world. It offers a wide range of functionalities to help students prepare for entry tests and search for and register in institutes worldwide. 🌍
-
+![Home Screen](https://i.ibb.co/RNbGr6G/edulink.png)
 ## Installation
   1. Clone the repository to your local machine.
   2. Install the dependencies for both the server and client.
